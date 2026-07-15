@@ -14,9 +14,14 @@ export default {
     app.component('SecureGuard', SecureGuard)
 
     if (typeof window !== 'undefined') {
-      // 1. 초기 진입 시 특정 폴더로의 다이렉트 접근 차단 로직 (Home으로 강제 이동)
+      // 1. 초기 진입 시 특정 폴더로의 다이렉트 접근 차단 로직 (Home으로 강제 이동) 및 로컬스토리지 캐시 초기화
       if (!sessionStorage.getItem('site_accessed')) {
         sessionStorage.setItem('site_accessed', 'true')
+        try {
+          localStorage.removeItem('knowledge_info_xml_v4')
+        } catch (e) {
+          console.error(e)
+        }
         if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
           window.location.href = '/'
           return
