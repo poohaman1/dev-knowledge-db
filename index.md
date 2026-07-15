@@ -37,6 +37,7 @@ features:
     details: 실무 개발 자동화를 극대화하는 에이전트(Antigravity 등) 전용 지침과 효율적인 프롬프트 엔지니어링 패턴을 관리합니다.
 ---
 
+<HomeBannerSlider />
 
 <div class="home-intro">
   <h2>💡 프로그램 소개</h2>

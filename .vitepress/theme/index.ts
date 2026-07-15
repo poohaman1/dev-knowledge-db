@@ -4,6 +4,7 @@ import CustomLayout from './components/CustomLayout.vue'
 import KnowledgeInfoGrid from './components/KnowledgeInfoGrid.vue'
 import SiteAnalyticsDashboard from './components/SiteAnalyticsDashboard.vue'
 import SecureGuard from './components/SecureGuard.vue'
+import HomeBannerSlider from './components/HomeBannerSlider.vue'
 
 export default {
   extends: DefaultTheme,
@@ -12,6 +13,7 @@ export default {
     app.component('KnowledgeInfoGrid', KnowledgeInfoGrid)
     app.component('SiteAnalyticsDashboard', SiteAnalyticsDashboard)
     app.component('SecureGuard', SecureGuard)
+    app.component('HomeBannerSlider', HomeBannerSlider)
 
     if (typeof window !== 'undefined') {
       // 1. 초기 진입 시 특정 폴더로의 다이렉트 접근 차단 로직 (Home으로 강제 이동) 및 로컬스토리지 캐시 초기화
