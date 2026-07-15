@@ -22,6 +22,44 @@ export default {
         } catch (e) {
           console.error(e)
         }
+
+        // 유입경로(Referrer) 및 유입 키워드 파싱 및 캐시
+        let rawReferrer = document.referrer || ''
+        let parsedReferrer = 'Direct'
+        let parsedKeyword = 'N/A'
+
+        if (rawReferrer && !rawReferrer.includes(window.location.host)) {
+          try {
+            const urlObj = new URL(rawReferrer)
+            parsedReferrer = urlObj.hostname.replace('www.', '')
+            const searchParams = urlObj.searchParams
+            const keywordParam = searchParams.get('q') || searchParams.get('query') || searchParams.get('wd')
+            if (keywordParam) {
+              parsedKeyword = decodeURIComponent(keywordParam).trim()
+            }
+          } catch (e) {
+            console.error('Referrer parsing error:', e)
+          }
+        }
+
+        // 현재 URL 파라미터에서 UTM / 검색어 파싱
+        try {
+          const currentUrlParams = new URLSearchParams(window.location.search)
+          const utmTerm = currentUrlParams.get('utm_term') || currentUrlParams.get('q') || currentUrlParams.get('query')
+          if (utmTerm) {
+            parsedKeyword = decodeURIComponent(utmTerm).trim()
+          }
+          const utmSource = currentUrlParams.get('utm_source')
+          if (utmSource) {
+            parsedReferrer = utmSource.trim()
+          }
+        } catch (e) {
+          console.error('Current URL parsing error:', e)
+        }
+
+        sessionStorage.setItem('entry_referrer', parsedReferrer)
+        sessionStorage.setItem('entry_keyword', parsedKeyword)
+
         if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
           window.location.href = '/'
           return
@@ -43,8 +81,15 @@ export default {
             
             // "타이틀 | 지식DB" 형식에서 "타이틀"만 추출
             const pageTitle = document.title.split('|')[0].trim() || 'Home'
+            const referrer = sessionStorage.getItem('entry_referrer') || 'Direct'
+            const keyword = sessionStorage.getItem('entry_keyword') || 'N/A'
             
-            logs.push({ path: pageTitle, timestamp: Date.now() })
+            logs.push({ 
+              path: pageTitle, 
+              timestamp: Date.now(),
+              referrer,
+              keyword
+            })
             // Limit logs to last 5000 entries
             if (logs.length > 5000) logs.shift()
             localStorage.setItem('site_analytics_logs', JSON.stringify(logs))
