@@ -1,13 +1,22 @@
 <template>
   <div class="analytics-dashboard" style="position: relative;">
-    <!-- 은밀한 관리자 식별 표시기 (타인은 눈치채지 못하게 흐리게 설정) -->
-    <div v-if="isAdmin" class="admin-indicator" :title="`Admin Mode (${userIp})`">
-      ✦
+    <!-- localhost 접속 시 노출하지 않고 통계 정보 비활성화 메시지 표시 -->
+    <div v-if="isLocalhost" class="localhost-block-card">
+      <div class="block-icon">⚠️</div>
+      <h2>로컬 테스트 환경 접속 알림</h2>
+      <p>현재 <strong>로컬 환경(localhost)</strong>으로 접속 중입니다.</p>
+      <p class="desc">로컬 개발 서버에서 발생하는 유입 및 방문 활동은 대시보드 통계 오염을 방지하기 위해 집계되지 않으며, 사이트 측정도구가 제공되지 않습니다. 실서버(Vercel 등)에서 측정된 정보만 통계에 포함됩니다.</p>
     </div>
 
-    <div class="analytics-header">
-      <button v-if="isAdmin" class="btn btn-danger" @click="clearLogs">로그 초기화</button>
-    </div>
+    <template v-else>
+      <!-- 은밀한 관리자 식별 표시기 (타인은 눈치채지 못하게 흐리게 설정) -->
+      <div v-if="isAdmin" class="admin-indicator" :title="`Admin Mode (${userIp})`">
+        ✦
+      </div>
+
+      <div class="analytics-header">
+        <button v-if="isAdmin" class="btn btn-danger" @click="clearLogs">로그 초기화</button>
+      </div>
 
     <!-- 일/주/월 통계 카드 카드 -->
     <div class="stats-grid">
@@ -204,6 +213,7 @@
         <p v-else class="empty-msg">유입 키워드 데이터가 없습니다.</p>
       </div>
     </div>
+    </template>
   </div>
 </template>
 
@@ -215,6 +225,11 @@ const searchLogs = ref([])
 const activeTab = ref('daily') // 'daily', 'weekly', or 'monthly'
 const selectedDate = ref(new Date()) // 통계 기준 날짜
 const userIp = ref('') // 사용자 실제 IP
+
+const isLocalhost = computed(() => {
+  if (typeof window === 'undefined') return false
+  return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+})
 
 const isAdmin = computed(() => {
   const adminIpsEnv = import.meta.env.VITE_ADMIN_IPS || '112.186.113.99'
@@ -1049,5 +1064,35 @@ const formatDate = (ts) => {
   font-weight: 600;
   color: var(--vp-c-brand-1);
   word-break: break-all;
+}
+.localhost-block-card {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.localhost-block-card .block-icon {
+  font-size: 3rem;
+  margin-bottom: 16px;
+}
+.localhost-block-card h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--vp-c-brand-1);
+}
+.localhost-block-card p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+.localhost-block-card .desc {
+  font-size: 0.88rem;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+  max-width: 500px;
+  margin: 16px auto 0;
 }
 </style>

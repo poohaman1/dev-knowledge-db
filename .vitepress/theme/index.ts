@@ -73,6 +73,11 @@ export default {
           window.history.replaceState(null, '', '/');
         }
 
+        // localhost로 접속한 경우에는 로그를 수집하지 않음
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          return;
+        }
+
         // 타이틀이 브라우저 탭에 업데이트될 시간을 위해 약간 지연
         setTimeout(() => {
           try {
@@ -125,6 +130,9 @@ export default {
       let lastLoggedSearch = ''
       
       const logSearchQuery = (query: string) => {
+        // localhost로 접속한 경우에는 검색어 로그를 수집하지 않음
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
+
         const cleaned = query.trim()
         if (!cleaned || cleaned.length < 2 || cleaned === lastLoggedSearch) return
         
