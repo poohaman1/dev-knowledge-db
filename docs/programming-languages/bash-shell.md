@@ -1,3 +1,5 @@
+[← 프로그래밍 언어 가이드 목록으로 돌아가기](/docs/programming-languages/#bash-shell-section)
+
 # 🐚 Bash / Shell Script 상세 가이드
 
 > **"검은 화면(터미널) 너머의 운영체제(OS) 심장을 직접 통제하고 자동화하는 엔지니어의 만능 칼"**
