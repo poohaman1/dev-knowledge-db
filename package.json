@@ -1,0 +1,24 @@
+{
+  "name": "dev-knowledge-db",
+  "version": "1.0.0",
+  "description": "개발자들이 매일 활용할 수 있는 국내외 최고의 개발 관련 사이트, 도구, 자료, 프롬프트, 지침 등을 체계적으로 수집·관리·활용하는 지식 베이스 프로젝트입니다.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "validate:xml": "node scripts/validate-xml.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "vitepress": "^1.6.4",
+    "vue": "^3.5.39"
+  }
+}

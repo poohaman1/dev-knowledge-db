@@ -1,0 +1,425 @@
+/**
+ * 개발자를 위한 지식DB — 글로벌 커스텀 테마
+ * 인디고-바이올렛 브랜드 컬러 + 글래스모피즘 + 마이크로 애니메이션
+ */
+
+/* ── Google Fonts 로드는 config.mts head에서 처리 ── */
+
+/* ═══════════════════════════════════════════════════════
+   1. 브랜드 컬러 시스템 — VitePress CSS 변수 오버라이드
+   ═══════════════════════════════════════════════════════ */
+:root {
+  --vp-c-brand-1: #6366f1;
+  --vp-c-brand-2: #818cf8;
+  --vp-c-brand-3: #4f46e5;
+  --vp-c-brand-soft: rgba(99, 102, 241, 0.14);
+
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #6366f1 0%, #a78bfa 50%, #ec4899 100%);
+  --vp-home-hero-image-background-image: linear-gradient(135deg, rgba(99,102,241,.28), rgba(167,139,250,.28));
+  --vp-home-hero-image-filter: blur(56px);
+
+  /* 타이포그래피 */
+  --vp-font-family-base: 'Inter', 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --vp-font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.dark {
+  --vp-c-bg: #0f0f14;
+  --vp-c-bg-soft: #17171e;
+  --vp-c-bg-mute: #1e1e28;
+  --vp-c-bg-alt: #141419;
+  --vp-c-divider: rgba(255, 255, 255, 0.06);
+  --vp-c-text-1: #e8eaed;
+  --vp-c-text-2: #9ca3af;
+}
+
+/* ═══════════════════════════════════════════════════════
+   2. 글로벌 스크롤바 커스텀
+   ═══════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(99, 102, 241, 0.55); }
+
+/* ═══════════════════════════════════════════════════════
+   3. 사이드바 그룹 타이틀 글래스모피즘
+   ═══════════════════════════════════════════════════════ */
+.VPSidebarItem.level-0 > .item > .text {
+  font-weight: 800 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.7rem;
+  margin: 0.6rem 0 0.25rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(167,139,250,0.06));
+  border-left: 3px solid var(--vp-c-brand-1);
+}
+
+/* 사이드바 아이템 호버 개선 */
+.VPSidebarItem.level-1 .link:hover {
+  background: rgba(99, 102, 241, 0.08) !important;
+  border-radius: 6px;
+}
+
+/* 사이드바 활성 아이템 */
+.VPSidebarItem.is-active > .item > .link > .text {
+  color: var(--vp-c-brand-1) !important;
+  font-weight: 700 !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   4. 네비게이션 바 개선
+   ═══════════════════════════════════════════════════════ */
+.VPNav {
+  backdrop-filter: blur(16px) saturate(1.5) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.5) !important;
+}
+
+.VPNavBarTitle .title {
+  font-weight: 800 !important;
+  background: linear-gradient(135deg, #6366f1, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════════
+   5. 홈 페이지 히어로 영역 강화
+   ═══════════════════════════════════════════════════════ */
+.VPHero .name {
+  font-size: 3rem !important;
+  line-height: 1.15 !important;
+}
+
+.VPHero .text {
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.VPHero .tagline {
+  font-size: 1.05rem !important;
+  line-height: 1.65;
+  color: var(--vp-c-text-2);
+  max-width: 560px;
+}
+
+/* 히어로 액션 버튼 강화 */
+.VPButton.brand {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  border: none !important;
+  box-shadow: 0 4px 16px rgba(99, 102, 241, 0.35);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
+}
+
+.VPButton.alt {
+  border: 1.5px solid rgba(99,102,241,.35) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.VPButton.alt:hover {
+  background: rgba(99, 102, 241, 0.1) !important;
+  border-color: var(--vp-c-brand-1) !important;
+  transform: translateY(-2px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   6. 피처 카드 호버 리프트 + 글로우
+   ═══════════════════════════════════════════════════════ */
+.VPFeature {
+  border: 1px solid rgba(99, 102, 241, 0.15) !important;
+  background: var(--vp-c-bg-soft) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 16px !important;
+}
+
+.dark .VPFeature {
+  background: rgba(23, 23, 30, 0.5) !important;
+  backdrop-filter: blur(12px);
+}
+
+.VPFeature:hover {
+  transform: translateY(-6px);
+  background: var(--vp-c-bg-mute) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.12);
+}
+
+.dark .VPFeature:hover {
+  background: rgba(30, 30, 40, 0.7) !important;
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+
+.VPFeature .title {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+.VPFeature .details {
+  font-size: 0.9rem !important;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+/* ═══════════════════════════════════════════════════════
+   7. 글로벌 테이블 스타일 (docs 페이지 Markdown 테이블)
+   ═══════════════════════════════════════════════════════ */
+.vp-doc table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--vp-c-divider);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+.vp-doc tr {
+  transition: background 0.15s ease;
+}
+
+.vp-doc tr:hover {
+  background: rgba(99, 102, 241, 0.04);
+}
+
+.vp-doc th {
+  background: rgba(99, 102, 241, 0.06) !important;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.vp-doc td a {
+  color: var(--vp-c-brand-1) !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s;
+}
+
+.vp-doc td a:hover {
+  color: var(--vp-c-brand-2) !important;
+  text-decoration: underline;
+}
+
+/* ═══════════════════════════════════════════════════════
+   8. 코드 블록 스타일 개선
+   ═══════════════════════════════════════════════════════ */
+.vp-doc div[class*='language-'] {
+  border-radius: 12px !important;
+  border: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════
+   9. 푸터 스타일링
+   ═══════════════════════════════════════════════════════ */
+.VPFooter {
+  border-top: 1px solid rgba(99, 102, 241, 0.1) !important;
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  font-size: 0.82rem;
+  color: var(--vp-c-text-2);
+}
+
+/* ═══════════════════════════════════════════════════════
+   10. 페이지 전환 마이크로 애니메이션
+   ═══════════════════════════════════════════════════════ */
+.VPContent {
+  animation: pageIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   11. 검색 버튼 스타일 개선
+   ═══════════════════════════════════════════════════════ */
+.VPNavBarSearch .DocSearch-Button,
+.VPNavBarSearchButton .vp-search-button {
+  border: 1px solid rgba(99, 102, 241, 0.2) !important;
+  border-radius: 10px !important;
+  transition: border-color 0.2s !important;
+}
+
+.VPNavBarSearch .DocSearch-Button:hover,
+.VPNavBarSearchButton .vp-search-button:hover {
+  border-color: var(--vp-c-brand-1) !important;
+}
+
+/* ═══════════════════════════════════════════════════════
+   12. Alert / Callout 스타일 보강
+   ═══════════════════════════════════════════════════════ */
+.vp-doc .custom-block {
+  border-radius: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.vp-doc .custom-block:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+/* ═══════════════════════════════════════════════════════
+   13. 홈 페이지 커스텀 섹션 (소개·통계)
+   ═══════════════════════════════════════════════════════ */
+.home-intro {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(167,139,250,0.04));
+  border: 1px solid rgba(99, 102, 241, 0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+}
+
+.home-intro h2 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-intro .subtitle {
+  text-align: center;
+  color: var(--vp-c-text-2);
+  max-width: 600px;
+  margin: 0.5rem auto 2rem;
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+/* 통계 카운터 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background: rgba(99, 102, 241, 0.06);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #6366f1, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* 기능/기술 카드 그리드 */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+
+.info-card {
+  padding: 1.5rem;
+  background: rgba(99, 102, 241, 0.04);
+  border: 1px solid rgba(99, 102, 241, 0.08);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: rgba(99, 102, 241, 0.2);
+  background: rgba(99, 102, 241, 0.08);
+}
+
+.info-card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  margin-bottom: 0.6rem;
+}
+
+.info-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.info-card li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--vp-c-text-2);
+}
+
+.info-card li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--vp-c-brand-1);
+  font-weight: 700;
+}
+
+.info-card a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.info-card a:hover {
+  text-decoration: underline;
+}
+
+/* ═══════════════════════════════════════════════════════
+   14. 컨텐츠 영역 너비 확장 (사용자 요청 보완)
+   ═══════════════════════════════════════════════════════ */
+.VPDoc,
+.VPDoc .container,
+.VPDoc .content,
+.VPDoc .content-container,
+.VPDoc main.main {
+  max-width: 1600px !important;
+  width: 100% !important;
+}
+
+.vp-doc {
+  max-width: 100% !important;
+  width: 100% !important;
+}

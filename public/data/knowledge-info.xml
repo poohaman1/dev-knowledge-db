@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knowledge-info-list>
+  <item>
+    <id>1752451200000</id>
+    <siteName>요즘IT</siteName>
+    <url>https://yozm.wishket.com/magazine/detail/3832/</url>
+    <title>바이브코더를 위한 기초 보안 A to Z</title>
+    <date>2026.07.02</date>
+    <summary>바이브코더를 위한 기초 보안</summary>
+  </item>
+  <item>
+    <id>1718236800000</id>
+    <siteName>요즘IT</siteName>
+    <url>https://yozm.wishket.com/magazine/detail/2064/</url>
+    <title>누구도 알려주지 않는 백엔드 로드맵</title>
+    <date>2023.06.13</date>
+    <summary>백엔드 개발자가 되려면 무엇을 공부해야 하는지 넓고 얕게 소개</summary>
+  </item>
+  <item>
+    <id>1784112000000</id>
+    <siteName>개인블로그</siteName>
+    <url>https://gghh0408.tistory.com/162</url>
+    <title>기업별 기술스택</title>
+    <date>2024.08.27</date>
+    <summary>국내 주요 IT 기업 및 테크 스타트업들의 모바일(iOS/Android) 실무 개발 환경과 채택 기술 스택을 비교·정리한 자료입니다.</summary>
+  </item>
+</knowledge-info-list>

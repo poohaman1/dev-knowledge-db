@@ -1,0 +1,15 @@
+{
+  "editor.fontFamily": "Pretendard, Noto Sans KR, 'Malgun Gothic', sans-serif",
+  "editor.fontSize": 15,
+  "files.encoding": "utf8",
+  "files.autoGuessEncoding": true,
+  "explorer.decorations.badges": true,
+  "workbench.tree.indent": 16,
+  "workbench.editor.labelFormat": "short",
+  "files.eol": "\n",
+  // Antigravity IDE 전용 설정 (가능한 경우)
+  "antigravity.editor.showKoreanNames": true,
+  "antigravity.ui.language": "ko",
+  "antigravity.fileTree.displayLanguage": "korean",
+  "antigravity.autoApprove": true
+}
