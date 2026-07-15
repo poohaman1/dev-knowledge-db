@@ -31,7 +31,16 @@ export default {
         if (rawReferrer && !rawReferrer.includes(window.location.host)) {
           try {
             const urlObj = new URL(rawReferrer)
-            parsedReferrer = urlObj.hostname.replace('www.', '')
+            const hostname = urlObj.hostname.toLowerCase()
+            
+            if (hostname === 'blog.naver.com' || hostname.includes('.blog.naver.com')) {
+              parsedReferrer = 'Naver Blog'
+            } else if (hostname.endsWith('tistory.com')) {
+              parsedReferrer = 'Tistory Blog'
+            } else {
+              parsedReferrer = hostname.replace('www.', '')
+            }
+
             const searchParams = urlObj.searchParams
             const keywordParam = searchParams.get('q') || searchParams.get('query') || searchParams.get('wd')
             if (keywordParam) {

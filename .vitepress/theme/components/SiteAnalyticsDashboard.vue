@@ -257,7 +257,7 @@ const loadLogs = () => {
     // 유입 정보 호환 및 시뮬레이션을 위한 데이터 보정
     let modified = false
     if (parsedLogs.length > 0) {
-      const referrersDemo = ['Direct', 'google.com', 'naver.com', 'github.com', 'tistory.com', 'daum.net']
+      const referrersDemo = ['Direct', 'google.com', 'naver.com', 'github.com', 'Naver Blog', 'Tistory Blog', 'daum.net']
       const keywordsDemo = ['기업별 기술스택', 'VitePress 블로그', '백엔드 로드맵', 'AI 에이전트', 'Antigravity IDE', '보안 가이드라인']
       
       parsedLogs.forEach(log => {
@@ -273,7 +273,7 @@ const loadLogs = () => {
     } else {
       // 방문 로그가 전혀 없는 최초 실행 상태인 경우 데모용으로 풍부한 120개 로그 자동 세팅
       const now = Date.now()
-      const referrersDemo = ['Direct', 'google.com', 'naver.com', 'github.com', 'tistory.com', 'daum.net']
+      const referrersDemo = ['Direct', 'google.com', 'naver.com', 'github.com', 'Naver Blog', 'Tistory Blog', 'daum.net']
       const keywordsDemo = ['기업별 기술스택', 'VitePress 블로그', '백엔드 로드맵', 'AI 에이전트', 'Antigravity IDE', '보안 가이드라인']
       const pathsDemo = ['Home', '프로그래밍 언어', '국내 사이트', '보안가이드', '기업별 기술스택', '지식정보 관리']
       
@@ -424,6 +424,51 @@ const getChartTitle = () => {
   return `월간 일별 접속 현황 (${getPeriodLabel()})`
 }
 
+// 선택한 기간 및 날짜 범위 구하기 (일간/주간/월간 클릭 시 동기화)
+const filteredTimeRange = computed(() => {
+  const d = new Date(selectedDate.value)
+  let startMs = 0
+  let endMs = 0
+  
+  if (activeTab.value === 'daily') {
+    const start = new Date(d)
+    start.setHours(0, 0, 0, 0)
+    const end = new Date(d)
+    end.setHours(23, 59, 59, 999)
+    startMs = start.getTime()
+    endMs = end.getTime()
+  } else if (activeTab.value === 'weekly') {
+    const start = new Date(d)
+    start.setDate(d.getDate() - 6)
+    start.setHours(0, 0, 0, 0)
+    const end = new Date(d)
+    end.setHours(23, 59, 59, 999)
+    startMs = start.getTime()
+    endMs = end.getTime()
+  } else {
+    // monthly
+    const start = new Date(d)
+    start.setDate(d.getDate() - 29)
+    start.setHours(0, 0, 0, 0)
+    const end = new Date(d)
+    end.setHours(23, 59, 59, 999)
+    startMs = start.getTime()
+    endMs = end.getTime()
+  }
+  
+  return { startMs, endMs }
+})
+
+const filteredLogs = computed(() => {
+  const { startMs, endMs } = filteredTimeRange.value
+  return logs.value.filter(log => log.timestamp >= startMs && log.timestamp <= endMs)
+})
+
+const filteredSearchLogs = computed(() => {
+  const { startMs, endMs } = filteredTimeRange.value
+  return searchLogs.value.filter(log => log.timestamp >= startMs && log.timestamp <= endMs)
+})
+
 // 1. 일 단위 현황 (오늘 00:00:00 이후의 접속 수)
 const dailyVisits = computed(() => {
   const startOfToday = new Date()
@@ -531,16 +576,16 @@ const getBarHeightPercentage = (count) => {
   return (count / maxChartValue.value) * 100
 }
 
-const totalVisits = computed(() => logs.value.length)
+const totalVisits = computed(() => filteredLogs.value.length)
 
 const uniquePages = computed(() => {
-  const paths = new Set(logs.value.map(log => log.path))
+  const paths = new Set(filteredLogs.value.map(log => log.path))
   return paths.size
 })
 
 const topPages = computed(() => {
   const counts = {}
-  logs.value.forEach(log => {
+  filteredLogs.value.forEach(log => {
     counts[log.path] = (counts[log.path] || 0) + 1
   })
   
@@ -551,12 +596,12 @@ const topPages = computed(() => {
 })
 
 const recentLogs = computed(() => {
-  return [...logs.value].reverse().slice(0, 10)
+  return [...filteredLogs.value].reverse().slice(0, 10)
 })
 
 const popularSearches = computed(() => {
   const counts = {}
-  searchLogs.value.forEach(log => {
+  filteredSearchLogs.value.forEach(log => {
     const q = log.query ? log.query.trim() : ''
     if (q) {
       counts[q] = (counts[q] || 0) + 1
@@ -570,14 +615,14 @@ const popularSearches = computed(() => {
 })
 
 const recentSearches = computed(() => {
-  return [...searchLogs.value].reverse().slice(0, 10)
+  return [...filteredSearchLogs.value].reverse().slice(0, 10)
 })
 
 const popularReferrers = computed(() => {
   const counts = {}
   let totalCount = 0
   
-  logs.value.forEach(log => {
+  filteredLogs.value.forEach(log => {
     const refVal = log.referrer || 'Direct'
     counts[refVal] = (counts[refVal] || 0) + 1
     totalCount++
@@ -596,7 +641,7 @@ const popularReferralKeywords = computed(() => {
   const counts = {}
   let hasKeywords = false
   
-  logs.value.forEach(log => {
+  filteredLogs.value.forEach(log => {
     const kw = log.keyword || 'N/A'
     if (kw && kw !== 'N/A') {
       counts[kw] = (counts[kw] || 0) + 1
