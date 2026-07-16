@@ -4,17 +4,17 @@ layout: home
 hero:
   name: "개발자를 위한 지식DB"
   text: "코드로 성장하는 모든 순간"
-  tagline: "15개 이상의 프로그래밍 언어 가이드, 데이터베이스 아키텍처 비교, 국내 IT 기업 기술 스택 분석, 그리고 전 세계 오픈소스 큐레이션까지 — 개발자의 모든 지식을 한 곳에서."
+  tagline: "15개 이상의 프로그래밍 언어 가이드, DB 아키텍처, 깃허브 오픈소스 큐레이션을 넘어 2026 최신 LLM 20선 심층 해부까지 — 개발자의 모든 지식을 한 곳에서."
   actions:
     - theme: brand
+      text: 🧠 2026 최신 LLM 20선 집중분석
+      link: /docs/llm/
+    - theme: alt
       text: 📋 지식 콘텐츠 탐색
       link: /docs/knowledge-info/
     - theme: alt
       text: 📚 지식 데이터 열람
       link: /docs/programming-languages/
-    - theme: alt
-      text: ⚙️ 시스템 가이드라인
-      link: /guidelines/Agent
     - theme: alt
       text: ⭐ 깃허브 스타
       link: /docs/collections/github-stars-global
@@ -41,6 +41,12 @@ features:
 ---
 
 <HomeBannerSlider />
+
+<a href="/docs/llm/" class="llm-highlight-banner" style="display: block; background: linear-gradient(135deg, #4f46e5, #ec4899); color: white; padding: 36px 24px; border-radius: 20px; margin: 40px 24px 20px 24px; text-align: center; box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.25); text-decoration: none; border: 1px solid rgba(255,255,255,0.2);">
+  <h2 style="font-size: 30px; margin: 0 0 12px 0; font-weight: 800; color: white; line-height: 1.3; letter-spacing: -0.5px;">🚀 [특집] 2026년 최신 글로벌/국내 LLM 20선 집중 해부</h2>
+  <p style="font-size: 18px; opacity: 0.95; margin: 0 0 24px 0; color: white; font-weight: 500;">GPT-5.5, Gemini 3.5, Claude 5부터 Meta Llama 5까지! 시장을 지배하는 대규모 언어 모델 총망라</p>
+  <span style="display: inline-block; background: white; color: #c026d3; font-weight: 800; padding: 12px 32px; border-radius: 999px; font-size: 17px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">지금 바로 탐색하기 →</span>
+</a>
 
 <!-- ── 트렌드 토픽 히어로 카드 섹션 ── -->
 <div class="trend-section">
