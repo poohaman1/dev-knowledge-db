@@ -5,6 +5,8 @@ import KnowledgeInfoGrid from './components/KnowledgeInfoGrid.vue'
 import SiteAnalyticsDashboard from './components/SiteAnalyticsDashboard.vue'
 import SecureGuard from './components/SecureGuard.vue'
 import HomeBannerSlider from './components/HomeBannerSlider.vue'
+import MiniGames from './components/MiniGames.vue'
+
 
 export default {
   extends: DefaultTheme,
@@ -14,6 +16,8 @@ export default {
     app.component('SiteAnalyticsDashboard', SiteAnalyticsDashboard)
     app.component('SecureGuard', SecureGuard)
     app.component('HomeBannerSlider', HomeBannerSlider)
+    app.component('MiniGames', MiniGames)
+
 
     if (typeof window !== 'undefined') {
       // 1. 초기 진입 시 특정 폴더로의 다이렉트 접근 차단 로직 (Home으로 강제 이동) 및 로컬스토리지 캐시 초기화
@@ -77,6 +81,25 @@ export default {
         }
       }
 
+      // IP 분석 및 제외 여부 검증 헬퍼 함수
+      const isExcludedIp = async (): Promise<boolean> => {
+        try {
+          let cachedIp = sessionStorage.getItem('user_ip')
+          if (!cachedIp) {
+            const res = await fetch('https://api.ipify.org?format=json')
+            const data = await res.json()
+            cachedIp = data.ip
+            if (cachedIp) {
+              sessionStorage.setItem('user_ip', cachedIp)
+            }
+          }
+          return cachedIp === '112.186.113.99'
+        } catch (e) {
+          console.error('IP fetch error for exclusion:', e)
+          return false
+        }
+      }
+
       // 2. 라우터 변경 시 URL 마스킹 및 방문 기록
       router.onAfterRouteChanged = (to) => {
         // 브라우저 주소창의 URL을 항상 루트('/')로 덮어씌워 내부 디렉터리 경로 노출 방지
@@ -90,8 +113,13 @@ export default {
         }
 
         // 타이틀이 브라우저 탭에 업데이트될 시간을 위해 약간 지연
-        setTimeout(() => {
+        setTimeout(async () => {
           try {
+            // 특정 관리자 IP(112.186.113.99)인 경우 방문 기록 수집 제외
+            if (await isExcludedIp()) {
+              return
+            }
+
             const logsStr = localStorage.getItem('site_analytics_logs')
             const logs = logsStr ? JSON.parse(logsStr) : []
             
@@ -140,9 +168,12 @@ export default {
       let searchTimeout: any = null
       let lastLoggedSearch = ''
       
-      const logSearchQuery = (query: string) => {
+      const logSearchQuery = async (query: string) => {
         // localhost로 접속한 경우에는 검색어 로그를 수집하지 않음
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') return;
+
+        // 특정 관리자 IP(112.186.113.99)인 경우 검색 로그 수집 제외
+        if (await isExcludedIp()) return
 
         const cleaned = query.trim()
         if (!cleaned || cleaned.length < 2 || cleaned === lastLoggedSearch) return

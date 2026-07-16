@@ -50,10 +50,4 @@
 | [네이버 개발자](https://developers.naver.com) | https://developers.naver.com | 네이버 로그인, 지도, CLOVA 등 다양한 네이버 API 제공 |
 | [공공데이터포털](https://www.data.go.kr) | https://www.data.go.kr | 국내 공공 API 데이터를 무료로 활용할 수 있는 정부 공식 포털 |
 
----
 
-## ✍️ 기여 방법 (How to Contribute)
-
-새로운 사이트나 자료를 알고 계신가요?
-1. 이 `README.md` 파일을 열고, 적절한 테이블에 행을 추가해 주세요.
-2. 특정 세부 기술에 종속적이라면, 하위 폴더를 만들고 별도 문서를 작성하는 것도 좋습니다.

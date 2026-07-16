@@ -270,24 +270,6 @@ const loadLogs = () => {
       if (modified) {
         localStorage.setItem('site_analytics_logs', JSON.stringify(parsedLogs))
       }
-    } else {
-      // 방문 로그가 전혀 없는 최초 실행 상태인 경우 데모용으로 풍부한 120개 로그 자동 세팅
-      const now = Date.now()
-      const referrersDemo = ['Direct', 'google.com', 'naver.com', 'github.com', 'Naver Blog', 'Tistory Blog', 'daum.net']
-      const keywordsDemo = ['기업별 기술스택', 'VitePress 블로그', '백엔드 로드맵', 'AI 에이전트', 'Antigravity IDE', '보안 가이드라인']
-      const pathsDemo = ['Home', '프로그래밍 언어', '국내 사이트', '보안가이드', '기업별 기술스택', '지식정보 관리']
-      
-      for (let i = 0; i < 150; i++) {
-        const offset = Math.floor(Math.random() * 30) * 24 * 60 * 60 * 1000 // 최대 30일 전
-        const ref = referrersDemo[Math.floor(Math.random() * referrersDemo.length)]
-        parsedLogs.push({
-          path: pathsDemo[Math.floor(Math.random() * pathsDemo.length)],
-          timestamp: now - offset - Math.floor(Math.random() * 12 * 60 * 60 * 1000),
-          referrer: ref,
-          keyword: ref === 'Direct' ? 'N/A' : keywordsDemo[Math.floor(Math.random() * keywordsDemo.length)]
-        })
-      }
-      localStorage.setItem('site_analytics_logs', JSON.stringify(parsedLogs))
     }
     
     logs.value = parsedLogs

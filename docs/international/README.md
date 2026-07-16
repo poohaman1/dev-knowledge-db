@@ -50,10 +50,4 @@
 | [JavaScript Weekly](https://javascriptweekly.com) | https://javascriptweekly.com | JavaScript 최신 소식과 유용한 라이브러리를 매주 큐레이션하는 뉴스레터 |
 | [Bytes](https://bytes.dev) | https://bytes.dev | JavaScript/TypeScript 생태계의 재미있고 유익한 주간 뉴스레터 |
 
----
 
-## ✍️ 기여 방법 (How to Contribute)
-
-새로운 사이트나 자료를 알고 계신가요?
-1. 이 `README.md` 파일을 열고, 적절한 테이블에 행을 추가해 주세요.
-2. 특정 세부 기술에 종속적이라면, 하위 폴더를 만들고 별도 문서를 작성하는 것도 좋습니다.

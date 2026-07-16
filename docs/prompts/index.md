@@ -136,10 +136,4 @@ Mermaid 다이어그램과 함께 각 컴포넌트의 역할, 통신 방식, 데
 | [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts) | https://github.com/f/awesome-chatgpt-prompts | 다양한 역할과 업무를 위한 ChatGPT 프롬프트 모음 (GitHub 스타 1위권) |
 | [Learn Prompting](https://learnprompting.org/ko) | https://learnprompting.org/ko | 한국어 지원! 프롬프트 엔지니어링을 체계적으로 배울 수 있는 무료 강의 사이트 |
 
----
 
-## ✍️ 기여 방법 (How to Contribute)
-
-새로운 프롬프트 템플릿을 알고 계신가요?
-1. 이 `README.md`에 새로운 섹션을 추가하거나, 기존 섹션의 테이블/코드 블록에 추가해 주세요.
-2. 실제로 효과를 검증한 프롬프트만 추가해 주세요.

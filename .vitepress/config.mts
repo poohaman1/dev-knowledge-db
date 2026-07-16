@@ -26,7 +26,9 @@ export default defineConfig({
       { text: '🏠 Home', link: '/' },
       { text: '📋 지식콘텐츠', link: '/docs/knowledge-info/' },
       { text: '📚 지식 데이터', link: '/docs/domestic/' },
-      { text: '⚙️ 가이드라인', link: '/guidelines/Agent' }
+      { text: '⚙️ 가이드라인', link: '/guidelines/Agent' },
+      { text: '💎 컬렉션', link: '/docs/collections/github-stars-global' },
+      { text: '🎮 게임', link: '/docs/mini-games/' }
     ],
 
     // 사이드바
@@ -64,6 +66,14 @@ export default defineConfig({
           { text: '디자인 및 마크다운', link: '/DESIGN' },
           { text: '폴더 구조 안내', link: '/FOLDER-STRUCTURE' },
           { text: '개발 및 빌드', link: '/DEVELOPMENT' }
+        ]
+      },
+      {
+        text: '💎 컬렉션',
+        items: [
+          { text: '🌍 깃허브 스타(해외)', link: '/docs/collections/github-stars-global' },
+          { text: '🇰🇷 깃허브 스타(국내)', link: '/docs/collections/github-stars-korea' },
+          { text: '🔥 SourceForge', link: '/docs/collections/sourceforge' }
         ]
       }
     ],
