@@ -35,9 +35,9 @@ features:
   - icon: ⭐
     title: 깃허브 스타 오픈소스 큐레이션
     details: 해외·국내 개발자가 만든 깃허브 스타 최상위 오픈소스 프로젝트 20선을 분석하고 초보 개발자를 위한 활용 팁을 제공합니다.
-  - icon: 🤖
-    title: AI 프롬프트 및 스킬 가이드
-    details: 실무 개발 자동화를 극대화하는 에이전트(Antigravity 등) 전용 지침과 효율적인 프롬프트 엔지니어링 패턴을 관리합니다.
+  - icon: 🧠
+    title: LLM 및 AI 프롬프트 가이드
+    details: GPT-5.5, Gemini 3.5, Claude 5 등 2026년 최신 모델 20선 분석과 효율적인 프롬프트 엔지니어링 패턴을 제공합니다.
 ---
 
 <HomeBannerSlider />
@@ -50,11 +50,11 @@ features:
     <p class="section-sub">빠르게 변화하는 개발 생태계에서 놓치지 말아야 할 핵심 키워드</p>
   </div>
   <div class="trend-cards">
-    <a class="trend-card trend-ai" href="/docs/knowledge-info/database">
+    <a class="trend-card trend-ai" href="/docs/llm/">
       <div class="trend-glow"></div>
-      <span class="trend-tag">AI / ML</span>
-      <h3>Vector DB & RAG</h3>
-      <p>LLM 시대의 핵심 인프라, 벡터 데이터베이스와 검색 증강 생성(RAG) 아키텍처</p>
+      <span class="trend-tag">AI / LLM</span>
+      <h3>LLM 2026 라인업</h3>
+      <p>GPT-5.5, Claude 5, 오픈소스 혁명까지. 2026년 시장을 주도하는 상위 20개 대규모 언어 모델 해부</p>
       <span class="trend-arrow">탐색하기 →</span>
     </a>
     <a class="trend-card trend-web" href="/docs/programming-languages/">
@@ -105,9 +105,9 @@ features:
       <span class="hub-icon">🐹</span>
       <span class="hub-name">Go</span>
     </a>
-    <a class="hub-item" href="/docs/programming-languages/">
-      <span class="hub-icon">💎</span>
-      <span class="hub-name">TypeScript</span>
+    <a class="hub-item" href="/docs/llm/">
+      <span class="hub-icon">🧠</span>
+      <span class="hub-name">LLM 모델</span>
     </a>
     <a class="hub-item" href="/docs/knowledge-info/database">
       <span class="hub-icon">🗄️</span>
@@ -153,6 +153,10 @@ features:
       <div class="stat-number">6종</div>
       <div class="stat-label">머리식히기 미니게임</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-number">20종</div>
+      <div class="stat-label">2026 최신 LLM 분석</div>
+    </div>
   </div>
 
   <div class="info-grid">
@@ -163,6 +167,7 @@ features:
         <li><b>DB 선택 가이드</b> — RDBMS, NoSQL, NewSQL, Vector DB 아키텍처별 비교</li>
         <li><b>프론트/백엔드 로드맵</b> — 단계별 학습 경로와 필수 기술 체계 정리</li>
         <li><b>기업별 기술스택</b> — 네이버·카카오 등 13개 국내 IT 기업 실무 기술 분석</li>
+        <li><b>LLM 분석 가이드</b> — 2026년 글로벌/국내/오픈소스 상위 20개 모델 심층 해부</li>
         <li><b>깃허브 스타 큐레이션</b> — 해외 10선 + 국내 10선, 초보자 활용 팁 포함</li>
         <li><b>보안 & 아키텍처 가이드</b> — AI 코드 취약점 방어 및 클린 아키텍처 패턴</li>
       </ul>
