@@ -52,7 +52,8 @@ export default defineConfig({
           { text: '유용한 도구 (Tools)', link: '/docs/tools/' },
           { text: '아키텍처 (Architecture)', link: '/docs/architecture/' },
           { text: '베스트 프랙티스', link: '/docs/best-practices/' },
-          { text: '기업별 기술스택', link: '/docs/company-tech-stack' }
+          { text: '기업별 기술스택', link: '/docs/company-tech-stack' },
+          { text: 'LLM (대규모 언어 모델)', link: '/docs/llm/' }
         ]
       },
       {
