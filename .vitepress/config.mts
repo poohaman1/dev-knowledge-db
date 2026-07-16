@@ -48,7 +48,7 @@ export default defineConfig({
           { text: '프로그래밍 언어', link: '/docs/programming-languages/' },
           { text: '국내 사이트 (Domestic)', link: '/docs/domestic/' },
           { text: '해외 사이트 (International)', link: '/docs/international/' },
-          { text: '🤖 개발정보 (Dev Info)', link: '/docs/prompts/' },
+          { text: '개발정보 (Dev Info)', link: '/docs/prompts/' },
           { text: '유용한 도구 (Tools)', link: '/docs/tools/' },
           { text: '아키텍처 (Architecture)', link: '/docs/architecture/' },
           { text: '베스트 프랙티스', link: '/docs/best-practices/' },
