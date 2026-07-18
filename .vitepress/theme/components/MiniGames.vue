@@ -446,7 +446,7 @@ const games = [
     icon: '⚫',
     colorBg: 'linear-gradient(135deg, #475569 0%, #0f172a 100%)',
     instructions: [
-      '10x10 격자 바둑판의 빈 교차점을 터치하여 흑돌(⚫)을 놓습니다.',
+      '20x20 격자 바둑판의 빈 교차점을 터치하여 흑돌(⚫)을 놓습니다.',
       '플레이어가 돌을 놓으면 AI가 백돌(⚪)을 놓습니다.',
       '가로, 세로, 혹은 대각선 방향으로 같은 색깔의 돌 5개를 끊김 없이 일렬로 배치하면 승리합니다.',
       '상대방(인공지능)의 길을 사전에 예측하고 차단하며 최선의 수를 겨뤄보세요.'
@@ -939,11 +939,11 @@ const clickReactionBox = () => {
 // ----------------------------------------------------
 // 5. 오목 상세 로직 (방탈출 대신 신규 탑재)
 // ----------------------------------------------------
-const omokBoard = ref(Array(100).fill(''))
+const omokBoard = ref(Array(400).fill(''))
 const omokTurn = ref('player') // 'player', 'ai'
 
 const initOmok = () => {
-  omokBoard.value = Array(100).fill('')
+  omokBoard.value = Array(400).fill('')
   omokTurn.value = 'player'
 }
 
@@ -958,7 +958,7 @@ const playOmok = (idx) => {
   }
   
   if (checkOmokDraw()) {
-    finishGame('tie', '무승부', '용호상박! 🤝', '판 위를 꽉 채우는 치열한 난전 속에 비겼습니다.', '10x10 판 무승부')
+    finishGame('tie', '무승부', '용호상박! 🤝', '판 위를 꽉 채우는 치열한 난전 속에 비겼습니다.', '20x20 판 무승부')
     return
   }
   
@@ -972,7 +972,7 @@ const makeOmokAiMove = () => {
   let bestScore = -1
   let bestIndices = []
   
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 400; i++) {
     if (omokBoard.value[i] === '') {
       const score = evaluateOmokCell(omokBoard.value, i)
       if (score > bestScore) {
@@ -994,7 +994,7 @@ const makeOmokAiMove = () => {
     }
     
     if (checkOmokDraw()) {
-      finishGame('tie', '무승부', '용호상박! 🤝', '판 위를 꽉 채우는 치열한 난전 속에 비겼습니다.', '10x10 판 무승부')
+      finishGame('tie', '무승부', '용호상박! 🤝', '판 위를 꽉 채우는 치열한 난전 속에 비겼습니다.', '20x20 판 무승부')
       return
     }
   }
@@ -1003,7 +1003,7 @@ const makeOmokAiMove = () => {
 }
 
 const checkOmokWin = (board, player) => {
-  const SIZE = 10
+  const SIZE = 20
   const directions = [
     { dr: 0, dc: 1 },
     { dr: 1, dc: 0 },
@@ -1037,9 +1037,9 @@ const checkOmokDraw = () => {
 }
 
 const evaluateOmokCell = (board, idx) => {
-  const SIZE = 10
-  const r = Math.floor(idx / 10)
-  const c = idx % 10
+  const SIZE = 20
+  const r = Math.floor(idx / 20)
+  const c = idx % 20
   
   let maxWhiteLine = 0
   let maxBlackLine = 0
@@ -1100,8 +1100,8 @@ const evaluateOmokCell = (board, idx) => {
     }
   }
   
-  const distCenter = Math.abs(r - 4.5) + Math.abs(c - 4.5)
-  closeness += (10 - distCenter)
+  const distCenter = Math.abs(r - 9.5) + Math.abs(c - 9.5)
+  closeness += (20 - distCenter)
   
   return closeness
 }
@@ -2086,15 +2086,15 @@ const formatDate = (ts) => {
 
 .omok-grid {
   display: grid;
-  grid-template-columns: repeat(10, 32px);
-  grid-template-rows: repeat(10, 32px);
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
   gap: 0px;
 }
 
 .omok-cell {
   position: relative;
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -2126,11 +2126,11 @@ const formatDate = (ts) => {
 
 .omok-stone {
   position: relative;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   z-index: 2;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1.5px 3px rgba(0, 0, 0, 0.3);
 }
 
 .omok-stone.black {
