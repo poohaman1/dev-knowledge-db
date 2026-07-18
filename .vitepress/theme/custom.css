@@ -768,3 +768,15 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════
+   20. Vercel Toolbar 및 피드백 위젯 강제 숨김 (CSS 방어책)
+   ═══════════════════════════════════════════════════════ */
+vercel-live-feedback,
+#vercel-live-feedback-widget,
+[data-vercel-feedback-button] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
