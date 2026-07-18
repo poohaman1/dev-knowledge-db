@@ -162,8 +162,8 @@ features:
       <div class="stat-label">국내 기업 기술스택</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">20선</div>
-      <div class="stat-label">깃허브 스타 오픈소스</div>
+      <div class="stat-number">80선</div>
+      <div class="stat-label">테마별 추천 오픈소스</div>
     </div>
     <div class="stat-card">
       <div class="stat-number">6종</div>
@@ -192,6 +192,7 @@ features:
         <li><b>프론트/백엔드 로드맵</b> — 단계별 학습 경로와 필수 기술 체계 정리</li>
         <li><b>기업별 기술스택</b> — 네이버·카카오 등 13개 국내 IT 기업 실무 기술 분석</li>
         <li><b>LLM 분석 가이드</b> — 2026년 글로벌/국내/오픈소스 상위 20개 모델 심층 해부</li>
+        <li><b>4대 테마 오픈소스 80선</b> — 해외 20선, 국내 20선, SourceForge 20선, Awesome 20선 심층 분석</li>
         <li><b>개발자 유틸리티</b> — JSON 포맷터, Base64/URL 변환, 정규식 매칭, JWT 디코더</li>
         <li><b>나의 학습 진도 관리</b> — 로그인 없는 localStorage 기반 완독 상태 및 방문 기록 트래킹</li>
         <li><b>문서 보관 및 다운로드</b> — 출처가 표기된 개별 PDF 인쇄 및 Markdown 다운로드</li>
