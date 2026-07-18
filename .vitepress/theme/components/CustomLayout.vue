@@ -1,5 +1,8 @@
 <template>
   <Layout>
+    <template #doc-before>
+      <DocActionButtons />
+    </template>
     <template #nav-bar-content-after>
       <div class="custom-nav-icons">
         <a v-if="isAdmin" href="/docs/dev-info/" class="nav-icon-btn" title="💻 개발정보">

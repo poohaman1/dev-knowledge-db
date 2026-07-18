@@ -7,6 +7,7 @@ import SecureGuard from './components/SecureGuard.vue'
 import HomeBannerSlider from './components/HomeBannerSlider.vue'
 import MiniGames from './components/MiniGames.vue'
 import TodayDevQuiz from './components/TodayDevQuiz.vue'
+import DocActionButtons from './components/DocActionButtons.vue'
 
 
 export default {
@@ -19,6 +20,7 @@ export default {
     app.component('HomeBannerSlider', HomeBannerSlider)
     app.component('TodayDevQuiz', TodayDevQuiz)
     app.component('MiniGames', MiniGames)
+    app.component('DocActionButtons', DocActionButtons)
 
 
     if (typeof window !== 'undefined') {

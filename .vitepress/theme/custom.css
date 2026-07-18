@@ -680,3 +680,91 @@
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: none; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   19. 인쇄 최적화 (@media print) - PDF 다운로드 지원
+   ═══════════════════════════════════════════════════════ */
+@media print {
+  /* 불필요한 UI 숨김 */
+  .VPNav,
+  .VPSidebar,
+  .VPDocAside,
+  .VPFooter,
+  .prev-next,
+  .custom-nav-icons,
+  .doc-action-buttons,
+  .VPLocalSearchBox,
+  .giscus {
+    display: none !important;
+  }
+
+  /* 컨텐츠 영역 전체 화면 확대 */
+  .VPContent {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    animation: none !important;
+  }
+
+  .VPDoc {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .VPDoc .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .VPDoc .content {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .vp-doc {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+
+  /* 인쇄 시 폰트 컬러 조정 (다크모드 인쇄 대응) */
+  body, .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6, .vp-doc p, .vp-doc li, .vp-doc code, .vp-doc table {
+    color: #000000 !important;
+  }
+
+  /* 링크 스타일 조정 */
+  .vp-doc a {
+    color: #0066cc !important;
+    text-decoration: underline !important;
+  }
+  .vp-doc a[href]::after {
+    content: none !important;
+  }
+
+  /* 테이블 및 코드블럭 인쇄 설정 */
+  .vp-doc table {
+    box-shadow: none !important;
+    page-break-inside: avoid;
+  }
+
+  .vp-doc div[class*='language-'] {
+    page-break-inside: avoid;
+    background-color: #f6f8fa !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .vp-doc pre, .vp-doc code {
+    color: #000000 !important;
+  }
+
+  /* 페이지 나누기 규칙 */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
+
