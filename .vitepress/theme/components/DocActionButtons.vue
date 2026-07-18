@@ -168,6 +168,10 @@ const updateLastUpdatedDate = () => {
   else if (currentPath.includes('/github-stars-global') || currentPath.includes('/github-stars.html')) {
     customDate = getFormattedDate(2, 11, 40)
   }
+  // 3.5. Awesome Open Source -> 오늘날짜 - 1.5일 (26.07.17 오후 11:10)
+  else if (currentPath.includes('/awesome-open-source')) {
+    customDate = getFormattedDate(1, 23, 10)
+  }
   // 4. 나머지 화면에 대한 고유 날짜 매핑 (오늘날짜 - N일)
   else {
     const dateMappings = {

@@ -75,7 +75,8 @@ export default defineConfig({
         items: [
           { text: '🌍 깃허브 스타(해외)', link: '/docs/collections/github-stars-global' },
           { text: '🇰🇷 깃허브 스타(국내)', link: '/docs/collections/github-stars-korea' },
-          { text: '🔥 SourceForge', link: '/docs/collections/sourceforge' }
+          { text: '🔥 SourceForge', link: '/docs/collections/sourceforge' },
+          { text: '😎 Awesome Open Source', link: '/docs/collections/awesome-open-source' }
         ]
       }
     ],
