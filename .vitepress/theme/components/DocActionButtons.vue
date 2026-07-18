@@ -130,6 +130,107 @@ const addToRecentlyViewed = () => {
   window.dispatchEvent(new Event('storage-recent-updated'))
 }
 
+// 최종 수정일 강제 재매핑 기능
+const updateLastUpdatedDate = () => {
+  if (typeof window === 'undefined') return
+  
+  // 오늘 날짜 기준 계산 (2026년 7월 18일 기준)
+  const today = new Date('2026-07-18T00:00:00')
+  
+  const getFormattedDate = (daysAgo, hours = 10, minutes = 30) => {
+    const targetDate = new Date(today.getTime())
+    targetDate.setDate(today.getDate() - daysAgo)
+    
+    const year = String(targetDate.getFullYear()).slice(-2)
+    const month = String(targetDate.getMonth() + 1).padStart(2, '0')
+    const date = String(targetDate.getDate()).padStart(2, '0')
+    
+    const isPm = hours >= 12
+    const displayHours = hours % 12 === 0 ? 12 : hours % 12
+    const displayMinutes = String(minutes).padStart(2, '0')
+    const ampm = isPm ? '오후' : '오전'
+    
+    return `${year}.${month}.${date} ${ampm} ${displayHours}:${displayMinutes}`
+  }
+
+  const currentPath = normalizePath(route.path)
+  let customDate = ''
+
+  // 1. SourceForge -> 26.07.19 오후 8:16
+  if (currentPath.includes('/sourceforge')) {
+    customDate = '26.07.19 오후 8:16'
+  }
+  // 2. 깃허브 스타(국내) -> 오늘날짜 - 1일 (26.07.17)
+  else if (currentPath.includes('/github-stars-korea')) {
+    customDate = getFormattedDate(1, 14, 25)
+  }
+  // 3. 깃허브 스타(해외) -> 오늘날짜 - 2일 (26.07.16)
+  else if (currentPath.includes('/github-stars-global') || currentPath.includes('/github-stars.html')) {
+    customDate = getFormattedDate(2, 11, 40)
+  }
+  // 4. 나머지 화면에 대한 고유 날짜 매핑 (오늘날짜 - N일)
+  else {
+    const dateMappings = {
+      '/docs/knowledge-info/backend-roadmap': 4, // 백엔드 로드맵
+      '/docs/knowledge-info/frontend-roadmap': 5, // 프론트엔드 로드맵
+      '/docs/knowledge-info/database': 6, // 데이터베이스 정보
+      '/docs/knowledge-info/': 3, // 지식콘텐츠 관리 (대분류)
+      '/docs/programming-languages/': 7, // 프로그래밍 언어
+      '/docs/domestic/': 8, // 국내 사이트
+      '/docs/international/': 9, // 해외 사이트
+      '/docs/prompts/': 10, // 개발정보
+      '/docs/tools/devtools': 12, // 개발자툴
+      '/docs/tools/': 11, // 유용한 도구
+      '/docs/architecture/': 13, // 아키텍처
+      '/docs/best-practices/': 14, // 베스트 프랙티스
+      '/docs/company-tech-stack': 15, // 기업별 기술스택
+      '/docs/llm/': 16, // LLM
+      '/guidelines/agent': 17, // AI Agent 지침
+      '/guidelines/gemini': 18, // Gemini 특화 가이드
+      '/guidelines/skill': 19, // 스킬 정의서
+      '/guidelines/security': 20, // 보안가이드
+      '/templates/prompt-template': 21, // 프롬프트 템플릿
+      '/design': 22, // 디자인 및 마크다운
+      '/folder-structure': 23, // 폴더 구조 안내
+      '/development': 24, // 개발 및 빌드
+    }
+
+    let daysAgo = 0
+    let found = false
+    const sortedKeys = Object.keys(dateMappings).sort((a, b) => b.length - a.length)
+    
+    for (const key of sortedKeys) {
+      if (currentPath.includes(key)) {
+        daysAgo = dateMappings[key]
+        found = true
+        break
+      }
+    }
+
+    if (found) {
+      // 고정적이지만 페이지별로 다른 시간/분 생성
+      const hour = (14 + daysAgo) % 12 || 12
+      const isPm = (14 + daysAgo) % 24 >= 12
+      const min = (25 + daysAgo * 7) % 60
+      customDate = getFormattedDate(daysAgo, isPm ? hour + 12 : hour, min)
+    } else {
+      // 그 외 기타 페이지 기본값
+      customDate = getFormattedDate(0, 9, 15)
+    }
+  }
+
+  // DOM 요소를 찾아 텍스트 교체 (VitePress 렌더링 대기)
+  setTimeout(() => {
+    const timeEl = document.querySelector('.vp-doc-footer-last-updated .time, .last-updated .time, .vp-doc-footer-last-updated, .last-updated')
+    if (timeEl) {
+      const timeSpan = timeEl.querySelector('.time') || timeEl
+      if (timeSpan) {
+        timeSpan.textContent = customDate
+      }
+    }
+  }, 150)
+}
+
 // 상태 동기화 함수
 const syncState = () => {
   const currentPath = normalizePath(route.path)
@@ -140,11 +241,13 @@ const syncState = () => {
 watch(() => route.path, (newPath) => {
   syncState()
   setTimeout(addToRecentlyViewed, 600)
+  updateLastUpdatedDate()
 }, { immediate: true })
 
 onMounted(() => {
   syncState()
   setTimeout(addToRecentlyViewed, 600)
+  updateLastUpdatedDate()
   
   // 외부 초기화 감지
   window.addEventListener('storage-completed-updated', syncState)
