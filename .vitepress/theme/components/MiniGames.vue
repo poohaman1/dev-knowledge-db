@@ -214,28 +214,23 @@
             </div>
           </div>
 
-          <!-- 5. 미니 방탈출/추리 -->
-          <div v-else-if="selectedGameId === 'escape_room'" class="escape-wrapper">
-            <div class="escape-status">
-              <span>암호 입력 기회: <strong style="color: #ef4444;">{{ '🔑'.repeat(erLives) }}</strong></span>
+          <!-- 5. 오목 -->
+          <div v-else-if="selectedGameId === 'omok'" class="omok-wrapper">
+            <div class="omok-status">
+              <span>상태: <strong :style="{ color: omokTurn === 'player' ? 'var(--vp-c-brand-1)' : '#ef4444' }">{{ omokTurn === 'player' ? '내 차례 (흑돌 ⚫)' : 'AI 차례 (백돌 ⚪)' }}</strong></span>
             </div>
-
-            <div class="escape-puzzle-card">
-              <div class="puzzle-header">🔐 단서 분석</div>
-              <div class="puzzle-content" v-html="erCurrentQuestion.text"></div>
+            <div class="omok-board-container">
+              <div class="omok-grid">
+                <div 
+                  v-for="(cell, idx) in omokBoard" 
+                  :key="idx" 
+                  class="omok-cell"
+                  @click="playOmok(idx)"
+                >
+                  <div class="omok-stone" :class="cell" v-if="cell"></div>
+                </div>
+              </div>
             </div>
-
-            <div class="escape-input-area">
-              <input 
-                v-model="erUserInput" 
-                type="text" 
-                placeholder="숫자 정답을 입력하세요" 
-                class="escape-input"
-                @keyup.enter="submitEscapeAnswer"
-              />
-              <button class="btn btn-primary" @click="submitEscapeAnswer">잠금 해제</button>
-            </div>
-            <p v-if="erMessage" class="escape-msg" :class="erMessageClass">{{ erMessage }}</p>
           </div>
 
           <!-- 6. AI 가위바위보 심리전 -->
@@ -390,7 +385,7 @@ const gameStage = ref('lobby') // 'lobby', 'ready', 'playing', 'result'
 const selectedGameId = ref('')
 const history = ref([])
 
-// 게임 정보 정의 (9종 구성)
+// 게임 정보 정의 (9종 구성 - 방탈출 대신 오목 탑재)
 const games = [
   {
     id: 'sudoku',
@@ -445,16 +440,16 @@ const games = [
     ]
   },
   {
-    id: 'escape_room',
-    name: '미니 방탈출 추리',
-    desc: '숨겨진 수수께끼 단서를 풀어 암호 키 입력하기',
-    icon: '🔑',
-    colorBg: 'linear-gradient(135deg, #f59e0b 0%, #d97706 100%)',
+    id: 'omok',
+    name: '오목',
+    desc: '바둑판 위에서 다섯 개의 돌을 먼저 일렬로 늘어놓는 두뇌 싸움',
+    icon: '⚫',
+    colorBg: 'linear-gradient(135deg, #475569 0%, #0f172a 100%)',
     instructions: [
-      '방 안에 갇혔습니다. 벽에 새겨진 단서를 분석해 암호 코드(숫자)를 유추해야 합니다.',
-      '단서 속에 숨겨진 숫자의 규칙성이나 논리적인 패턴을 파악하세요.',
-      '하단 입력창에 숫자로 암호 키를 입력해 잠금을 해제하세요.',
-      '틀릴 수 있는 기회는 단 3번(라이프 3개)입니다. 논리적 사고를 총동원해 보세요.'
+      '10x10 격자 바둑판의 빈 교차점을 터치하여 흑돌(⚫)을 놓습니다.',
+      '플레이어가 돌을 놓으면 AI가 백돌(⚪)을 놓습니다.',
+      '가로, 세로, 혹은 대각선 방향으로 같은 색깔의 돌 5개를 끊김 없이 일렬로 배치하면 승리합니다.',
+      '상대방(인공지능)의 길을 사전에 예측하고 차단하며 최선의 수를 겨뤄보세요.'
     ]
   },
   {
@@ -565,8 +560,8 @@ const startGame = () => {
     initStroop()
   } else if (selectedGameId.value === 'reaction_time') {
     initReaction()
-  } else if (selectedGameId.value === 'escape_room') {
-    initEscapeRoom()
+  } else if (selectedGameId.value === 'omok') {
+    initOmok()
   } else if (selectedGameId.value === 'rps_psychology') {
     initRps()
   } else if (selectedGameId.value === 'card_match') {
@@ -942,86 +937,173 @@ const clickReactionBox = () => {
 }
 
 // ----------------------------------------------------
-// 5. 미니 방탈출/추리 상세 로직
+// 5. 오목 상세 로직 (방탈출 대신 신규 탑재)
 // ----------------------------------------------------
-const erLives = ref(3)
-const erUserInput = ref('')
-const erMessage = ref('')
-const erMessageClass = ref('')
-const erQuestions = [
-  {
-    id: 1,
-    text: `
-      벽에 복잡한 공식이 연필로 작게 서술되어 있습니다.<br><br>
-      <strong>[ 단서 목록 ]</strong><br>
-      A = 1<br>
-      B = 2<br>
-      C = 3<br>
-      CAT = 24<br><br>
-      그렇다면 <strong>DOG</strong>의 값은 무엇일까요?
-    `,
-    answer: '26'
-  },
-  {
-    id: 2,
-    text: `
-      철문의 전자 도어락에 종이 단서 쪽지가 붙어 있습니다.<br><br>
-      <strong>[ 쪽지 단서 ]</strong><br>
-      111 = 3<br>
-      222 = 6<br>
-      888 = 24<br><br>
-      그렇다면 <strong>753</strong> 단서의 결과 암호는 무엇일까요?
-    `,
-    answer: '15'
-  },
-  {
-    id: 3,
-    text: `
-      컴퓨터 화면에 도형 정보와 수학 암호 표가 띄워져 있습니다.<br><br>
-      <strong>[ 화면 텍스트 ]</strong><br>
-      0 = 1<br>
-      6 = 1<br>
-      8 = 2<br>
-      9 = 1<br><br>
-      그렇다면 <strong>8808</strong> 번호가 지칭하는 결과 암호는 무엇일까요?
-    `,
-    answer: '7'
-  }
-]
-const erCurrentQuestion = ref({})
+const omokBoard = ref(Array(100).fill(''))
+const omokTurn = ref('player') // 'player', 'ai'
 
-const initEscapeRoom = () => {
-  erLives.value = 3
-  erUserInput.value = ''
-  erMessage.value = ''
-  const rIdx = Math.floor(Math.random() * erQuestions.length)
-  erCurrentQuestion.value = erQuestions[rIdx]
+const initOmok = () => {
+  omokBoard.value = Array(100).fill('')
+  omokTurn.value = 'player'
 }
 
-const submitEscapeAnswer = () => {
-  const cleanAns = erUserInput.value.trim()
-  if (!cleanAns) return
+const playOmok = (idx) => {
+  if (omokBoard.value[idx] !== '' || omokTurn.value !== 'player') return
+  
+  omokBoard.value[idx] = 'black'
+  
+  if (checkOmokWin(omokBoard.value, 'black')) {
+    finishGame('win', '승리', '오목 승리! ⚫', '탁월한 형세 판단력으로 인공지능을 굴복시켰습니다!', '플레이어 흑돌 승리')
+    return
+  }
+  
+  if (checkOmokDraw()) {
+    finishGame('tie', '무승부', '용호상박! 🤝', '판 위를 꽉 채우는 치열한 난전 속에 비겼습니다.', '10x10 판 무승부')
+    return
+  }
+  
+  omokTurn.value = 'ai'
+  setTimeout(makeOmokAiMove, 600)
+}
 
-  if (cleanAns === erCurrentQuestion.value.answer) {
-    erMessage.value = '🎉 잠금 장치가 "철컥" 소리를 내며 풀렸습니다! 탈출에 성공했습니다.'
-    erMessageClass.value = 'win-msg'
-    setTimeout(() => {
-      finishGame('win', '탈출성공', '방탈출 클리어! 🔑', '탁월한 추리력과 예리한 직관으로 방을 안전히 나갔습니다.', `정답: ${erCurrentQuestion.value.answer} (통과)`)
-    }, 1500)
-  } else {
-    erLives.value--
-    erUserInput.value = ''
-    if (erLives.value <= 0) {
-      erMessage.value = `❌ 도어락 경보음이 울리며 락이 걸렸습니다. (정답: ${erCurrentQuestion.value.answer})`
-      erMessageClass.value = 'lose-msg'
-      setTimeout(() => {
-        finishGame('lose', '탈출실패', '탈출 실패 😢', '암호 해독 3회 오류로 인해 보안 락에 갇혔습니다.', `암호 오독 실패`)
-      }, 1500)
-    } else {
-      erMessage.value = `❌ 오답입니다! 암호 키가 맞지 않습니다. (남은 열쇠: ${erLives.value}개)`
-      erMessageClass.value = 'err-msg'
+const makeOmokAiMove = () => {
+  if (gameStage.value !== 'playing' || selectedGameId.value !== 'omok') return
+  
+  let bestScore = -1
+  let bestIndices = []
+  
+  for (let i = 0; i < 100; i++) {
+    if (omokBoard.value[i] === '') {
+      const score = evaluateOmokCell(omokBoard.value, i)
+      if (score > bestScore) {
+        bestScore = score
+        bestIndices = [i]
+      } else if (score === bestScore) {
+        bestIndices.push(i)
+      }
     }
   }
+  
+  if (bestIndices.length > 0) {
+    const move = bestIndices[Math.floor(Math.random() * bestIndices.length)]
+    omokBoard.value[move] = 'white'
+    
+    if (checkOmokWin(omokBoard.value, 'white')) {
+      finishGame('lose', '패배', 'AI 오목 승.. 😢', '인공지능의 5목 완성 공격을 막지 못했습니다.', 'AI 백돌 승리')
+      return
+    }
+    
+    if (checkOmokDraw()) {
+      finishGame('tie', '무승부', '용호상박! 🤝', '판 위를 꽉 채우는 치열한 난전 속에 비겼습니다.', '10x10 판 무승부')
+      return
+    }
+  }
+  
+  omokTurn.value = 'player'
+}
+
+const checkOmokWin = (board, player) => {
+  const SIZE = 10
+  const directions = [
+    { dr: 0, dc: 1 },
+    { dr: 1, dc: 0 },
+    { dr: 1, dc: 1 },
+    { dr: 1, dc: -1 }
+  ]
+  
+  for (let r = 0; r < SIZE; r++) {
+    for (let c = 0; c < SIZE; c++) {
+      if (board[r * SIZE + c] !== player) continue
+      
+      for (const { dr, dc } of directions) {
+        let count = 1
+        for (let i = 1; i < 5; i++) {
+          const nr = r + dr * i
+          const nc = c + dc * i
+          if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE) {
+            if (board[nr * SIZE + nc] === player) count++
+            else break
+          } else break
+        }
+        if (count === 5) return true
+      }
+    }
+  }
+  return false
+}
+
+const checkOmokDraw = () => {
+  return omokBoard.value.every(cell => cell !== '')
+}
+
+const evaluateOmokCell = (board, idx) => {
+  const SIZE = 10
+  const r = Math.floor(idx / 10)
+  const c = idx % 10
+  
+  let maxWhiteLine = 0
+  let maxBlackLine = 0
+  
+  const directions = [
+    { dr: 0, dc: 1 },
+    { dr: 1, dc: 0 },
+    { dr: 1, dc: 1 },
+    { dr: 1, dc: -1 }
+  ]
+  
+  for (const { dr, dc } of directions) {
+    let whiteCount = 1
+    for (const step of [1, -1]) {
+      for (let i = 1; i < 5; i++) {
+        const nr = r + dr * i * step
+        const nc = c + dc * i * step
+        if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE) {
+          if (board[nr * SIZE + nc] === 'white') whiteCount++
+          else break
+        } else break
+      }
+    }
+    maxWhiteLine = Math.max(maxWhiteLine, whiteCount)
+  }
+
+  for (const { dr, dc } of directions) {
+    let blackCount = 1
+    for (const step of [1, -1]) {
+      for (let i = 1; i < 5; i++) {
+        const nr = r + dr * i * step
+        const nc = c + dc * i * step
+        if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE) {
+          if (board[nr * SIZE + nc] === 'black') blackCount++
+          else break
+        } else break
+      }
+    }
+    maxBlackLine = Math.max(maxBlackLine, blackCount)
+  }
+
+  if (maxWhiteLine >= 5) return 100000
+  if (maxBlackLine >= 5) return 50000
+  if (maxWhiteLine === 4) return 10000
+  if (maxBlackLine === 4) return 5000
+  if (maxWhiteLine === 3) return 1000
+  if (maxBlackLine === 3) return 800
+
+  let closeness = 0
+  for (let dr = -1; dr <= 1; dr++) {
+    for (let dc = -1; dc <= 1; dc++) {
+      if (dr === 0 && dc === 0) continue
+      const nr = r + dr
+      const nc = c + dc
+      if (nr >= 0 && nr < SIZE && nc >= 0 && nc < SIZE) {
+        if (board[nr * SIZE + nc] !== '') closeness += 2
+      }
+    }
+  }
+  
+  const distCenter = Math.abs(r - 4.5) + Math.abs(c - 4.5)
+  closeness += (10 - distCenter)
+  
+  return closeness
 }
 
 // ----------------------------------------------------
@@ -1977,77 +2059,88 @@ const formatDate = (ts) => {
   font-size: 3rem;
 }
 
-/* 5. 미니 방탈출 CSS */
-.escape-wrapper {
+/* 5. 오목 CSS (방탈출 대신 신규 탑재) */
+.omok-wrapper {
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.escape-status {
+.omok-status {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 16px;
-  font-size: 1rem;
+  font-size: 1.05rem;
 }
 
-.escape-puzzle-card {
-  width: 100%;
-  background: var(--vp-c-bg-alt);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 24px;
+.omok-board-container {
+  background: #dfb15b; /* 따뜻한 나무색 바둑판 */
+  border: 4px solid #854d0e;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
-.puzzle-header {
-  background: var(--vp-c-brand-1);
-  color: var(--vp-c-bg);
-  padding: 12px 20px;
-  font-weight: 700;
-  font-size: 1rem;
+.omok-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 32px);
+  grid-template-rows: repeat(10, 32px);
+  gap: 0px;
 }
 
-.puzzle-content {
-  padding: 24px;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--vp-c-text-1);
-}
-
-.escape-input-area {
+.omok-cell {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
   display: flex;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 바둑판 격자선 구현 */
+.omok-cell::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
   width: 100%;
+  height: 1px;
+  background: #475569;
+  z-index: 1;
 }
 
-.escape-input {
-  flex: 1;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--vp-c-divider);
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-1);
-  font-size: 1rem;
+.omok-cell::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: #475569;
+  z-index: 1;
 }
 
-.escape-input:focus {
-  outline: 2px solid var(--vp-c-brand-1);
+.omok-stone {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  z-index: 2;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.escape-msg {
-  margin-top: 16px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  text-align: center;
+.omok-stone.black {
+  background: radial-gradient(circle at 30% 30%, #4b5563 0%, #111827 80%);
 }
 
-.escape-msg.win-msg { color: #22c55e; }
-.escape-msg.lose-msg { color: #ef4444; }
-.escape-msg.err-msg { color: #f59e0b; }
+.omok-stone.white {
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #d1d5db 80%);
+  border: 1px solid #9ca3af;
+}
 
 /* 6. AI 가위바위보 CSS */
 .rps-wrapper {
