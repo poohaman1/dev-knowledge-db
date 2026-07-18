@@ -48,6 +48,8 @@ features:
   <span style="display: inline-block; background: white; color: #c026d3; font-weight: 800; padding: 12px 32px; border-radius: 999px; font-size: 17px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">지금 바로 탐색하기 →</span>
 </a>
 
+<TodayDevQuiz />
+
 <!-- ── 트렌드 토픽 히어로 카드 섹션 ── -->
 <div class="trend-section">
   <div class="section-header">

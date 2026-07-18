@@ -6,6 +6,7 @@ import SiteAnalyticsDashboard from './components/SiteAnalyticsDashboard.vue'
 import SecureGuard from './components/SecureGuard.vue'
 import HomeBannerSlider from './components/HomeBannerSlider.vue'
 import MiniGames from './components/MiniGames.vue'
+import TodayDevQuiz from './components/TodayDevQuiz.vue'
 
 
 export default {
@@ -16,6 +17,7 @@ export default {
     app.component('SiteAnalyticsDashboard', SiteAnalyticsDashboard)
     app.component('SecureGuard', SecureGuard)
     app.component('HomeBannerSlider', HomeBannerSlider)
+    app.component('TodayDevQuiz', TodayDevQuiz)
     app.component('MiniGames', MiniGames)
 
 
