@@ -27,6 +27,7 @@ export default defineConfig({
       { text: '📋 지식콘텐츠', link: '/docs/knowledge-info/' },
       { text: '📚 지식 데이터', link: '/docs/domestic/' },
       { text: '⚙️ 가이드라인', link: '/guidelines/Agent' },
+      { text: '🛠️ 개발자툴', link: '/docs/tools/devtools' },
       { text: '💎 컬렉션', link: '/docs/collections/github-stars-global' },
       { text: '🎮 게임', link: '/docs/mini-games/' }
     ],
@@ -50,7 +51,6 @@ export default defineConfig({
           { text: '해외 사이트 (International)', link: '/docs/international/' },
           { text: '개발정보 (Dev Info)', link: '/docs/prompts/' },
           { text: '유용한 도구 (Tools)', link: '/docs/tools/' },
-          { text: '개발자 유틸리티 (DevTools)', link: '/docs/tools/devtools' },
           { text: '아키텍처 (Architecture)', link: '/docs/architecture/' },
           { text: '베스트 프랙티스', link: '/docs/best-practices/' },
           { text: '기업별 기술스택', link: '/docs/company-tech-stack' },
