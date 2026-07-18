@@ -14,6 +14,22 @@
 
     <!-- 일반 브라우저 화면의 액션 버튼 영역 -->
     <div class="doc-action-buttons">
+      <!-- 학습 완료 상태 토글 버튼 -->
+      <button 
+        class="action-btn check-btn" 
+        :class="{ 'is-completed': isCurrentPageCompleted }" 
+        @click="toggleCompletion" 
+        :title="isCurrentPageCompleted ? '학습 완료 취소' : '학습 완료로 표시'"
+      >
+        <svg v-if="isCurrentPageCompleted" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+        </svg>
+        <span>{{ isCurrentPageCompleted ? '학습 완료됨' : '학습 완료' }}</span>
+      </button>
+
       <button class="action-btn pdf-btn" @click="printPdf" title="PDF로 저장 / 인쇄">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M6 9V2h12v7"></path>
@@ -22,6 +38,7 @@
         </svg>
         <span>PDF 저장</span>
       </button>
+
       <button class="action-btn md-btn" @click="downloadMarkdown" title="출처가 포함된 원본 마크다운(.md) 파일 다운로드">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -35,7 +52,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute } from 'vitepress'
 
 const route = useRoute()
@@ -44,6 +61,93 @@ const route = useRoute()
 const showButtons = computed(() => {
   const path = route.path
   return path !== '/' && path !== '/index.html' && path !== ''
+})
+
+const isCurrentPageCompleted = ref(false)
+
+const normalizePath = (path) => {
+  let p = path;
+  if (p.endsWith('.html')) p = p.slice(0, -5);
+  if (p.endsWith('index')) p = p.slice(0, -5);
+  if (!p.endsWith('/')) p += '/';
+  return p.toLowerCase();
+}
+
+const getCompletedPages = () => {
+  if (typeof window === 'undefined') return []
+  try {
+    const data = localStorage.getItem('dev-knowledge-db-completed')
+    return data ? JSON.parse(data) : []
+  } catch (e) {
+    return []
+  }
+}
+
+const toggleCompletion = () => {
+  if (typeof window === 'undefined') return
+  const currentPath = normalizePath(route.path)
+  let completed = getCompletedPages()
+  
+  if (completed.includes(currentPath)) {
+    completed = completed.filter(p => p !== currentPath)
+    isCurrentPageCompleted.value = false
+  } else {
+    completed.push(currentPath)
+    isCurrentPageCompleted.value = true
+  }
+  
+  localStorage.setItem('dev-knowledge-db-completed', JSON.stringify(completed))
+  window.dispatchEvent(new Event('storage-completed-updated'))
+}
+
+// 방문 기록 추가 기능
+const addToRecentlyViewed = () => {
+  if (typeof window === 'undefined') return
+  const currentPath = normalizePath(route.path)
+  if (currentPath === '/' || currentPath === '/index/' || currentPath.includes('404')) return
+
+  let title = document.title || ''
+  if (title.includes(' | ')) {
+    title = title.split(' | ')[0]
+  }
+
+  let recent = []
+  try {
+    const data = localStorage.getItem('dev-knowledge-db-recent')
+    recent = data ? JSON.parse(data) : []
+  } catch (e) {}
+
+  recent = recent.filter(item => item.path !== currentPath)
+  recent.unshift({ 
+    path: currentPath, 
+    title: title || currentPath, 
+    date: new Date().toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' }) 
+  })
+  
+  if (recent.length > 5) recent = recent.slice(0, 5)
+
+  localStorage.setItem('dev-knowledge-db-recent', JSON.stringify(recent))
+  window.dispatchEvent(new Event('storage-recent-updated'))
+}
+
+// 상태 동기화 함수
+const syncState = () => {
+  const currentPath = normalizePath(route.path)
+  const completed = getCompletedPages()
+  isCurrentPageCompleted.value = completed.includes(currentPath)
+}
+
+watch(() => route.path, (newPath) => {
+  syncState()
+  setTimeout(addToRecentlyViewed, 600)
+}, { immediate: true })
+
+onMounted(() => {
+  syncState()
+  setTimeout(addToRecentlyViewed, 600)
+  
+  // 외부 초기화 감지
+  window.addEventListener('storage-completed-updated', syncState)
 })
 
 // 현재 문서의 풀 URL 주소 (출처 표기용)
@@ -167,6 +271,12 @@ const printPdf = () => {
   border-color: var(--vp-c-brand-1);
   background: var(--vp-c-brand-soft);
   transform: translateY(-1px);
+}
+
+.check-btn.is-completed {
+  background: var(--vp-c-brand-soft) !important;
+  border-color: var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-1) !important;
 }
 
 .action-btn svg {

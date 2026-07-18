@@ -8,6 +8,8 @@ import HomeBannerSlider from './components/HomeBannerSlider.vue'
 import MiniGames from './components/MiniGames.vue'
 import TodayDevQuiz from './components/TodayDevQuiz.vue'
 import DocActionButtons from './components/DocActionButtons.vue'
+import LearningProgress from './components/LearningProgress.vue'
+import DevTools from './components/DevTools.vue'
 
 
 export default {
@@ -21,6 +23,8 @@ export default {
     app.component('TodayDevQuiz', TodayDevQuiz)
     app.component('MiniGames', MiniGames)
     app.component('DocActionButtons', DocActionButtons)
+    app.component('LearningProgress', LearningProgress)
+    app.component('DevTools', DevTools)
 
 
     if (typeof window !== 'undefined') {
