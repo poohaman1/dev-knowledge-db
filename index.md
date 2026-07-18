@@ -10,14 +10,11 @@ hero:
       text: 🧠 2026 최신 LLM 20선 집중분석
       link: /docs/llm/
     - theme: alt
-      text: 📋 지식 콘텐츠 탐색
-      link: /docs/knowledge-info/
+      text: 🛠️ 개발자툴
+      link: /docs/tools/devtools
     - theme: alt
-      text: 📚 지식 데이터 열람
-      link: /docs/programming-languages/
-    - theme: alt
-      text: ⭐ 깃허브 스타
-      link: /docs/collections/github-stars-global
+      text: 🎮 게임 센터
+      link: /docs/mini-games/
 
 features:
   - icon: 📋
@@ -38,6 +35,15 @@ features:
   - icon: 🧠
     title: LLM 및 AI 프롬프트 가이드
     details: GPT-5.5, Gemini 3.5, Claude 5 등 2026년 최신 모델 20선 분석과 효율적인 프롬프트 엔지니어링 패턴을 제공합니다.
+  - icon: 📈
+    title: 로그인 없는 학습 진도 관리
+    details: 로컬 스토리지 기반으로 각 지식 문서의 학습 완료 상태와 최근 읽은 문서를 안전하게 보관 및 시각화합니다.
+  - icon: 🛠️
+    title: 100% 로컬 보안 개발자 유틸리티
+    details: JSON 포맷터, Base64/URL 변환기, 정규표현식 테스터, JWT 디코더를 서버 전송 없이 브라우저에서 안전하게 제공합니다.
+  - icon: 🎮
+    title: 피로 회복용 미니게임 6종
+    details: 스도쿠, 반응속도 테스트, 색상 매칭 등 복잡한 코딩 중 뇌를 식혀줄 경량 미니게임 센터를 구축했습니다.
 ---
 
 <HomeBannerSlider />
@@ -167,6 +173,14 @@ features:
       <div class="stat-number">20종</div>
       <div class="stat-label">2026 최신 LLM 분석</div>
     </div>
+    <div class="stat-card">
+      <div class="stat-number">4종</div>
+      <div class="stat-label">개발자 편의 유틸리티</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">로컬 데이터 보안</div>
+    </div>
   </div>
 
   <div class="info-grid">
@@ -178,8 +192,9 @@ features:
         <li><b>프론트/백엔드 로드맵</b> — 단계별 학습 경로와 필수 기술 체계 정리</li>
         <li><b>기업별 기술스택</b> — 네이버·카카오 등 13개 국내 IT 기업 실무 기술 분석</li>
         <li><b>LLM 분석 가이드</b> — 2026년 글로벌/국내/오픈소스 상위 20개 모델 심층 해부</li>
-        <li><b>깃허브 스타 큐레이션</b> — 해외 10선 + 국내 10선, 초보자 활용 팁 포함</li>
-        <li><b>보안 & 아키텍처 가이드</b> — AI 코드 취약점 방어 및 클린 아키텍처 패턴</li>
+        <li><b>개발자 유틸리티</b> — JSON 포맷터, Base64/URL 변환, 정규식 매칭, JWT 디코더</li>
+        <li><b>나의 학습 진도 관리</b> — 로그인 없는 localStorage 기반 완독 상태 및 방문 기록 트래킹</li>
+        <li><b>문서 보관 및 다운로드</b> — 출처가 표기된 개별 PDF 인쇄 및 Markdown 다운로드</li>
       </ul>
     </div>
     <div class="info-card">
@@ -187,7 +202,7 @@ features:
       <ul>
         <li><b>프레임워크</b> — <a href="https://vitepress.dev/" target="_blank">VitePress 1.6</a> + Vue 3 Composition API</li>
         <li><b>UI 스타일링</b> — CSS Custom Properties · 글래스모피즘 · 모바일 퍼스트</li>
-        <li><b>데이터 저장</b> — 브라우저 localStorage + XML 백업 지원</li>
+        <li><b>데이터 저장</b> — 브라우저 localStorage (게임 기록, 학습 완료, 방문 이력, XML 백업)</li>
         <li><b>로컬 검색</b> — 전체 기술 문서 및 키워드 초고속 실시간 검색</li>
         <li><b>디자인 시스템</b> — 인디고-바이올렛 브랜드 컬러 + 마이크로 애니메이션</li>
       </ul>
