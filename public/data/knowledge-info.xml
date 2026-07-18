@@ -40,4 +40,12 @@
     <date>2025.12.31</date>
     <summary>한국인터넷진흥원 주요서비스</summary>
   </item>
+  <item>
+    <id>1767139200002</id>
+    <siteName>RapidAPI Hub</siteName>
+    <url>https://rapidapi.com/hub</url>
+    <title>RapidAPI Hub</title>
+    <date>2025.12.31</date>
+    <summary>수천 개의 API를 한 곳에서 검색하고 테스트할 수 있는 마켓플레이스</summary>
+  </item>
 </knowledge-info-list>
