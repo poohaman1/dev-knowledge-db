@@ -2,7 +2,7 @@
   <div class="mini-games-center">
     <div class="header-section">
       <h1 class="main-title">일하다 잠깐 머리 식히는 요즘IT 미니 게임</h1>
-      <p class="subtitle">스트레스 해소와 두뇌 회전을 위한 6가지 미니 게임을 즐겨보세요!</p>
+      <p class="subtitle">스트레스 해소와 두뇌 회전을 위한 9가지 미니 게임을 즐겨보세요!</p>
     </div>
 
     <!-- 로비 화면 (게임 목록) -->
@@ -70,12 +70,13 @@
           <p class="ready-desc">{{ selectedGameData.desc }}</p>
           
           <div class="how-to-play">
-            <h4>💡 플레이 방법</h4>
-            <ul>
-              <li v-for="(instruction, idx) in selectedGameData.instructions" :key="idx">
-                {{ instruction }}
-              </li>
-            </ul>
+            <h4 class="how-to-title">💡 플레이 가이드</h4>
+            <div class="instruction-steps">
+              <div v-for="(instruction, idx) in selectedGameData.instructions" :key="idx" class="step-item">
+                <span class="step-number">{{ idx + 1 }}</span>
+                <span class="step-text">{{ instruction }}</span>
+              </div>
+            </div>
           </div>
 
           <button class="btn btn-primary btn-start-game" @click="startGame">게임 시작하기 🚀</button>
@@ -276,6 +277,71 @@
             </div>
           </div>
 
+          <!-- 7. 카드 뒤집기 (카드 매칭) -->
+          <div v-else-if="selectedGameId === 'card_match'" class="card-match-wrapper">
+            <div class="card-match-status">
+              <span>매칭 성공: <strong>{{ cmMatchedCount }} / 8 쌍</strong></span>
+            </div>
+            <div class="card-match-grid">
+              <div 
+                v-for="(card, idx) in cmCards" 
+                :key="idx" 
+                class="match-card-item"
+                :class="{ flipped: card.isFlipped || card.isMatched, matched: card.isMatched }"
+                @click="flipCmCard(idx)"
+              >
+                <div class="card-inner">
+                  <div class="card-front">❓</div>
+                  <div class="card-back">{{ card.emoji }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 8. 틱택토 -->
+          <div v-else-if="selectedGameId === 'tic_tac_toe'" class="ttt-wrapper">
+            <div class="ttt-status">
+              <span>상태: <strong :style="{ color: tttTurn === 'player' ? 'var(--vp-c-brand-1)' : '#ef4444' }">{{ tttTurn === 'player' ? '내 차례 (X)' : 'AI 차례 (O)' }}</strong></span>
+            </div>
+            <div class="ttt-grid">
+              <div 
+                v-for="(cell, idx) in tttBoard" 
+                :key="idx" 
+                class="ttt-cell"
+                :class="{ 'x-mark': cell === 'X', 'o-mark': cell === 'O' }"
+                @click="playTtt(idx)"
+              >
+                {{ cell }}
+              </div>
+            </div>
+          </div>
+
+          <!-- 9. 10초 맞추기 -->
+          <div v-else-if="selectedGameId === 'ten_seconds'" class="ten-seconds-wrapper">
+            <div class="ts-display-box">
+              <div v-if="tsState === 'running' && tsElapsedTime >= 3000" class="ts-time-text blind">
+                ⏱️ ??.??
+              </div>
+              <div v-else class="ts-time-text" :class="{ success: tsState === 'stopped' && tsIsSuccess }">
+                ⏱️ {{ (tsElapsedTime / 1000).toFixed(2) }}s
+              </div>
+              <p class="ts-helper-text" v-if="tsState === 'running' && tsElapsedTime >= 3000">
+                ⚠️ 3초 이후부터 타이머가 보이지 않습니다! 감각에 의존하세요!
+              </p>
+              <p class="ts-helper-text" v-else-if="tsState === 'ready'">
+                시작 버튼을 누르면 타이머가 돌기 시작합니다.
+              </p>
+              <p class="ts-helper-text" v-else-if="tsState === 'stopped'">
+                목표: 10.00초 | 내 기록: {{ (tsElapsedTime / 1000).toFixed(2) }}초
+              </p>
+            </div>
+            
+            <div class="ts-actions">
+              <button v-if="tsState === 'ready'" class="btn btn-primary btn-large" @click="startTs">시작 ⏱️</button>
+              <button v-else-if="tsState === 'running'" class="btn btn-danger btn-large" @click="stopTs">정지 🛑</button>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -324,7 +390,7 @@ const gameStage = ref('lobby') // 'lobby', 'ready', 'playing', 'result'
 const selectedGameId = ref('')
 const history = ref([])
 
-// 게임 정보 정의 (스도쿠 유지 + 새로운 5종 추천 게임)
+// 게임 정보 정의 (9종 구성)
 const games = [
   {
     id: 'sudoku',
@@ -402,6 +468,45 @@ const games = [
       'AI의 분석 패턴을 역이용하여 심리전에서 이겨보세요.',
       '5선승제(먼저 5판을 이기는 사람이 최종 승자)로 대국이 진행됩니다.'
     ]
+  },
+  {
+    id: 'card_match',
+    name: '카드 뒤집기',
+    desc: '눈 깜짝할 사이에 짝을 맞추는 개발자 로고 매칭',
+    icon: '🃏',
+    colorBg: 'linear-gradient(135deg, #14b8a6 0%, #0f766e 100%)',
+    instructions: [
+      '16장의 뒤집힌 카드 중 두 개를 차례로 클릭해 뒤집습니다.',
+      '두 카드의 아이콘이 일치하면 오픈된 상태로 고정됩니다.',
+      '일치하지 않으면 카드가 잠깐 노출된 후 다시 원래대로 뒤집힙니다.',
+      '최대한 적은 실수와 최단 시간으로 8쌍의 카드를 모두 맞추세요.'
+    ]
+  },
+  {
+    id: 'tic_tac_toe',
+    name: '틱택토',
+    desc: '인공지능과 한 수 한 수 겨루는 3x3 바둑',
+    icon: '❌',
+    colorBg: 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)',
+    instructions: [
+      '3x3 격자판에 플레이어는 X를, AI는 O를 번갈아 놓습니다.',
+      '가로, 세로, 혹은 대각선으로 자신의 기호 3개를 먼저 일렬로 배치하면 승리합니다.',
+      '빈 칸 중 놓을 곳을 클릭해 수를 둡니다. AI는 플레이어의 수를 예측해 방어하고 공격합니다.',
+      '모든 칸이 채워졌으나 일렬 배치가 없으면 무승부 처리됩니다.'
+    ]
+  },
+  {
+    id: 'ten_seconds',
+    name: '10초 맞추기',
+    desc: '정밀한 감각으로 정확히 10.00초에 멈추기',
+    icon: '⏱️',
+    colorBg: 'linear-gradient(135deg, #f43f5e 0%, #be123c 100%)',
+    instructions: [
+      '시작 버튼을 누르면 타이머가 0.00초부터 째깍거리며 올라갑니다.',
+      '시작 후 3.00초가 지나면 타이머가 가려지며 보이지 않게 됩니다.',
+      '마음속이나 감각에 의존해 시간을 재다 정확히 10.00초가 되었다고 생각될 때 "정지" 버튼을 누르세요.',
+      '오차범위 +/- 0.15초 이내(9.85초 ~ 10.15초 사이)에 정지하면 클리어입니다!'
+    ]
   }
 ]
 
@@ -445,7 +550,7 @@ const startGame = () => {
   startTime.value = Date.now()
   elapsedTime.value = 0
   
-  if (selectedGameId.value !== 'reaction_time') {
+  if (selectedGameId.value !== 'reaction_time' && selectedGameId.value !== 'ten_seconds') {
     timerInterval.value = setInterval(() => {
       elapsedTime.value = Date.now() - startTime.value
     }, 50)
@@ -464,6 +569,12 @@ const startGame = () => {
     initEscapeRoom()
   } else if (selectedGameId.value === 'rps_psychology') {
     initRps()
+  } else if (selectedGameId.value === 'card_match') {
+    initCardMatch()
+  } else if (selectedGameId.value === 'tic_tac_toe') {
+    initTtt()
+  } else if (selectedGameId.value === 'ten_seconds') {
+    initTenSeconds()
   }
 }
 
@@ -494,6 +605,12 @@ const resetGameStates = () => {
   // 반응속도 타이머 정리
   if (rtTimeout) {
     clearTimeout(rtTimeout)
+  }
+
+  // 10초 맞추기 타이머 정리
+  if (tsTimer) {
+    clearInterval(tsTimer)
+    tsTimer = null
   }
 }
 
@@ -997,6 +1114,213 @@ const predictRpsAiChoice = () => {
 }
 
 // ----------------------------------------------------
+// 7. 카드 뒤집기 (카드 매칭) 상세 로직
+// ----------------------------------------------------
+const cmCards = ref([])
+const cmMatchedCount = ref(0)
+const cmSelectedIndices = ref([])
+const cmEmojis = ['⚛️', '🐍', '🦀', '☕', '🐘', '🟢', '🟦', '🦊']
+
+const initCardMatch = () => {
+  cmMatchedCount.value = 0
+  cmSelectedIndices.value = []
+  
+  let pool = [...cmEmojis, ...cmEmojis]
+  
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]]
+  }
+  
+  cmCards.value = pool.map((emoji, idx) => ({
+    id: idx,
+    emoji,
+    isFlipped: false,
+    isMatched: false
+  }))
+}
+
+const flipCmCard = (idx) => {
+  const card = cmCards.value[idx]
+  if (card.isFlipped || card.isMatched || cmSelectedIndices.value.length >= 2) return
+  
+  card.isFlipped = true
+  cmSelectedIndices.value.push(idx)
+  
+  if (cmSelectedIndices.value.length === 2) {
+    const firstIdx = cmSelectedIndices.value[0]
+    const secondIdx = cmSelectedIndices.value[1]
+    
+    if (cmCards.value[firstIdx].emoji === cmCards.value[secondIdx].emoji) {
+      cmCards.value[firstIdx].isMatched = true
+      cmCards.value[secondIdx].isMatched = true
+      cmMatchedCount.value++
+      cmSelectedIndices.value = []
+      
+      if (cmMatchedCount.value === 8) {
+        setTimeout(() => {
+          finishGame('win', '매칭완료', '천재적인 기억력! 🃏', '16장의 카드를 완벽하게 매칭하여 기억의 신으로 증명되었습니다.', '8쌍 매칭 완료')
+        }, 800)
+      }
+    } else {
+      setTimeout(() => {
+        cmCards.value[firstIdx].isFlipped = false
+        cmCards.value[secondIdx].isFlipped = false
+        cmSelectedIndices.value = []
+      }, 800)
+    }
+  }
+}
+
+// ----------------------------------------------------
+// 8. 틱택토 상세 로직
+// ----------------------------------------------------
+const tttBoard = ref(Array(9).fill(''))
+const tttTurn = ref('player') // 'player', 'ai'
+
+const initTtt = () => {
+  tttBoard.value = Array(9).fill('')
+  tttTurn.value = 'player'
+}
+
+const playTtt = (idx) => {
+  if (tttBoard.value[idx] !== '' || tttTurn.value !== 'player') return
+  
+  tttBoard.value[idx] = 'X'
+  
+  if (checkTttWin('X')) {
+    finishGame('win', '승리', '틱택토 승리! ❌', '완벽한 계산으로 인공지능을 격파하셨습니다!', '플레이어 X 승리')
+    return
+  }
+  
+  if (checkTttDraw()) {
+    finishGame('tie', '무승부', '용호상박! 🤝', '인공지능과 한 수 한 수 대등하게 맞겨루며 비겼습니다.', '3x3 무승부')
+    return
+  }
+  
+  tttTurn.value = 'ai'
+  setTimeout(makeTttAiMove, 500)
+}
+
+const makeTttAiMove = () => {
+  if (gameStage.value !== 'playing' || selectedGameId.value !== 'tic_tac_toe') return
+  
+  // 1. 내가 이길 수 있는 수가 있는지 확인
+  for (let i = 0; i < 9; i++) {
+    if (tttBoard.value[i] === '') {
+      tttBoard.value[i] = 'O'
+      if (checkTttWin('O')) {
+        finishGame('lose', '패배', 'AI에게 함락.. 😢', '인공지능의 맹공에 외통수에 걸리고 말았습니다.', 'AI O 승리')
+        return
+      }
+      tttBoard.value[i] = ''
+    }
+  }
+  
+  // 2. 상대방이 이기려는 수가 있으면 방어
+  for (let i = 0; i < 9; i++) {
+    if (tttBoard.value[i] === '') {
+      tttBoard.value[i] = 'X'
+      if (checkTttWin('X')) {
+        tttBoard.value[i] = 'O'
+        tttTurn.value = 'player'
+        return
+      }
+      tttBoard.value[i] = ''
+    }
+  }
+  
+  // 3. 중앙 선점
+  if (tttBoard.value[4] === '') {
+    tttBoard.value[4] = 'O'
+    tttTurn.value = 'player'
+    return
+  }
+  
+  // 4. 빈 곳 임의 탐색
+  const empties = tttBoard.value.map((cell, idx) => cell === '' ? idx : null).filter(val => val !== null)
+  if (empties.length > 0) {
+    const randIdx = empties[Math.floor(Math.random() * empties.length)]
+    tttBoard.value[randIdx] = 'O'
+  }
+  
+  if (checkTttWin('O')) {
+    finishGame('lose', '패배', 'AI에게 함락.. 😢', '인공지능의 맹공에 외통수에 걸리고 말았습니다.', 'AI O 승리')
+    return
+  }
+  
+  if (checkTttDraw()) {
+    finishGame('tie', '무승부', '용호상박! 🤝', '인공지능과 한 수 한 수 대등하게 맞겨루며 비겼습니다.', '3x3 무승부')
+    return
+  }
+  
+  tttTurn.value = 'player'
+}
+
+const checkTttWin = (mark) => {
+  const winLines = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8], // 가로
+    [0, 3, 6], [1, 4, 7], [2, 5, 8], // 세로
+    [0, 4, 8], [2, 4, 6]             // 대각선
+  ]
+  return winLines.some(line => {
+    return line.every(idx => tttBoard.value[idx] === mark)
+  })
+}
+
+const checkTttDraw = () => {
+  return tttBoard.value.every(cell => cell !== '')
+}
+
+// ----------------------------------------------------
+// 9. 10초 맞추기 상세 로직
+// ----------------------------------------------------
+const tsState = ref('ready') // 'ready', 'running', 'stopped'
+const tsElapsedTime = ref(0)
+const tsIsSuccess = ref(false)
+let tsTimer = null
+let tsStartTime = 0
+
+const initTenSeconds = () => {
+  tsState.value = 'ready'
+  tsElapsedTime.value = 0
+  tsIsSuccess.value = false
+}
+
+const startTs = () => {
+  tsState.value = 'running'
+  tsStartTime = Date.now()
+  
+  if (tsTimer) clearInterval(tsTimer)
+  tsTimer = setInterval(() => {
+    tsElapsedTime.value = Date.now() - tsStartTime
+  }, 10)
+}
+
+const stopTs = () => {
+  if (tsTimer) {
+    clearInterval(tsTimer)
+    tsTimer = null
+  }
+  tsState.value = 'stopped'
+  
+  const finalTime = tsElapsedTime.value
+  const diff = Math.abs(finalTime - 10000)
+  
+  if (diff <= 150) { // 10.00초 기준 +/- 0.15초 오차 이내
+    tsIsSuccess.value = true
+    setTimeout(() => {
+      finishGame('win', '완벽클리어', '시간의 지배자! ⏱️', `정확히 10.00초 근접하게 시계를 멈추셨습니다.`, `내 기록: ${(finalTime / 1000).toFixed(2)}초 (성공)`)
+    }, 1200)
+  } else {
+    tsIsSuccess.value = false
+    setTimeout(() => {
+      finishGame('lose', '실패', '시간 감각 왜곡 😢', `아쉽지만 10.00초 기준 오차범위(150ms)를 벗어났습니다.`, `내 기록: ${(finalTime / 1000).toFixed(2)}초 (실패)`)
+    }, 1200)
+  }
+}
+
+// ----------------------------------------------------
 // 공통 라이프사이클 및 헬퍼
 // ----------------------------------------------------
 onMounted(() => {
@@ -1199,33 +1523,68 @@ const formatDate = (ts) => {
   margin-bottom: 32px;
 }
 
+/* 플레이 방법 가이드 예쁜 디자인 적용 */
 .how-to-play {
   text-align: left;
-  max-width: 500px;
+  max-width: 550px;
   margin: 0 auto 32px;
   background: var(--vp-c-bg-alt);
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 16px;
   border: 1px solid var(--vp-c-divider);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
-.how-to-play h4 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 12px;
+.how-to-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 16px;
   color: var(--vp-c-brand-1);
+  border-bottom: 2px solid var(--vp-c-brand-3);
+  padding-bottom: 6px;
 }
 
-.how-to-play ul {
-  padding-left: 20px;
-  margin: 0;
+.instruction-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.how-to-play li {
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--vp-c-bg-soft);
+  border-radius: 10px;
+  border-left: 4px solid var(--vp-c-brand-1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+  transition: transform 0.2s;
+}
+
+.step-item:hover {
+  transform: translateX(4px);
+}
+
+.step-number {
+  background: var(--vp-c-brand-1);
+  color: var(--vp-c-bg);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step-text {
   font-size: 0.9rem;
-  color: var(--vp-c-text-1);
-  margin-bottom: 8px;
   line-height: 1.5;
+  color: var(--vp-c-text-1);
 }
 
 .btn-start-game {
@@ -1811,6 +2170,199 @@ const formatDate = (ts) => {
   border-color: var(--vp-c-brand-1);
   transform: translateY(-4px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+}
+
+/* 7. 카드 뒤집기 CSS */
+.card-match-wrapper {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-match-status {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-size: 1rem;
+  color: var(--vp-c-text-2);
+}
+
+.card-match-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.match-card-item {
+  position: relative;
+  aspect-ratio: 1;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.match-card-item.flipped .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--vp-c-divider);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+.card-front {
+  background: var(--vp-c-bg-alt);
+  color: var(--vp-c-text-3);
+}
+
+.card-back {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  transform: rotateY(180deg);
+}
+
+.match-card-item.matched .card-back {
+  background: #a7f3d0 !important;
+  color: #047857 !important;
+  border-color: #34d399 !important;
+}
+
+/* 8. 틱택토 CSS */
+.ttt-wrapper {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ttt-status {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.05rem;
+}
+
+.ttt-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 8px;
+  background: var(--vp-c-divider);
+  padding: 8px;
+  border-radius: 16px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.ttt-cell {
+  background: var(--vp-c-bg-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 800;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+}
+
+.ttt-cell:hover:empty {
+  background: var(--vp-c-bg-alt);
+}
+
+.ttt-cell.x-mark {
+  color: var(--vp-c-brand-1);
+}
+
+.ttt-cell.o-mark {
+  color: #ef4444;
+}
+
+/* 9. 10초 맞추기 CSS */
+.ten-seconds-wrapper {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.ts-display-box {
+  width: 100%;
+  padding: 48px 24px;
+  background: var(--vp-c-bg-alt);
+  border-radius: 20px;
+  border: 1px solid var(--vp-c-divider);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ts-time-text {
+  font-size: 3.5rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: var(--vp-c-text-1);
+}
+
+.ts-time-text.blind {
+  color: var(--vp-c-text-3);
+  letter-spacing: 0.05em;
+  animation: pulse 1.5s infinite;
+}
+
+.ts-time-text.success {
+  color: #22c55e !important;
+}
+
+.ts-helper-text {
+  font-size: 0.9rem;
+  color: var(--vp-c-text-2);
+}
+
+.ts-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-large {
+  font-size: 1.2rem;
+  padding: 16px 48px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
 }
 
 /* 결과 화면 */

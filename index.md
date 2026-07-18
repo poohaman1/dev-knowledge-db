@@ -42,7 +42,7 @@ features:
     title: 100% 로컬 보안 개발자 유틸리티
     details: JSON 포맷터, Base64/URL 변환기, 정규표현식 테스터, JWT 디코더를 서버 전송 없이 브라우저에서 안전하게 제공합니다.
   - icon: 🎮
-    title: 피로 회복용 미니게임 6종
+    title: 피로 회복용 미니게임 9종
     details: 스도쿠, 반응속도 테스트, 색상 매칭 등 복잡한 코딩 중 뇌를 식혀줄 경량 미니게임 센터를 구축했습니다.
 ---
 
@@ -166,7 +166,7 @@ features:
       <div class="stat-label">테마별 추천 오픈소스</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">6종</div>
+      <div class="stat-number">9종</div>
       <div class="stat-label">머리식히기 미니게임</div>
     </div>
     <div class="stat-card">
