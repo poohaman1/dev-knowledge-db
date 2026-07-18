@@ -31,6 +31,7 @@
             ></textarea>
             <div class="tool-actions-row">
               <button class="tool-btn secondary" @click="clearJson">지우기</button>
+              <button class="tool-btn secondary" @click="loadJsonSample">샘플 데이터</button>
               <button class="tool-btn" @click="formatJson(2)">2칸 들여쓰기</button>
               <button class="tool-btn" @click="formatJson(4)">4칸 들여쓰기</button>
               <button class="tool-btn" @click="minifyJson">한 줄 압축</button>
@@ -62,6 +63,7 @@
             ></textarea>
             <div class="tool-actions-row">
               <button class="tool-btn secondary" @click="clearCodec">지우기</button>
+              <button class="tool-btn secondary" @click="loadCodecSample">샘플 데이터</button>
               <button class="tool-btn" @click="processCodec('base64-encode')">Base64 인코딩</button>
               <button class="tool-btn" @click="processCodec('base64-decode')">Base64 디코딩</button>
               <button class="tool-btn" @click="processCodec('url-encode')">URL 인코딩</button>
@@ -109,7 +111,10 @@
               </div>
             </div>
             <div class="target-text-box">
-              <label>매칭 대상 텍스트</label>
+              <div class="output-label-row">
+                <label>매칭 대상 텍스트</label>
+                <button class="copy-btn" @click="loadRegexSample" style="margin-bottom: 4px;">샘플 데이터 불러오기</button>
+              </div>
               <textarea 
                 v-model="regexTarget" 
                 placeholder="정규표현식으로 매칭을 검증할 텍스트를 입력해 보세요..."
@@ -148,7 +153,10 @@
               spellcheck="false"
               @input="decodeJwt"
             ></textarea>
-            <button class="tool-btn secondary" style="margin-top: 10px;" @click="clearJwt">지우기</button>
+            <div class="tool-actions-row" style="margin-top: 10px;">
+              <button class="tool-btn secondary" @click="clearJwt">지우기</button>
+              <button class="tool-btn secondary" @click="loadJwtSample">샘플 데이터</button>
+            </div>
           </div>
           <div class="output-area jwt-outputs">
             <div class="jwt-block">
@@ -231,6 +239,20 @@ const minifyJson = () => {
   }
 }
 
+const loadJsonSample = () => {
+  jsonInput.value = JSON.stringify({
+    site: "개발자를 위한 지식DB",
+    version: "2026.7.18",
+    active: true,
+    features: ["Learn Progress Dashboard", "DevTools Utility Kit", "PDF/Markdown Archive"],
+    author: {
+      name: "Antigravity",
+      type: "AI Assistant"
+    }
+  })
+  formatJson(2)
+}
+
 // ── 2. Base64 / URL 인코더 & 디코더 ──
 const codecInput = ref('')
 const codecOutput = ref('')
@@ -266,6 +288,12 @@ const processCodec = (action) => {
     codecError.value = '❌ 인코딩/디코딩 실패: 제공된 문자열이 올바른 규격이 아닙니다. (' + e.message + ')'
     codecOutput.value = ''
   }
+}
+
+const loadCodecSample = () => {
+  codecInput.value = "Hello, World! 개발자를 위한 지식DB 유틸리티 센터에 오신 것을 환영합니다. 🚀"
+  codecOutput.value = ""
+  codecError.value = ""
 }
 
 // ── 3. 정규표현식 테스터 ──
@@ -334,6 +362,13 @@ const highlightedRegexTarget = computed(() => {
   }
 })
 
+const loadRegexSample = () => {
+  regexPattern.value = "\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b"
+  regexFlags.value = "g"
+  regexTarget.value = "문의사항이 있으시면 support@dev-knowledge.app 혹은 admin@example.com 으로 이메일을 보내주세요. 감사합니당!"
+  runRegex()
+}
+
 // 초기 정규식 동작
 runRegex()
 
@@ -399,6 +434,11 @@ const decodeJwt = () => {
   } catch (e) {
     jwtError.value = '❌ JWT 디코딩 실패: 올바르지 않은 토큰입니다. (' + e.message + ')'
   }
+}
+
+const loadJwtSample = () => {
+  jwtInput.value = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwicm9sZSI6ImRldmVsb3BlciIsImV4cCI6MjUyNDYwODAwMH0.dummy-signature"
+  decodeJwt()
 }
 </script>
 
