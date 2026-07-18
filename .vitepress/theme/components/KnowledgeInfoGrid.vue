@@ -156,7 +156,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue'
 
-const STORAGE_KEY = 'knowledge_info_xml_v7'
+const STORAGE_KEY = 'knowledge_info_xml_v8'
 
 const list = ref([])
 const isModalOpen = ref(false)
