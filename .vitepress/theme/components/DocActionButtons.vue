@@ -5,7 +5,7 @@
       <div class="print-source-header">📢 본 기술 문서는 <b>개발자를 위한 지식DB</b> 아카이브 자료입니다.</div>
       <div class="print-source-body">
         <ul>
-          <li><b>사이트 출처:</b> {{ currentFullUrl }}</li>
+          <li><b>사이트 출처:</b> 개발자를 위한 지식DB</li>
           <li><b>제공 카테고리:</b> {{ docCategory }}</li>
           <li><b>작성 기준일:</b> 2026년 최신 가이드라인</li>
         </ul>
@@ -88,7 +88,7 @@ const downloadMarkdown = async () => {
     
     // 출처 헤더 템플릿 생성
     const sourceHeader = `---
-출처: 개발자를 위한 지식DB (${currentFullUrl.value})
+출처: 개발자를 위한 지식DB
 카테고리: ${docCategory.value}
 작성일: 2026년 최신 가이드라인
 본 기술 문서는 '개발자를 위한 지식DB' 오픈소스 플랫폼에서 제공하는 지식 콘텐츠입니다.
