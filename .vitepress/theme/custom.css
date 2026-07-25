@@ -524,10 +524,7 @@
   display: none !important;
 }
 
-.trend-ai .trend-tag,
-.trend-web .trend-tag,
-.trend-infra .trend-tag,
-.trend-oss .trend-tag {
+.trend-card .trend-tag {
   color: var(--vp-c-brand-1) !important;
   background: var(--vp-c-brand-soft) !important;
 }

@@ -4,11 +4,14 @@ layout: home
 hero:
   name: "개발자를 위한 지식DB"
   text: "코드로 성장하는 모든 순간"
-  tagline: "15개 이상의 프로그래밍 언어 가이드, DB 아키텍처, 깃허브 오픈소스 큐레이션을 넘어 2026 최신 LLM 20선 심층 해부까지 — 개발자의 모든 지식을 한 곳에서."
+  tagline: "15개 이상의 프로그래밍 언어 가이드, DB 아키텍처, 2026 최신 LLM 20선부터 IT 실무 법률정보(오픈소스, AI 저작권, GDPR)까지 — 개발자의 모든 지식을 한 곳에서."
   actions:
     - theme: brand
-      text: 🧠 2026 최신 LLM 20선 집중분석
+      text: 🧠 2026 최신 LLM 20선
       link: /docs/llm/
+    - theme: alt
+      text: ⚖️ 개발자 법률정보
+      link: /docs/legal/
     - theme: alt
       text: 🛠️ 개발자툴
       link: /docs/tools/devtools
@@ -17,6 +20,9 @@ hero:
       link: /docs/mini-games/
 
 features:
+  - icon: ⚖️
+    title: 개발자를 위한 IT 법률정보
+    details: 오픈소스 라이선스(Copyleft), 개인정보보호법, AI 저작권, SI 도급계약 및 프리랜서 노무, ISMS-P/CSAP 인증 등 7대 핵심 법률 가이드를 제공합니다.
   - icon: 📋
     title: 지식콘텐츠 통합 관리
     details: 유용한 블로그, 아티클의 URL과 핵심 요약을 CRUD 그리드에서 한눈에 등록·관리합니다. XML 내보내기/가져오기 완벽 지원.
@@ -42,8 +48,14 @@ features:
     title: 100% 로컬 보안 개발자 유틸리티
     details: JSON 포맷터, Base64/URL 변환기, 정규표현식 테스터, JWT 디코더를 서버 전송 없이 브라우저에서 안전하게 제공합니다.
   - icon: 🎮
-    title: 피로 회복용 미니게임 9종
-    details: 스도쿠, 반응속도 테스트, 색상 매칭 등 복잡한 코딩 중 뇌를 식혀줄 경량 미니게임 센터를 구축했습니다.
+    title: 피로 회복용 미니게임 5종
+    details: 숫자 기억, 반응속도 테스트, 색상 매칭, 미니 방탈출 등 복잡한 코딩 중 뇌를 식혀줄 경량 미니게임 센터를 구축했습니다.
+  - icon: 💡
+    title: 베스트 프랙티스 & 아키텍처
+    details: 코드 품질 향상, 클라우드 네이티브 아키텍처 설계, 보안 모범 사례 및 지속 가능한 리팩토링 패턴을 학습합니다.
+  - icon: 🌐
+    title: 국내외 기술 커뮤니티 큐레이션
+    details: 국내외 최상위 개발자 커뮤니티, 기술 블로그, 트렌드 아티클 큐레이션 및 프롬프트 템플릿 지식을 탐색합니다.
 ---
 
 <HomeBannerSlider />
@@ -66,6 +78,13 @@ features:
     <p class="section-sub">빠르게 변화하는 개발 생태계에서 놓치지 말아야 할 핵심 키워드</p>
   </div>
   <div class="trend-cards">
+    <a class="trend-card trend-ai" href="/docs/legal/">
+      <div class="trend-glow"></div>
+      <span class="trend-tag">LEGAL & COMPLIANCE</span>
+      <h3>개발자를 위한 IT 법률정보</h3>
+      <p>오픈소스 라이선스 고지, AI 학습 데이터 저작권, GDPR, SI 계약/노무 분쟁까지 7대 법률 가이드</p>
+      <span class="trend-arrow">법률 가이드 보기 →</span>
+    </a>
     <a class="trend-card trend-ai" href="/docs/llm/">
       <div class="trend-glow"></div>
       <span class="trend-tag">AI / LLM</span>
@@ -94,6 +113,27 @@ features:
       <p>해외·국내 개발자의 걸작 오픈소스 프로젝트를 분석하고 자신만의 서비스로 응용</p>
       <span class="trend-arrow">탐색하기 →</span>
     </a>
+    <a class="trend-card trend-db" href="/docs/knowledge-info/database">
+      <div class="trend-glow"></div>
+      <span class="trend-tag">DATABASE</span>
+      <h3>Vector DB & 시맨틱 검색</h3>
+      <p>RDBMS부터 AI 시대 필수인 벡터 임베딩, 시맨틱 검색 DB 아키텍처 선택 가이드</p>
+      <span class="trend-arrow">탐색하기 →</span>
+    </a>
+    <a class="trend-card trend-arch" href="/docs/architecture/">
+      <div class="trend-glow"></div>
+      <span class="trend-tag">ARCHITECTURE</span>
+      <h3>마이크로서비스 & EDA</h3>
+      <p>이벤트 기반 아키텍처(EDA), 분산 트랜잭션 패러다임 및 시스템 확장성 최적화</p>
+      <span class="trend-arrow">탐색하기 →</span>
+    </a>
+    <a class="trend-card trend-practice" href="/docs/best-practices/">
+      <div class="trend-glow"></div>
+      <span class="trend-tag">BEST PRACTICE</span>
+      <h3>클린코드 & DevOps 자동화</h3>
+      <p>지속 가능한 리팩토링 전략, CI/CD 파이프라인 모범 사례 및 보안 가이드라인</p>
+      <span class="trend-arrow">탐색하기 →</span>
+    </a>
   </div>
 </div>
 
@@ -105,6 +145,10 @@ features:
     <p class="section-sub">가장 자주 찾는 콘텐츠를 한 번의 클릭으로</p>
   </div>
   <div class="hub-grid">
+    <a class="hub-item" href="/docs/legal/">
+      <span class="hub-icon">⚖️</span>
+      <span class="hub-name">법률정보</span>
+    </a>
     <a class="hub-item" href="/docs/programming-languages/">
       <span class="hub-icon">🐍</span>
       <span class="hub-name">Python</span>
@@ -112,6 +156,14 @@ features:
     <a class="hub-item" href="/docs/programming-languages/">
       <span class="hub-icon">⚡</span>
       <span class="hub-name">JavaScript</span>
+    </a>
+    <a class="hub-item" href="/docs/programming-languages/">
+      <span class="hub-icon">🎯</span>
+      <span class="hub-name">TypeScript</span>
+    </a>
+    <a class="hub-item" href="/docs/programming-languages/">
+      <span class="hub-icon">☕</span>
+      <span class="hub-name">Java</span>
     </a>
     <a class="hub-item" href="/docs/programming-languages/">
       <span class="hub-icon">🦀</span>
@@ -133,9 +185,29 @@ features:
       <span class="hub-icon">🗺️</span>
       <span class="hub-name">로드맵</span>
     </a>
+    <a class="hub-item" href="/docs/company-tech-stack">
+      <span class="hub-icon">🏢</span>
+      <span class="hub-name">기업 기술스택</span>
+    </a>
     <a class="hub-item" href="/docs/collections/github-stars-global">
       <span class="hub-icon">⭐</span>
       <span class="hub-name">깃허브 스타</span>
+    </a>
+    <a class="hub-item" href="/docs/tools/devtools">
+      <span class="hub-icon">🛠️</span>
+      <span class="hub-name">개발자 툴</span>
+    </a>
+    <a class="hub-item" href="/docs/mini-games/">
+      <span class="hub-icon">🎮</span>
+      <span class="hub-name">미니게임</span>
+    </a>
+    <a class="hub-item" href="/docs/best-practices/">
+      <span class="hub-icon">💡</span>
+      <span class="hub-name">베스트프랙티스</span>
+    </a>
+    <a class="hub-item" href="/guidelines/Agent">
+      <span class="hub-icon">⚙️</span>
+      <span class="hub-name">가이드라인</span>
     </a>
   </div>
 </div>
@@ -144,7 +216,7 @@ features:
 <div class="home-intro">
   <h2>💡 개발자를 위한 지식 플랫폼</h2>
   <p class="subtitle">
-    실무에서 마주치는 파편화된 기술 자료와 최신 아키텍처 트렌드를<br />
+    실무에서 마주치는 파편화된 기술 자료, 최신 법률 규제 및 아키텍처 트렌드를<br />
     하나의 중앙 저장소에서 체계적으로 검색·관리할 수 있는 <b>개발자 전용 통합 지식 플랫폼</b>입니다.
   </p>
 
@@ -152,6 +224,10 @@ features:
     <div class="stat-card">
       <div class="stat-number">15+</div>
       <div class="stat-label">프로그래밍 언어 가이드</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">7종</div>
+      <div class="stat-label">IT 개발자 법률 정보</div>
     </div>
     <div class="stat-card">
       <div class="stat-number">6+</div>
@@ -166,16 +242,12 @@ features:
       <div class="stat-label">테마별 추천 오픈소스</div>
     </div>
     <div class="stat-card">
-      <div class="stat-number">9종</div>
+      <div class="stat-number">5종</div>
       <div class="stat-label">머리식히기 미니게임</div>
     </div>
     <div class="stat-card">
       <div class="stat-number">20종</div>
       <div class="stat-label">2026 최신 LLM 분석</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">4종</div>
-      <div class="stat-label">개발자 편의 유틸리티</div>
     </div>
     <div class="stat-card">
       <div class="stat-number">100%</div>
@@ -188,6 +260,7 @@ features:
       <h3>🚀 주요 콘텐츠</h3>
       <ul>
         <li><b>15개 언어 상세 가이드</b> — Python, JS, Go, Rust, Dart, Swift 등 초보~전문가용</li>
+        <li><b>개발자 법률 정보 가이드</b> — 오픈소스 라이선스, 개인정보보호, AI 저작권, SI계약, CSAP/ISMS 등 7대 핵심 규제</li>
         <li><b>DB 선택 가이드</b> — RDBMS, NoSQL, NewSQL, Vector DB 아키텍처별 비교</li>
         <li><b>프론트/백엔드 로드맵</b> — 단계별 학습 경로와 필수 기술 체계 정리</li>
         <li><b>기업별 기술스택</b> — 네이버·카카오 등 13개 국내 IT 기업 실무 기술 분석</li>
@@ -195,7 +268,6 @@ features:
         <li><b>4대 테마 오픈소스 80선</b> — 해외 20선, 국내 20선, SourceForge 20선, Awesome 20선 심층 분석</li>
         <li><b>개발자 유틸리티</b> — JSON 포맷터, Base64/URL 변환, 정규식 매칭, JWT 디코더</li>
         <li><b>나의 학습 진도 관리</b> — 로그인 없는 localStorage 기반 완독 상태 및 방문 기록 트래킹</li>
-        <li><b>문서 보관 및 다운로드</b> — 출처가 표기된 개별 PDF 인쇄 및 Markdown 다운로드</li>
       </ul>
     </div>
     <div class="info-card">
@@ -210,4 +282,3 @@ features:
     </div>
   </div>
 </div>
-

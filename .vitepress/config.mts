@@ -29,6 +29,19 @@ export default defineConfig({
       { text: '⚙️ 가이드라인', link: '/guidelines/Agent' },
       { text: '🛠️ 개발자툴', link: '/docs/tools/devtools' },
       { text: '💎 컬렉션', link: '/docs/collections/github-stars-global' },
+      {
+        text: '⚖️ 법률정보',
+        items: [
+          { text: '법률정보 개요', link: '/docs/legal/' },
+          { text: '지식재산권(IP)', link: '/docs/legal/ip' },
+          { text: '개인정보보호 및 데이터 규제', link: '/docs/legal/privacy-data' },
+          { text: '계약 및 노무', link: '/docs/legal/contracts-labor' },
+          { text: '정보보안 및 컴플라이언스', link: '/docs/legal/security-compliance' },
+          { text: 'AI 및 생성형 AI 관련 법률 이슈', link: '/docs/legal/ai-legal' },
+          { text: '전자상거래 및 서비스 운영', link: '/docs/legal/ecommerce-operations' },
+          { text: '국제 규제 및 수출입', link: '/docs/legal/international-regulations' }
+        ]
+      },
       { text: '🎮 게임', link: '/docs/mini-games/' }
     ],
 
@@ -55,6 +68,19 @@ export default defineConfig({
           { text: '베스트 프랙티스', link: '/docs/best-practices/' },
           { text: '기업별 기술스택', link: '/docs/company-tech-stack' },
           { text: 'LLM (대규모 언어 모델)', link: '/docs/llm/' }
+        ]
+      },
+      {
+        text: '⚖️ 법률정보',
+        items: [
+          { text: '법률정보 개요 및 면책고지', link: '/docs/legal/' },
+          { text: '지식재산권(IP)', link: '/docs/legal/ip' },
+          { text: '개인정보보호 및 데이터 규제', link: '/docs/legal/privacy-data' },
+          { text: '계약 및 노무', link: '/docs/legal/contracts-labor' },
+          { text: '정보보안 및 컴플라이언스', link: '/docs/legal/security-compliance' },
+          { text: 'AI 및 생성형 AI 관련 법률 이슈', link: '/docs/legal/ai-legal' },
+          { text: '전자상거래 및 서비스 운영', link: '/docs/legal/ecommerce-operations' },
+          { text: '국제 규제 및 수출입', link: '/docs/legal/international-regulations' }
         ]
       },
       {

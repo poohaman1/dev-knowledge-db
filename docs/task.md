@@ -1,30 +1,32 @@
 # 작업 명세서 (task.md)
 
 ## 개요
-1. 특정 IP("112.186.113.99")로 접속한 사용자의 사이트 방문 및 검색어 로그가 로컬스토리지에 기록되지 않도록 제외 처리합니다.
-2. 로그가 없을 때에도 차트 및 대시보드에 데모용 가짜 로그가 표시되던 문제를 해결합니다.
-3. 상단 메뉴에 '머리식히기게임' 메뉴를 추가하고 6종의 미니게임(스도쿠, 카드 뒤집기, 틱택토, 오목, 10초, 지뢰 찾기)을 구동하고 플레이 기록을 전적 보존하는 기능을 개발합니다.
+1. 상단 메뉴 및 사이드바에 "법률정보" 그룹 메뉴를 추가합니다. ("컬렉션"과 "게임" 사이에 배치)
+2. 법률정보 하위에 7개의 서브메뉴(지식재산권, 개인정보보호, 계약·노무, 정보보안, AI 법률, 전자상거래, 국제 규제) 및 관련 마크다운 문서들을 생성하고 세부 콘텐츠를 체계적으로 정리합니다.
+3. 각 문서 상단 및 메인 페이지에 법적 면책 고지(Legal Disclaimer) 및 관할권(한국, EU, 미국 등) 표기 체계를 도입합니다.
 
 ## 요구사항
-1. 사용자의 실제 IP 주소를 비동기로 확인합니다.
-2. 접속 IP가 `112.186.113.99`인 경우, 방문 기록(`site_analytics_logs`)이 수집되지 않도록 합니다.
-3. 접속 IP가 `112.186.113.99`인 경우, 검색 기록(`site_search_logs`)이 수집되지 않도록 합니다.
-4. IP 조회 결과를 세션스토리지(`sessionStorage`)에 캐싱하여 불필요한 API 호출을 최소화합니다.
-5. 대시보드 로딩 시 로그가 존재하지 않을 때 데모용 임의 로그 150건을 자동 생성 및 삽입하는 로직을 제거합니다.
-6. 상단 네비게이션 및 사이드바에 `/docs/mini-games/` 링크("머리식히기게임")를 추가합니다.
-7. 마크다운 페이지 `docs/mini-games/index.md`에 `<MiniGames />` 커스텀 컴포넌트를 연동합니다.
-8. 6종의 미니게임(스도쿠, 카드 뒤집기, 틱택토, 오목, 10초, 지뢰 찾기)의 개별 플레이 로직 및 세련된 프리미엄 스타일을 적용한 `MiniGames.vue` 컴포넌트를 개발합니다.
-9. 게임이 종료될 때마다 결과(성공 여부, 점수, 소요시간 등)를 `localStorage`에 자동 저장하고, 대시보드 하단에 최근 10건의 플레이 전적으로 노출되도록 처리합니다.
+1. 상단 네비게이션(`nav`)에 "컬렉션"과 "게임" 사이 "⚖️ 법률정보" 메뉴 배치.
+2. 사이드바(`sidebar`)에 "⚖️ 법률정보" 그룹 추가.
+3. `docs/legal/index.md` (개요 및 면책 고지, 관할권 안내) 작성.
+4. `docs/legal/ip.md` (지식재산권 - IP) 작성.
+5. `docs/legal/privacy-data.md` (개인정보보호 및 데이터 규제) 작성.
+6. `docs/legal/contracts-labor.md` (계약 및 노무) 작성.
+7. `docs/legal/security-compliance.md` (정보보안 및 컴플라이언스) 작성.
+8. `docs/legal/ai-legal.md` (AI 및 생성형 AI 관련 법률 이슈) 작성.
+9. `docs/legal/ecommerce-operations.md` (전자상거래 및 서비스 운영) 작성.
+10. `docs/legal/international-regulations.md` (국제 규제 및 수출입) 작성.
+11. 모든 법률 문서 상단에 법률 자문 대체 불가 면책 문구 및 관할권(🇰🇷, 🇪🇺, 🇺🇸, 🌐) 표기 적용.
 
 ## 체크리스트
-- [x] IP 확인 및 제외 대상 판별 헬퍼 함수 (`isExcludedIp`) 구현
-- [x] `router.onAfterRouteChanged` 내에 IP 제외 필터 추가
-- [x] `logSearchQuery` 내에 IP 제외 필터 추가
-- [x] 대시보드 컴포넌트(`SiteAnalyticsDashboard.vue`) 내 데모 로그 자동 생성 로직 제거
-- [x] 상단 네비게이션에 '컬렉션' 및 '게임' 등록 및 사이드바 제거 (`config.mts` 수정)
-- [x] `docs/collections/github-stars.md`에 초보자용 깃허브 스타 5선 안내 콘텐츠 개발 및 사이드바 연동
-- [x] `docs/mini-games/index.md` 마크다운 파일 및 frontmatter 정의
-- [x] `MiniGames.vue` 컴포넌트 글로벌 등록 (`index.ts` 수정)
-- [x] 기존 6종 미니게임 중 스도쿠를 제외한 5종 제거 및 1~3분짜리 미니게임 5종(숫자 기억, 색깔-글자 불일치, 반응속도, 미니 방탈출, AI 가위바위보 심리전)으로 대체 개발 및 스타일링
-- [x] 로컬스토리지 연동을 통한 게임 플레이 이력 및 전적 보존 로직 추가
-- [x] 로컬/실제 환경 동작 검증
+- [x] `docs/legal/index.md` 개요 및 메인 페이지 생성
+- [x] `docs/legal/ip.md` 지식재산권 문서 작성
+- [x] `docs/legal/privacy-data.md` 개인정보보호 및 데이터 규제 문서 작성
+- [x] `docs/legal/contracts-labor.md` 계약 및 노무 문서 작성
+- [x] `docs/legal/security-compliance.md` 정보보안 및 컴플라이언스 문서 작성
+- [x] `docs/legal/ai-legal.md` AI 법률 이슈 문서 작성
+- [x] `docs/legal/ecommerce-operations.md` 전자상거래 및 서비스 운영 문서 작성
+- [x] `docs/legal/international-regulations.md` 국제 규제 및 수출입 문서 작성
+- [x] `.vitepress/config.mts` 상단 `nav` ("컬렉션"과 "게임" 사이) 및 `sidebar` 설정 반영
+- [x] Localhost 환경(`localhost` / `127.0.0.1`) 전용 동일 개발날짜 기준 통합 버전별 개발이력 팝업 모달(`DevHistoryModal.vue`) 추가
+- [x] VitePress 빌드 검증 (`npm run docs:build`) 완료
