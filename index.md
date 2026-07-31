@@ -40,7 +40,7 @@ features:
     details: 해외·국내 개발자가 만든 깃허브 스타 최상위 오픈소스 프로젝트 20선을 분석하고 초보 개발자를 위한 활용 팁을 제공합니다.
   - icon: 🧠
     title: LLM 및 AI 프롬프트 가이드
-    details: GPT-5.5, Gemini 3.5, Claude 5 등 2026년 최신 모델 20선 분석과 효율적인 프롬프트 엔지니어링 패턴을 제공합니다.
+    details: GPT-5.6, Gemini 3.6 Flash, Claude 5 등 2026년 최신 모델 20선 분석과 효율적인 프롬프트 엔지니어링 패턴을 제공합니다.
   - icon: 📈
     title: 로그인 없는 학습 진도 관리
     details: 로컬 스토리지 기반으로 각 지식 문서의 학습 완료 상태와 최근 읽은 문서를 안전하게 보관 및 시각화합니다.
@@ -62,7 +62,7 @@ features:
 
 <a href="/docs/llm/" class="llm-highlight-banner" style="display: block; background: linear-gradient(135deg, #4f46e5, #ec4899); color: white; padding: 36px 24px; border-radius: 20px; margin: 40px 24px 20px 24px; text-align: center; box-shadow: 0 20px 25px -5px rgba(236, 72, 153, 0.25); text-decoration: none; border: 1px solid rgba(255,255,255,0.2);">
   <h2 style="font-size: 30px; margin: 0 0 12px 0; font-weight: 800; color: white; line-height: 1.3; letter-spacing: -0.5px;">🚀 [특집] 2026년 최신 글로벌/국내 LLM 20선 집중 해부</h2>
-  <p style="font-size: 18px; opacity: 0.95; margin: 0 0 24px 0; color: white; font-weight: 500;">GPT-5.5, Gemini 3.5, Claude 5부터 Meta Llama 5까지! 시장을 지배하는 대규모 언어 모델 총망라</p>
+  <p style="font-size: 18px; opacity: 0.95; margin: 0 0 24px 0; color: white; font-weight: 500;">GPT-5.6, Gemini 3.6 Flash, Claude 5부터 Meta Llama 5까지! 시장을 지배하는 최신 언어 모델 총망라</p>
   <span style="display: inline-block; background: white; color: #c026d3; font-weight: 800; padding: 12px 32px; border-radius: 999px; font-size: 17px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">지금 바로 탐색하기 →</span>
 </a>
 
@@ -89,8 +89,15 @@ features:
       <div class="trend-glow"></div>
       <span class="trend-tag">AI / LLM</span>
       <h3>LLM 2026 라인업</h3>
-      <p>GPT-5.5, Claude 5, 오픈소스 혁명까지. 2026년 시장을 주도하는 상위 20개 대규모 언어 모델 해부</p>
+      <p>GPT-5.6, Gemini 3.6, Claude 5, 오픈소스 혁명까지. 2026년 시장을 주도하는 상위 20개 대규모 언어 모델 해부</p>
       <span class="trend-arrow">탐색하기 →</span>
+    </a>
+    <a class="trend-card trend-ai" href="/docs/knowledge-info/agentic-os">
+      <div class="trend-glow"></div>
+      <span class="trend-tag">AI / OS</span>
+      <h3>Agentic OS (AI 운영체제)</h3>
+      <p>LLM을 두뇌로 사용하여 다수의 AI 에이전트를 조율하는 차세대 운영체제 패러다임 가이드</p>
+      <span class="trend-arrow">가이드 보기 →</span>
     </a>
     <a class="trend-card trend-web" href="/docs/programming-languages/">
       <div class="trend-glow"></div>
@@ -176,6 +183,10 @@ features:
     <a class="hub-item" href="/docs/llm/">
       <span class="hub-icon">🧠</span>
       <span class="hub-name">LLM 모델</span>
+    </a>
+    <a class="hub-item" href="/docs/knowledge-info/agentic-os">
+      <span class="hub-icon">🤖</span>
+      <span class="hub-name">Agentic OS</span>
     </a>
     <a class="hub-item" href="/docs/knowledge-info/database">
       <span class="hub-icon">🗄️</span>
@@ -264,7 +275,8 @@ features:
         <li><b>DB 선택 가이드</b> — RDBMS, NoSQL, NewSQL, Vector DB 아키텍처별 비교</li>
         <li><b>프론트/백엔드 로드맵</b> — 단계별 학습 경로와 필수 기술 체계 정리</li>
         <li><b>기업별 기술스택</b> — 네이버·카카오 등 13개 국내 IT 기업 실무 기술 분석</li>
-        <li><b>LLM 분석 가이드</b> — 2026년 글로벌/국내/오픈소스 상위 20개 모델 심층 해부</li>
+        <li><b>LLM 분석 가이드</b> — 2026 최신 GPT-5.6, Gemini 3.6 등 상위 20개 모델 심층 해부</li>
+        <li><b>Agentic OS 가이드</b> — 다중 에이전트 오케스트레이션을 위한 차세대 AI 플랫폼 개념 총정리</li>
         <li><b>4대 테마 오픈소스 80선</b> — 해외 20선, 국내 20선, SourceForge 20선, Awesome 20선 심층 분석</li>
         <li><b>개발자 유틸리티</b> — JSON 포맷터, Base64/URL 변환, 정규식 매칭, JWT 디코더</li>
         <li><b>나의 학습 진도 관리</b> — 로그인 없는 localStorage 기반 완독 상태 및 방문 기록 트래킹</li>

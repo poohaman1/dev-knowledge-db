@@ -51,6 +51,7 @@ export default defineConfig({
         text: '📋 지식 콘텐츠',
         items: [
           { text: '지식콘텐츠 관리', link: '/docs/knowledge-info/' },
+          { text: 'Agentic OS', link: '/docs/knowledge-info/agentic-os' },
           { text: '백엔드 개발에 대한 정보', link: '/docs/knowledge-info/backend-roadmap' },
           { text: '프론트엔드 개발에 대한 정보', link: '/docs/knowledge-info/frontend-roadmap' },
           { text: '데이터베이스 정보', link: '/docs/knowledge-info/database' }
