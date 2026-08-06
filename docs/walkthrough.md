@@ -36,6 +36,17 @@
 
 ---
 
+## 배포 및 CI/CD 자동화 안내
+
+### 1. Vercel 프로덕션 배포 완료
+- **프로젝트 URL**: [https://vercel.com/daoltech-projects/dev-knowledge-db](https://vercel.com/daoltech-projects/dev-knowledge-db)
+- **연동 저장소**: `poohaman1/dev-knowledge-db` (`main` 브랜치)
+
+### 2. 자동 배포 (Continuous Deployment) 파이프라인
+- 프로젝트에 포함된 [vercel.json](file:///d:/_%EB%B0%94%EC%9D%B4%EB%B8%8C%EC%BD%94%EB%94%A9_/source/100%EA%B0%9C%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/01-dev-knowledge-db/dev-knowledge-db/vercel.json) 설정에 따라, 앞으로 GitHub `main` 브랜치에 코드를 **`git push`** 할 때마다 Vercel이 이를 자동으로 감지하여 **무중단 정적 사이트 빌드 및 자동 라이브 배포**를 수행합니다.
+
+---
+
 ## 로컬 실행 확인
 
 ```bash
