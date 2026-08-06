@@ -1,55 +1,44 @@
 # 개발 및 검증 인도서 (walkthrough.md)
 
-## 구현 결과 요약
+## 구현 결과 요약: 사이트 첫 화면 UX 전면 최적화
 
-1. **지식 콘텐츠 ➜ Agentic OS 가이드 구축:**  
-   사이드바 **"📋 지식 콘텐츠"** 그룹 아래 **"Agentic OS"** 메뉴 및 종합 가이드 문서(`docs/knowledge-info/agentic-os.md`)를 추가하였습니다.
+기존 첫 화면에서 발생했던 HTML 태그 파싱 오류 및 난잡했던 화면 구성을 해결하고, 모던 개발자 포털 수준의 **일관성 있는 시각 계층 구조와 정밀한 2줄 그리드 레이아웃**으로 전면 개편하였습니다.
 
-2. **LLM 라인업 최신화 (GPT-5.6 및 Gemini 3.6 Flash 반영):**  
-   - OpenAI의 최신 플래그십 **GPT-5.6** 상세 분석 문서([docs/llm/gpt-5-6.md](file:///d:/_%EB%B0%94%EC%9D%B4%EB%B8%8C%EC%BD%94%EB%94%A9_/source/100%EA%B0%9C%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/01-dev-knowledge-db/dev-knowledge-db/docs/llm/gpt-5-6.md)) 작성.
-   - Google DeepMind의 최신 초고속 경량화 모델 **Gemini 3.6 Flash** 상세 분석 문서([docs/llm/gemini-3-6-flash.md](file:///d:/_%EB%B0%94%EC%9D%B4%EB%B8%8C%EC%BD%94%EB%94%A9_/source/100%EA%B0%9C%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/01-dev-knowledge-db/dev-knowledge-db/docs/llm/gemini-3-6-flash.md)) 작성.
-   - LLM 대표 가이드([docs/llm/index.md](file:///d:/_%EB%B0%94%EC%9D%B4%EB%B8%8C%EC%BD%94%EB%94%A9_/source/100%EA%B0%9C%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/01-dev-knowledge-db/dev-knowledge-db/docs/llm/index.md)) 및 기존 버전 문서(GPT-5.5, Gemini 3.5 Flash)를 최신 라인업으로 업데이트.
+### 1. 퀵 액세스 허브 (20개 항목 / 10×2 2줄 정렬)
+- 마크다운 파싱 시 원시 HTML 태그 노출 오류를 방지하기 위해 전용 Vue 컴포넌트(`HomePortal.vue`)로 캡슐화.
+- 10열 × 2행 그리드 배치로 20대 핵심 바로가기를 상단에 배치하여 개발자가 즉시 필요한 페이지로 1클릭 이동할 수 있도록 동선 최적화.
 
-3. **사이트 접속 첫 화면(`index.md`) 최신화 반영:**  
-   - 메인 화면 배너, 트렌드 토픽, 퀵 액세스 허브, 주요 콘텐츠 리스트 등 전 영역에 걸쳐 Agentic OS 및 최신 LLM 텍스트를 업데이트하였습니다.
+### 2. 지금 주목해야 할 기술 트렌드 (8개 항목 / 4×2 2줄 정렬)
+- 4열 × 2행 그리드로 8대 핵심 기술 키워드를 균형감 있게 배치.
+- 호버 시 마이크로 인터랙션 및 카테고리 뱃지 적용.
 
----
+### 3. 인터랙티브 대시보드 가독성 전면 개선 (탭 인터페이스 & 균형 레이아웃)
+- **나의 학습 현황 및 진도율**:
+  - 기존의 비좁은 2열 내부 그리드로 인해 발생하던 텍스트 줄바꿈/찌그러짐 현상을 해결하기 위해 **직관적인 탭 스위처(`[🕒 최근 방문 기록]` | `[✅ 완료한 지식]`)** 로 전면 개편.
+  - 리스트 항목 및 안내 메시지가 100% 전폭을 활용하여 긴 문서 제목도 시원하고 가독성 높게 표시.
+  - 하단 로컬 스토리지 안내 문구를 컴팩트 인포 바 형태로 정돈하여 카드 높이 밸런스 유지.
+- **오늘의 개발 퀴즈**:
+  - 보기 선택 전/후 상태를 명확히 구분하는 인터랙티브 CTA 버튼(`👉 보기를 먼저 선택해주세요` ➜ `✨ 정답 확인하기`) 적용.
+  - 양쪽 카드의 높이와 패딩을 통일하여 데스크톱 기준 완벽한 시각적 균형감 확보.
 
-## 1. 신규 및 업데이트된 문서 상세
-
-| 문서 경로 | 변경 구분 | 내용 요약 |
-| :--- | :---: | :--- |
-| `docs/knowledge-info/agentic-os.md` | 신규 생성 | Agentic OS 비유, 개념, 필요성, 기존 OS 비교표, 아키텍처, 연구 사례 및 참고 사이트 수록 |
-| `docs/llm/gpt-5-6.md` | 신규 생성 | OpenAI 차세대 플래그십 **GPT-5.6** (Agentic OS 네이티브 연동, Zero-Loss Memory, 2.5배 빠른 추론) |
-| `docs/llm/gemini-3-6-flash.md` | 신규 생성 | Google DeepMind **Gemini 3.6 Flash** (Sub-50ms 초저지연, 에이전트 멀티모달 추론, 100만 토큰 고속 처리) |
-| `docs/llm/gemini-3-5-flash.md` | 업데이트 | 이전 버전 명시 및 Gemini 3.6 Flash 하이퍼링크 추가 |
-| `docs/llm/gpt-5-5.md` | 업데이트 | 이전 버전 명시 및 GPT-5.6 하이퍼링크 추가 |
-| `docs/llm/index.md` | 업데이트 | 2026 최신 LLM 라인업 상위 모델로 **GPT-5.6** 및 **Gemini 3.6 Flash** 반영 |
-| `index.md` | 업데이트 | 루트 홈페이지의 기능 목록(`features`), 메인 배너 텍스트, 최신 트렌드(`trend-section`), 퀵 허브(`quick-hub`)를 최신화 |
+### 4. 상단 중복 콘텐츠 제거 및 시각 계층 정돈
+- `index.md`의 중복되고 장황했던 기본 12개 특징 상자를 제거하고, 배너 슬라이더 ➜ 퀵 액세스 허브 ➜ 트렌드 카드 ➜ 스포트라이트 ➜ 인터랙티브 대시보드 ➜ 플랫폼 통계로 이어지는 명확한 정보 계층 구축.
 
 ---
 
-## 2. Gemini 3.6 Flash 핵심 특징 요약
+## 검증 결과
 
-- **Sub-50ms Ultra-Fast Latency:** 첫 토큰 출력 시간(TTFT)을 50ms 미만으로축소하여 실시간 음성/화상 대화 및 에이전트 스트리밍 최적화.
-- **Enhanced Agentic Multimodal Reasoning:** 동영상 스트림, 화면 UI, 오디오 노이즈 동시 다중 분석 및 즉각적 도구(Tool Call) 호출 능력을 강화.
-- **High-Speed Million-Token Context Window:** 100만 토큰 대용량 컨텍스트 탐색 속도가 3.5 Flash 대비 2배 향상.
-- **Developer-Friendly Zero-Cost Tier:** Google AI Studio 및 Vertex AI 기반 넉넉한 무료 티어 유지.
-
----
-
-## 3. 검증 결과
-
-1. **VitePress 빌드 검증 (`npm run docs:build`)**:
-   - 신규 마크다운 페이지 번들링 및 렌더링 정상 완료 (`build complete in 11.73s`).
-2. **링크 및 네비게이션 연결 검증**:
-   - `docs/llm/index.md` ➜ `docs/llm/gemini-3-6-flash.md` 정상 라우팅 확인.
+1. **VitePress 프로덕션 빌드 (`npm run docs:build`)**: 번들링 및 정적 렌더링 정상 완료 (`build complete in 12.73s`).
+2. **브라우저 렌더링 검증 (`http://localhost:5173`)**:
+   - 퀵 액세스 허브 20개 타일 10×2 정렬 확인
+   - 트렌드 카드 8개 4×2 정렬 확인
+   - 퀴즈 및 진도율 2열 레이아웃 정상 표시 확인
 
 ---
 
-## 4. 로컬 확인 방법
+## 로컬 실행 확인
 
 ```bash
 npm run docs:dev
 ```
-- 브라우저 접속 후 좌측 메뉴 **"LLM (대규모 언어 모델)"** ➜ **"Gemini 3.6 Flash (Google)"**를 클릭하여 최신 업데이트 문서를 확인하실 수 있습니다.
+- 브라우저에서 `http://localhost:5173` 접속 시 최적화된 첫 화면 UX를 확인하실 수 있습니다.

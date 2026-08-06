@@ -10,6 +10,7 @@ import TodayDevQuiz from './components/TodayDevQuiz.vue'
 import DocActionButtons from './components/DocActionButtons.vue'
 import LearningProgress from './components/LearningProgress.vue'
 import DevTools from './components/DevTools.vue'
+import HomePortal from './components/HomePortal.vue'
 
 
 export default {
@@ -25,6 +26,7 @@ export default {
     app.component('DocActionButtons', DocActionButtons)
     app.component('LearningProgress', LearningProgress)
     app.component('DevTools', DevTools)
+    app.component('HomePortal', HomePortal)
 
 
     if (typeof window !== 'undefined') {
