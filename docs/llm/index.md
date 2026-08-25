@@ -1,12 +1,12 @@
 ---
 layout: doc
 title: LLM (대규모 언어 모델) 가이드
-description: 2026년 최신 LLM(Large Language Model)의 기본 개념, 특징 및 전 세계 주요 상위 20개 모델을 소개합니다.
+description: 2026년 최신 LLM(Large Language Model)의 기본 개념, 특징 및 전 세계 주요 상위 30개 모델을 소개합니다.
 ---
 
 # 🧠 LLM (대규모 언어 모델) 가이드 (2026 최신판)
 
-최근 AI 기술의 핵심으로 자리 잡은 **LLM(Large Language Model, 대규모 언어 모델)** 에 대한 기초 지식부터 현재 시장을 주도하고 있는 상위 20개 모델까지, 개발자라면 꼭 알아두어야 할 핵심 정보를 알기 쉽게 정리했습니다.
+최근 AI 기술의 핵심으로 자리 잡은 **LLM(Large Language Model, 대규모 언어 모델)** 에 대한 기초 지식부터 현재 시장을 주도하고 있는 **상위 30개 모델**까지, 개발자라면 꼭 알아두어야 할 핵심 정보를 알기 쉽게 정리했습니다.
 
 ---
 
@@ -26,7 +26,7 @@ description: 2026년 최신 LLM(Large Language Model)의 기본 개념, 특징 �
 
 ---
 
-## 2. 세계를 이끄는 상위 20개 LLM 소개 🚀 (2026년 기준 최신 라인업)
+## 2. 세계를 이끄는 상위 30개 LLM 소개 🚀 (2026년 기준 최신 라인업)
 
 각 회사의 최신 대표적인 모델들과 초보 개발자도 쉽게 이해할 수 있는 주요 특징을 요약했습니다. 모델 이름을 클릭하면 상세 분석과 공식 링크를 확인하실 수 있습니다.
 
@@ -37,8 +37,8 @@ description: 2026년 최신 LLM(Large Language Model)의 기본 개념, 특징 �
 2. **[Gemini 3.1 Pro (Google)](/docs/llm/gemini-3-1-pro.md)**
    * **특징:** 구글의 최신 유료 강력 모델로, 무한에 가까운 컨텍스트 윈도우와 완벽한 구글 생태계 연동을 자랑합니다.
 
-3. **[Gemini 3.6 Flash (Google)](/docs/llm/gemini-3-6-flash.md)**
-   * **특징:** 구글이 제공하는 차세대 초고속·고효율 개방형 모델로, Sub-50ms 반응 속도, 멀티모달 에이전트 능력, 100만 토큰 고속 처리를 자랑합니다.
+3. **[Gemini 3.7 Flash (Google)](/docs/llm/gemini-3-7-flash.md)**
+   * **특징:** 구글 최초의 하이브리드 추론 모델로, 초저지연 Flash 속도와 깊이 있는 단계별 사고(Thinking Mode)를 자유롭게 제어할 수 있는 최첨단 플래그십 경량 모델입니다.
 
 4. **[Claude 5 Sonnet (Anthropic)](/docs/llm/claude-5-sonnet.md)**
    * **특징:** 개발자들 사이에서 '최고의 코딩 파트너'로 불리는 Claude의 최신 미들급 모델입니다.
@@ -49,54 +49,84 @@ description: 2026년 최신 LLM(Large Language Model)의 기본 개념, 특징 �
 6. **[Grok 4.5 (xAI)](/docs/llm/grok-4-5.md)**
    * **특징:** xAI의 최신 모델로, 전 세계의 최신 이슈를 가장 빠르게 반영하며 고도의 코딩 능력을 탑재했습니다.
 
-### 🔓 오픈소스 및 개방형 모델 (직접 다운로드하여 서버에 설치 가능)
+### 🔓 오픈소스 및 개방형 파운데이션 모델
 7. **[Llama 5 (Meta)](/docs/llm/llama-5.md)**
    * **특징:** 오픈소스 생태계를 이끄는 Meta의 5세대 모델. 유료 모델들을 위협하는 강력한 오픈소스입니다.
 
-8. **[Mistral 4 Large (Mistral AI)](/docs/llm/mistral-4-large.md)**
+8. **[Llama 3.3 70B (Meta)](/docs/llm/llama-3-3-70b.md)**
+   * **특징:** 405B급 플래그십 성능을 70B 크기로 압축하여 자체 호스팅(On-Premise)의 글로벌 표준이 된 Meta의 완성형 모델입니다.
+
+9. **[Mistral 4 Large (Mistral AI)](/docs/llm/mistral-4-large.md)**
    * **특징:** 유럽 최고의 AI 기업인 Mistral의 4세대 대형 모델로 뛰어난 연산 효율을 보여줍니다.
 
-9. **[Mixtral v3 (Mistral AI)](/docs/llm/mixtral-v3.md)**
-   * **특징:** 오픈소스 혁신을 이끈 MoE(전문가 혼합) 아키텍처의 3세대 버전입니다.
+10. **[Mixtral v3 (Mistral AI)](/docs/llm/mixtral-v3.md)**
+    * **특징:** 오픈소스 혁신을 이끈 MoE(전문가 혼합) 아키텍처의 3세대 버전입니다.
 
-10. **[Command R 2 (Cohere)](/docs/llm/command-r-2.md)**
-   * **특징:** 기업용 문서 검색(RAG)과 복잡한 에이전트 워크플로우 자동화에 가장 특화된 B2B 전용 모델입니다.
+11. **[Command R 2 (Cohere)](/docs/llm/command-r-2.md)**
+    * **특징:** 기업용 문서 검색(RAG)과 복잡한 에이전트 워크플로우 자동화에 가장 특화된 B2B 전용 모델입니다.
 
-11. **[Phi-5 (Microsoft)](/docs/llm/phi-5.md)**
-   * **특징:** 마이크로소프트의 초소형 언어 모델(sLM) 끝판왕으로, 스마트폰 내장 AI 시대를 완성한 모델입니다.
+12. **[Phi-5 (Microsoft)](/docs/llm/phi-5.md)**
+    * **특징:** 마이크로소프트의 초소형 언어 모델(sLM) 끝판왕으로, 스마트폰 내장 AI 시대를 완성한 모델입니다.
 
-12. **[Gemma 3 (Google)](/docs/llm/gemma-3.md)**
-   * **특징:** 구글의 개방형 모델. Gemini 3 시리즈의 기술력을 그대로 물려받은 오픈소스 강자입니다.
+13. **[Gemma 3 (Google)](/docs/llm/gemma-3.md)**
+    * **특징:** 구글의 개방형 모델. Gemini 3 시리즈의 기술력을 그대로 물려받은 오픈소스 강자입니다.
 
-13. **[Qwen 3 (Alibaba)](/docs/llm/qwen-3.md)**
-   * **특징:** 아시아 및 다국어 지원에 가장 압도적인 성능을 뽐내는 알리바바의 최신 오픈소스 모델입니다.
+14. **[Qwen 3 (Alibaba)](/docs/llm/qwen-3.md)**
+    * **특징:** 아시아 및 다국어 지원에 가장 압도적인 성능을 뽐내는 알리바바의 최신 오픈소스 모델입니다.
 
-14. **[DBRX 2 (Databricks)](/docs/llm/dbrx-2.md)**
-   * **특징:** 데이터 분석가와 엔지니어를 위해 태어난 최강의 SQL 및 코딩 특화 오픈소스 모델입니다.
+15. **[DBRX 2 (Databricks)](/docs/llm/dbrx-2.md)**
+    * **특징:** 데이터 분석가와 엔지니어를 위해 태어난 최강의 SQL 및 코딩 특화 오픈소스 모델입니다.
 
-### 🇰🇷 국내 특화 모델 (한국어 성능이 뛰어난 모델)
-15. **[HyperCLOVA X 2 (Naver)](/docs/llm/hyperclova-x-2.md)**
-   * **특징:** 한국인보다 한국어를 더 잘 이해하는, 국내 시장 압도적 1위의 네이버 최신 모델입니다.
+### 🇰🇷 대한민국 대표 파운데이션 모델
+16. **[HyperCLOVA X 2 (Naver)](/docs/llm/hyperclova-x-2.md)**
+    * **특징:** 한국인보다 한국어를 더 잘 이해하는, 국내 시장 압도적 1위의 네이버 최신 모델입니다.
 
-16. **[Solar 2 (Upstage)](/docs/llm/solar-2.md)**
-   * **특징:** 독보적인 '깊이 확장(DUS)' 기술로 체급의 한계를 부수고 글로벌 1위를 다투는 국내 스타트업의 자랑입니다.
+17. **[Solar 2 (Upstage)](/docs/llm/solar-2.md)**
+    * **특징:** 독보적인 '깊이 확장(DUS)' 기술로 체급의 한계를 부수고 글로벌 1위를 다투는 국내 스타트업의 자랑입니다.
 
-### ⚡ 실무 및 도메인 특화 모델 (속도, 코딩, 3D 등)
-17. **[GPT-5 Turbo (OpenAI)](/docs/llm/gpt-5-turbo.md)**
-   * **특징:** GPT-5 시리즈 중 속도와 가성비, 그리고 대용량 컨텍스트 처리에 집중한 최적화 모델입니다.
+18. **[EXAONE 3.5 (LG AI연구원)](/docs/llm/exaone-3-5.md)**
+    * **특징:** 한국어 MT-Bench 국내 1위 및 전문 산업(특허, 바이오, 화학) 도메인에 특화된 LG의 대표 오픈 파운데이션 모델입니다.
 
-18. **[Claude 4.5 Haiku (Anthropic)](/docs/llm/claude-4-5-haiku.md)**
-   * **특징:** 지구상에서 가장 빠르고 저렴하면서도 준수한 추론 능력을 갖춘 Anthropic의 초경량 모델입니다.
+### ⚡ 심층 추론 및 도메인 특화 모델 (Reasoning, 코딩, 멀티모달, 음성)
+19. **[DeepSeek-R1 (DeepSeek)](/docs/llm/deepseek-r1.md)**
+    * **특징:** 순수 강화학습 기반으로 스스로 생각하고 반성하는 오픈소스 심층 추론(Reasoning)의 대명사 모델입니다.
 
-19. **[DeepSeek Coder v3 (DeepSeek)](/docs/llm/deepseek-coder-v3.md)**
-   * **특징:** 최근 전 세계 코딩 벤치마크를 휩쓸며 개발자 커뮤니티의 뜨거운 감자로 떠오른 코딩 전용 오픈소스 모델입니다.
+20. **[o3-mini (OpenAI)](/docs/llm/o3-mini.md)**
+    * **특징:** STEM·수학·알고리즘 코딩에 특화되어 개발자가 추론 노력 수준(Reasoning Effort)을 제어할 수 있는 OpenAI의 고속 추론 모델입니다.
 
-20. **[Llama 3D (Meta)](/docs/llm/meta-sora-3d.md)**
-   * **특징:** 단순한 텍스트를 넘어 3D 모델과 공간 지능(Spatial Intelligence)을 이해하는 차세대 모델입니다.
+21. **[Qwen 2.5-Coder (Alibaba)](/docs/llm/qwen-2-5-coder.md)**
+    * **특징:** 5.5조 코드 토큰으로 학습되어 글로벌 오픈소스 코딩 벤치마크 1위를 석권한 실무 코딩 전용 모델입니다.
+
+22. **[Kimi k1.5 (Moonshot AI)](/docs/llm/kimi-k1-5.md)**
+    * **특징:** 200만 토큰 무손실 롱 컨텍스트와 멀티모달 시각 추론, 자율 웹 리서치 에이전트 기능을 통합한 모델입니다.
+
+23. **[MiniMax-Text-01 (MiniMax)](/docs/llm/minimax-text-01.md)**
+    * **특징:** Lightning Attention(선형 어텐션) 기반으로 400만 토큰의 초대용량 텍스트를 초고속·저비용으로 처리하는 차세대 MoE 모델입니다.
+
+24. **[GLM-4-Voice (Zhipu AI)](/docs/llm/glm-4-voice.md)**
+    * **특징:** 텍스트 변환 딜레이 없는 엔드투엔드 실시간 음성 대화 및 감정 톤 조절을 지원하는 오픈소스 음성 모델입니다.
+
+25. **[StarCoder 2 (BigCode / Hugging Face)](/docs/llm/starcoder-2.md)**
+    * **특징:** 600개 이상 프로그래밍 언어를 지원하며 투명한 라이선스 검증을 거친 허깅페이스의 개방형 코딩 모델입니다.
+
+26. **[Yi-Lightning (01.AI)](/docs/llm/yi-lightning.md)**
+    * **특징:** 초당 수백 토큰의 압도적 생성 속도와 LMSYS 챗봇 아레나 글로벌 최상위권 랭킹을 달성한 가성비 MoE 모델입니다.
+
+27. **[GPT-5 Turbo (OpenAI)](/docs/llm/gpt-5-turbo.md)**
+    * **특징:** GPT-5 시리즈 중 속도와 가성비, 그리고 대용량 컨텍스트 처리에 집중한 최적화 모델입니다.
+
+28. **[Claude 4.5 Haiku (Anthropic)](/docs/llm/claude-4-5-haiku.md)**
+    * **특징:** 지구상에서 가장 빠르고 저렴하면서도 준수한 추론 능력을 갖춘 Anthropic의 초경량 모델입니다.
+
+29. **[DeepSeek Coder v3 (DeepSeek)](/docs/llm/deepseek-coder-v3.md)**
+    * **특징:** 전 세계 코딩 벤치마크를 휩쓸며 개발자 커뮤니티의 뜨거운 감자로 떠오른 코딩 전용 오픈소스 모델입니다.
+
+30. **[Llama 3D (Meta)](/docs/llm/meta-sora-3d.md)**
+    * **특징:** 단순한 텍스트를 넘어 3D 모델과 공간 지능(Spatial Intelligence)을 이해하는 차세대 모델입니다.
 
 ---
 
 ### 💡 초보 개발자를 위한 꿀팁
 * **어떤 모델로 시작해야 할까?** 
-  가장 대중적이고 압도적인 성능을 자랑하는 **OpenAI의 API (GPT-5.6)** 로 먼저 연습해 보거나, 속도가 매우 빠르고 무료 플랜이 넉넉한 **Gemini 3.6 Flash**를 사용하는 것을 추천합니다. 이후 클라우드 비용을 줄이거나 오프라인 작동이 필요하다면 **Llama 5**나 **Phi-5** 같은 오픈소스 모델을 로컬에 띄워보는 방향으로 학습해 보세요.
-* 코딩 질문 및 에이전트 구축 시에는 현재 **GPT-5.6**이나 **Claude 5 Sonnet**, **DeepSeek Coder v3**가 가장 뛰어난 피드백을 주는 것으로 개발자들 사이에서 평가받고 있습니다.
+  가장 대중적이고 압도적인 성능을 자랑하는 **OpenAI의 API (GPT-5.6 / o3-mini)** 로 먼저 연습해 보거나, 속도가 매우 빠르고 하이브리드 사고(Thinking) 기능 및 무료 플랜이 넉넉한 **Gemini 3.7 Flash**를 사용하는 것을 추천합니다. 이후 클라우드 비용을 줄이거나 사내 온프레미스 작동이 필요하다면 **DeepSeek-R1**, **Llama 3.3 70B**, **Qwen 2.5-Coder** 같은 고성능 오픈소스 모델을 로컬에 띄워보는 방향으로 학습해 보세요.
+* 코딩 질문 및 에이전트 구축 시에는 현재 **GPT-5.6**, **Gemini 3.7 Flash**, **Claude 5 Sonnet**, **DeepSeek-R1 / Coder**, **Qwen 2.5-Coder**가 가장 뛰어난 피드백을 주는 것으로 개발자들 사이에서 평가받고 있습니다.

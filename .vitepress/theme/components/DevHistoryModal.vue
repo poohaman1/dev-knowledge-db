@@ -60,6 +60,18 @@ const closeModal = () => {
 // 동일 개발 날짜 항목을 하나로 합친 개발 이력 데이터
 const historyList = [
   {
+    date: '2026-08-25',
+    versions: ['v1.7.0', 'v1.6.0', 'v1.5.0'],
+    title: '🧠 2026 최신 LLM 30선 & 4대 컬렉션 TOP 30 대규모 확장',
+    highlights: [
+      { ver: 'v1.7.0', text: 'LLM(대규모 언어 모델) 가이드를 기존 상위 20개에서 상위 30개 모델로 대폭 확장' },
+      { ver: 'v1.7.0', text: '신규 10개 최신 AI 모델(DeepSeek-R1, o3-mini, Qwen 2.5-Coder, Kimi k1.5, MiniMax, GLM-4-Voice, StarCoder 2, Yi-Lightning, Llama 3.3 70B, LG EXAONE 3.5) 상세 문서 추가' },
+      { ver: 'v1.6.0', text: '4대 오픈소스 컬렉션(해외 깃허브 스타, 국내 깃허브 스타, SourceForge, Awesome Open Source)을 각 TOP 30(총 120선)으로 대규모 확장' },
+      { ver: 'v1.5.0', text: 'Google DeepMind의 최초 하이브리드 추론 모델 "Gemini 3.7 Flash" 신규 분석 문서 작성 및 사이트 전반 동기화' },
+      { ver: 'v1.5.0', text: '개발 서버(localhost) 환경 정보 및 실행 가이드를 .env 파일로 체계화' }
+    ]
+  },
+  {
     date: '2026-07-25',
     versions: ['v1.4.0', 'v1.3.0'],
     title: '⚖️ IT 법률정보 7종 구축 & 🎮 미니게임 센터 & 메인 그리드 최적화',

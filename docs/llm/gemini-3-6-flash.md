@@ -11,7 +11,9 @@ description: Google의 최신 초고속 경량화 AI 모델 Gemini 3.6 Flash에 
 ---
 
 ## 📌 모델 개요
-**Gemini 3.6 Flash**는 Gemini 3.5 Flash의 성공을 잇는 Google DeepMind의 차세대 초고속·고효율 플래그십 경량 모델입니다. 극강의 응답 속도, 획기적인 에이전트 멀티모달 추론 능력, 그리고 100만 토큰 대용량 컨텍스트 처리 성능을 무료/저비용 API 요금 체계로 제공합니다.
+**Gemini 3.6 Flash**는 Gemini 3.5 Flash의 성공을 잇는 Google DeepMind의 초고속·고효율 경량 모델입니다. (최신 하이브리드 추론 플래그십 업그레이드 모델인 **[Gemini 3.7 Flash](/docs/llm/gemini-3-7-flash.md)** 출시)
+
+> 💡 **최신 모델 안내:** 하이브리드 사고(Thinking Mode) 제어와 압도적인 코딩 성능을 탑재한 최신 플래그십 모델은 **[Gemini 3.7 Flash 상세 안내](/docs/llm/gemini-3-7-flash.md)** 문서에서 확인하실 수 있습니다.
 
 ## 🔍 상세 심층 분석
 Gemini 3.6 Flash는 실시간 서비스 운영과 멀티 에이전트 시스템에 최적화된 구글의 핵심 AI 엔진입니다.

@@ -66,12 +66,12 @@
       <div class="spotlight-card">
         <div class="spotlight-content">
           <span class="spotlight-badge">🚀 2026 SPECIAL REPORT</span>
-          <h3 class="spotlight-title">최신 글로벌·국내 LLM 20선 & Agentic OS 집중 분석</h3>
+          <h3 class="spotlight-title">최신 글로벌·국내 LLM 30선 & Agentic OS 집중 분석</h3>
           <p class="spotlight-desc">
-            OpenAI GPT-5.6, Google Gemini 3.6 Flash, Claude 5 Sonnet부터 Meta Llama 5, 그리고 다중 에이전트 오케스트레이션 Agentic OS까지 실무 개발자를 위한 최신 AI 패러다임을 한눈에 파악하세요.
+            OpenAI GPT-5.6, Google Gemini 3.7 Flash, DeepSeek-R1, o3-mini부터 LG EXAONE 3.5 및 다중 에이전트 오케스트레이션 Agentic OS까지 실무 개발자를 위한 최신 AI 패러다임을 한눈에 파악하세요.
           </p>
           <div class="spotlight-actions">
-            <a href="/docs/llm/" class="btn-primary">🧠 LLM 20선 탐색하기 →</a>
+            <a href="/docs/llm/" class="btn-primary">🧠 LLM 30선 탐색하기 →</a>
             <a href="/docs/knowledge-info/agentic-os" class="btn-secondary">🤖 Agentic OS 가이드</a>
           </div>
         </div>
@@ -195,8 +195,8 @@ const trendItems = [
     tag: 'AI / LLM',
     tagClass: 'tag-ai',
     icon: '🧠',
-    title: '2026 최신 LLM 20선',
-    desc: 'GPT-5.6, Gemini 3.6 Flash, Claude 5 Sonnet부터 Meta Llama 5까지 차세대 AI 파운데이션 모델 비교 분석',
+    title: '2026 최신 LLM 30선',
+    desc: 'GPT-5.6, Gemini 3.7 Flash, DeepSeek-R1, o3-mini부터 Llama 3.3까지 차세대 AI 파운데이션 모델 심층 분석',
     link: '/docs/llm/'
   },
   {
@@ -228,7 +228,7 @@ const trendItems = [
     tagClass: 'tag-oss',
     icon: '⭐',
     title: '오픈소스 & 깃허브 스타',
-    desc: '국내외 깃허브 스타 최상위 오픈소스 80선 분석과 소스코드 심층 분석 및 실무 활용 팁',
+    desc: '국내외 깃허브 스타 최상위 및 추천 오픈소스 120선(4대 컬렉션 각 30선) 심층 분석 및 실무 활용 팁',
     link: '/docs/collections/github-stars-global'
   },
   {

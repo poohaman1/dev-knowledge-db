@@ -47,8 +47,8 @@ const slides = [
   {
     category: '🔥 HOT',
     icon: '⭐',
-    title: '깃허브 스타 오픈소스 TOP 20',
-    desc: '해외·국내 개발자가 만든 깃허브 스타 최상위 프로젝트 20선! 소스코드를 뜯어보고 나만의 서비스로 발전시켜 보세요.',
+    title: '깃허브 스타 오픈소스 TOP 30',
+    desc: '해외·국내 개발자가 만든 깃허브 스타 최상위 프로젝트 30선! 소스코드를 뜯어보고 나만의 서비스로 발전시켜 보세요.',
     link: '/docs/collections/github-stars-global',
     bg: 'linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.02) 100%)'
   },
