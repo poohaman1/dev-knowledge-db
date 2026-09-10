@@ -130,7 +130,21 @@
 
 ---
 
-## 4. 실행 및 확인 방법
+## 4. GitHub 등록 및 Vercel 배포 완료 안내 🚀
+
+### 1) GitHub 원격 저장소 푸시 완료
+- **저장소 주소**: [https://github.com/poohaman1/dev-knowledge-db.git](https://github.com/poohaman1/dev-knowledge-db.git)
+- **푸시 브랜치**: `main` (최신 커밋: `v2.0.0` 차세대 플래그십 LLM 및 중국 대표 LLM 11선 구축)
+
+### 2) Vercel 프로덕션 자동 배포 (CI/CD)
+- **Vercel 프로젝트 대시보드**: [https://vercel.com/daoltech-projects/dev-knowledge-db](https://vercel.com/daoltech-projects/dev-knowledge-db)
+- **자동 배포 파이프라인**: 
+  - 본 프로젝트는 Vercel Git Integration이 연동되어 있어, GitHub `main` 브랜치에 `git push`가 완료되는 즉시 Vercel 클라우드 빌드 머신에서 `npm run docs:build`를 실행하여 무중단 프로덕션 사이트로 자동 릴리즈됩니다.
+  - 적용된 `vercel.json`의 엔터프라이즈 보안 HTTP 헤더(CSP, X-Frame-Options: DENY, HSTS, X-Content-Type-Options 등)가 실서버에 즉각 반영됩니다.
+
+---
+
+## 5. 실행 및 확인 방법
 ```bash
 # 개발 서버 구동
 npm run dev
