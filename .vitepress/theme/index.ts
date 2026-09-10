@@ -30,16 +30,25 @@ export default {
 
 
     if (typeof window !== 'undefined') {
-      // 1. 초기 진입 시 특정 폴더로의 다이렉트 접근 차단 로직 (Home으로 강제 이동) 및 로컬스토리지 캐시 초기화
+      // 1. 보안 강화: 클릭재킹 및 악의적 iframe 임베드 원천 차단 (Frame Busting)
+      try {
+        if (window.top && window.top !== window.self) {
+          window.top.location = window.self.location
+        }
+      } catch (e) {
+        // 교차 출처 iframe 감지 시 즉시 분리
+        console.warn('Clickjacking protection triggered.')
+      }
+
+      // 2. 유입 경로(Referrer) 및 검색 키워드 안전 파싱 (첫 진입 1회)
       if (!sessionStorage.getItem('site_accessed')) {
         sessionStorage.setItem('site_accessed', 'true')
         try {
           localStorage.removeItem('knowledge_info_xml_v4')
         } catch (e) {
-          console.error(e)
+          // ignore
         }
 
-        // 유입경로(Referrer) 및 유입 키워드 파싱 및 캐시
         let rawReferrer = document.referrer || ''
         let parsedReferrer = 'Direct'
         let parsedKeyword = 'N/A'
@@ -63,11 +72,10 @@ export default {
               parsedKeyword = decodeURIComponent(keywordParam).trim()
             }
           } catch (e) {
-            console.error('Referrer parsing error:', e)
+            // ignore
           }
         }
 
-        // 현재 URL 파라미터에서 UTM / 검색어 파싱
         try {
           const currentUrlParams = new URLSearchParams(window.location.search)
           const utmTerm = currentUrlParams.get('utm_term') || currentUrlParams.get('q') || currentUrlParams.get('query')
@@ -79,16 +87,11 @@ export default {
             parsedReferrer = utmSource.trim()
           }
         } catch (e) {
-          console.error('Current URL parsing error:', e)
+          // ignore
         }
 
         sessionStorage.setItem('entry_referrer', parsedReferrer)
         sessionStorage.setItem('entry_keyword', parsedKeyword)
-
-        if (window.location.pathname !== '/' && window.location.pathname !== '/index.html') {
-          window.location.href = '/'
-          return
-        }
       }
 
       // IP 분석 및 제외 여부 검증 헬퍼 함수
@@ -105,21 +108,15 @@ export default {
           }
           return cachedIp === '112.186.113.99'
         } catch (e) {
-          console.error('IP fetch error for exclusion:', e)
           return false
         }
       }
 
-      // 2. 라우터 변경 시 URL 마스킹 및 방문 기록
+      // 3. 라우터 변경 시 방문 통계 로깅
       router.onAfterRouteChanged = (to) => {
-        // 브라우저 주소창의 URL을 항상 루트('/')로 덮어씌워 내부 디렉터리 경로 노출 방지
-        if (window.location.pathname !== '/') {
-          window.history.replaceState(null, '', '/');
-        }
-
-        // localhost로 접속한 경우에는 로그를 수집하지 않음
+        // localhost 환경 제외
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-          return;
+          return
         }
 
         // 타이틀이 브라우저 탭에 업데이트될 시간을 위해 약간 지연

@@ -63,6 +63,10 @@ features:
 > [!TIP]  
 > 문서를 작성하실 때는 `templates/INDEX_TEMPLATE.md`의 양식을 참고하시면 통일성을 유지할 수 있습니다.
 
+## 📋 버전 및 개발 이력 (Changelog)
+
+프로젝트의 전체 버전별 변경 이력과 상세 개발 내역은 [`CHANGELOG.md`](./CHANGELOG.md) 또는 로컬 개발 환경(localhost) 상단 네비게이션의 **📋 개발이력 모달**에서 확인하실 수 있습니다.
+
 ## 📄 라이선스
 
 이 프로젝트는 [MIT License](https://opensource.org/licenses/MIT)를 따릅니다.

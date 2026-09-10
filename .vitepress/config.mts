@@ -11,10 +11,10 @@ export default defineConfig({
     ['link', { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap', rel: 'stylesheet' }],
     // Favicon (emoji-based)
     ['link', { rel: 'icon', href: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📚</text></svg>' }],
-    // Security Meta Tags (로컬 개발 및 SPA 라우팅 작동을 방해할 수 있으므로 주석 처리 또는 제거)
-    // ['meta', { 'http-equiv': 'Content-Security-Policy', content: "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' ws://localhost:* ws://127.0.0.1:* http://localhost:* http://127.0.0.1:*;" }],
-    // ['meta', { 'http-equiv': 'X-Frame-Options', content: 'DENY' }],
-    // ['meta', { 'http-equiv': 'X-Content-Type-Options', content: 'nosniff' }]
+    // Security Meta Tags
+    ['meta', { 'http-equiv': 'X-Content-Type-Options', content: 'nosniff' }],
+    ['meta', { 'http-equiv': 'X-Frame-Options', content: 'DENY' }],
+    ['meta', { name: 'referrer', content: 'strict-origin-when-cross-origin' }]
   ],
 
   themeConfig: {
@@ -24,6 +24,23 @@ export default defineConfig({
     // 상단 네비게이션
     nav: [
       { text: '🏠 Home', link: '/' },
+      {
+        text: '🧠 LLM가이드',
+        items: [
+          { text: '📖 LLM 가이드 총람', link: '/docs/llm/' },
+          { text: '⚡ GPT-6 (OpenAI 최신)', link: '/docs/llm/gpt-6' },
+          { text: '⚡ Claude 5.1 (Anthropic 최신)', link: '/docs/llm/claude-5-1' },
+          { text: '⚡ Gemini 3.1 Pro (Google 플래그십)', link: '/docs/llm/gemini-3-1-pro' },
+          { text: '⚡ Gemini 3.8 Flash (Google 실시간)', link: '/docs/llm/gemini-3-8-flash' },
+          { text: '⚡ Grok 4.6 (xAI 최신)', link: '/docs/llm/grok-4-6' },
+          { text: '⚡ DeepSeek-V3 & R1 (오픈소스 1위)', link: '/docs/llm/deepseek-v3' },
+          { text: '⚡ Qwen 2.5-Max / Coder (알리바바)', link: '/docs/llm/qwen-2-5-max' },
+          { text: '⚡ Kimi k1.5 (200만 롱컨텍스트)', link: '/docs/llm/kimi-k1-5' },
+          { text: '⚡ Llama 5.1 (Meta 온프레미스)', link: '/docs/llm/llama-5-1' },
+          { text: '⚡ HyperCLOVA X 3 (네이버)', link: '/docs/llm/hyperclova-x-3' },
+          { text: '⚡ Solar 3 (업스테이지)', link: '/docs/llm/solar-3' }
+        ]
+      },
       { text: '📋 지식콘텐츠', link: '/docs/knowledge-info/' },
       { text: '📚 지식 데이터', link: '/docs/domestic/' },
       { text: '⚙️ 가이드라인', link: '/guidelines/Agent' },
@@ -48,6 +65,38 @@ export default defineConfig({
     // 사이드바
     sidebar: [
       {
+        text: '🧠 최신 플래그십 LLM',
+        collapsed: false,
+        items: [
+          { text: '📋 LLM 가이드 총람', link: '/docs/llm/' },
+          { text: '⚡ GPT-6 (OpenAI 최신)', link: '/docs/llm/gpt-6' },
+          { text: '⚡ Claude 5.1 (Anthropic 최신)', link: '/docs/llm/claude-5-1' },
+          { text: '⚡ Gemini 3.1 Pro (Google 플래그십)', link: '/docs/llm/gemini-3-1-pro' },
+          { text: '⚡ Gemini 3.8 Flash (Google 실시간)', link: '/docs/llm/gemini-3-8-flash' },
+          { text: '⚡ Grok 4.6 (xAI 최신)', link: '/docs/llm/grok-4-6' },
+          { text: '⚡ Llama 5.1 (Meta 온프레미스)', link: '/docs/llm/llama-5-1' },
+          { text: '⚡ HyperCLOVA X 3 (네이버)', link: '/docs/llm/hyperclova-x-3' },
+          { text: '⚡ Solar 3 (업스테이지)', link: '/docs/llm/solar-3' }
+        ]
+      },
+      {
+        text: '🇨🇳 중국 대표 혁신 LLM',
+        collapsed: false,
+        items: [
+          { text: '🌟 DeepSeek-V3 (671B MoE 오픈)', link: '/docs/llm/deepseek-v3' },
+          { text: '🧠 DeepSeek-R1 (o1급 심층 추론)', link: '/docs/llm/deepseek-r1' },
+          { text: '👑 Qwen 2.5-Max (알리바바 플래그십)', link: '/docs/llm/qwen-2-5-max' },
+          { text: '💻 Qwen 2.5-Coder (글로벌 코딩 1위)', link: '/docs/llm/qwen-2-5-coder' },
+          { text: '🌕 Kimi k1.5 (200만 롱컨텍스트)', link: '/docs/llm/kimi-k1-5' },
+          { text: '🎓 GLM-4-Plus (칭화대 즈푸 AI)', link: '/docs/llm/glm-4-plus' },
+          { text: '⚡ MiniMax-Text-01 (400만 토큰)', link: '/docs/llm/minimax-text-01' },
+          { text: '⚡ Yi-Lightning (01.AI 초고속)', link: '/docs/llm/yi-lightning' },
+          { text: '🏥 Baichuan 4 (백천지능 의료/RAG)', link: '/docs/llm/baichuan-4' },
+          { text: '🪐 Step-2 (지웨스단 1조 MoE)', link: '/docs/llm/step-2' },
+          { text: '🐧 Hunyuan-Large (텐센트 389B)', link: '/docs/llm/hunyuan-large' }
+        ]
+      },
+      {
         text: '📋 지식 콘텐츠',
         items: [
           { text: '지식콘텐츠 관리', link: '/docs/knowledge-info/' },
@@ -67,8 +116,7 @@ export default defineConfig({
           { text: '유용한 도구 (Tools)', link: '/docs/tools/' },
           { text: '아키텍처 (Architecture)', link: '/docs/architecture/' },
           { text: '베스트 프랙티스', link: '/docs/best-practices/' },
-          { text: '기업별 기술스택', link: '/docs/company-tech-stack' },
-          { text: 'LLM (대규모 언어 모델)', link: '/docs/llm/' }
+          { text: '기업별 기술스택', link: '/docs/company-tech-stack' }
         ]
       },
       {

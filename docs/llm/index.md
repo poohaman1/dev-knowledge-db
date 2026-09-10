@@ -1,132 +1,191 @@
 ---
 layout: doc
-title: LLM (대규모 언어 모델) 가이드
-description: 2026년 최신 LLM(Large Language Model)의 기본 개념, 특징 및 전 세계 주요 상위 30개 모델을 소개합니다.
+title: LLM (대규모 언어 모델) 가이드 (최신판)
+description: GPT-6, Claude 5.1, Gemini 3.1 Pro, Gemini 3.8 Flash, DeepSeek-V4 등 2026 최신 세대 플래그십 LLM 총람 및 차세대 AI 아키텍처 완전 가이드
 ---
 
-# 🧠 LLM (대규모 언어 모델) 가이드 (2026 최신판)
+# 🧠 LLM (대규모 언어 모델) 가이드 (최신판)
 
-최근 AI 기술의 핵심으로 자리 잡은 **LLM(Large Language Model, 대규모 언어 모델)** 에 대한 기초 지식부터 현재 시장을 주도하고 있는 **상위 30개 모델**까지, 개발자라면 꼭 알아두어야 할 핵심 정보를 알기 쉽게 정리했습니다.
+인공지능 기술은 **GPT-6**과 **Claude 5.1**을 필두로, 단순한 보조 도구를 넘어 스스로 기획하고 코드를 작성하며 인프라를 운영하는 **완전 자율 에이전트(Autonomous Agentic AI)** 시대로 완전히 도약했습니다.
 
----
-
-## 1. LLM이란 무엇인가? 🤔
-
-**LLM(대규모 언어 모델)** 은 엄청나게 많은 양의 텍스트 데이터를 학습하여, 사람처럼 자연스럽게 언어를 이해하고 생성할 수 있는 인공지능 모델입니다. 쉽게 말해, "세상의 거의 모든 글을 읽고 문맥을 파악하는 엄청 똑똑한 텍스트 완성기"라고 볼 수 있습니다.
-
-### 핵심 개념
-*   **파라미터 (Parameters):** 모델의 '뇌세포' 수라고 생각하면 쉽습니다. 이 숫자가 클수록 모델이 더 복잡한 패턴을 학습하고 똑똑해질 확률이 높습니다. (보통 수십억~수조 개)
-*   **토큰 (Token):** LLM이 글을 읽고 쓰는 기본 단위입니다. 영어는 보통 1단어가 1토큰과 비슷하지만, 한국어는 형태소 단위로 쪼개질 수 있어 글자 수와 정확히 일치하지 않습니다.
-*   **컨텍스트 윈도우 (Context Window):** 모델이 한 번에 기억하고 처리할 수 있는 정보의 양입니다. 이 창이 클수록 책 한 권 분량의 문서를 한 번에 입력하고 질문할 수 있습니다.
-
-### 주요 특징
-1.  **뛰어난 자연어 처리:** 번역, 요약, 문장 생성, 감정 분석 등을 별도의 특화 학습 없이도 훌륭하게 수행합니다.
-2.  **코딩 지원:** 다양한 프로그래밍 언어를 이해하고 코드를 작성하거나 디버깅(오류 수정)을 도와줍니다.
-3.  **환각 현상 (Hallucination):** 가끔 그럴듯하게 거짓말을 하는 특징이 있습니다. 개발자는 이 점을 인지하고 결과물을 항상 검증해야 합니다.
+본 가이드는 현재 시장을 주도하고 있는 **GPT-6**, **Claude 5.1**, **Gemini 3.1 Pro & 3.8 Flash**, **DeepSeek-V4**, **Grok 5**, **Llama 5.1** 등 최신 세대 플래그십 모델부터 실무 벤치마크, API 활용 팁까지 개발자를 위한 핵심 정보를 총망라했습니다.
 
 ---
 
-## 2. 세계를 이끄는 상위 30개 LLM 소개 🚀 (2026년 기준 최신 라인업)
+## 1. 최신 세대 LLM 패러다임의 3대 혁신 ⚡
 
-각 회사의 최신 대표적인 모델들과 초보 개발자도 쉽게 이해할 수 있는 주요 특징을 요약했습니다. 모델 이름을 클릭하면 상세 분석과 공식 링크를 확인하실 수 있습니다.
+```mermaid
+graph LR
+  subgraph Traditional["이전 세대 (수동 보조)"]
+    A[코드 조각 생성] --> B[개발자가 수동 복사/붙여넣기] --> C[수동 디버깅]
+  end
 
-### 👑 글로벌 빅테크 및 선두 주자 (Closed Source 위주)
-1. **[GPT-5.6 (OpenAI)](/docs/llm/gpt-5-6.md)**
-   * **특징:** OpenAI의 최상위 차세대 플래그십 모델로, Agentic OS 네이티브 통합, Zero-Loss 장기 기억, 2.5배 빠른 초저지연 추론 능력을 자랑합니다.
+  subgraph NextGen["최신 세대 (GPT-6 / Claude 5.1)"]
+    D[요구사항 명세] --> E["자율 다중 에이전트 오케스트레이션"]
+    E --> F["자가 교정 & 무결점 구현"]
+    F --> G["빌드/테스트/배포 자동 완결"]
+  end
+```
 
-2. **[Gemini 3.1 Pro (Google)](/docs/llm/gemini-3-1-pro.md)**
-   * **특징:** 구글의 최신 유료 강력 모델로, 무한에 가까운 컨텍스트 윈도우와 완벽한 구글 생태계 연동을 자랑합니다.
+### 🌟 3대 핵심 패러다임
 
-3. **[Gemini 3.7 Flash (Google)](/docs/llm/gemini-3-7-flash.md)**
-   * **특징:** 구글 최초의 하이브리드 추론 모델로, 초저지연 Flash 속도와 깊이 있는 단계별 사고(Thinking Mode)를 자유롭게 제어할 수 있는 최첨단 플래그십 경량 모델입니다.
+1. **완전 자율형 소프트웨어 엔지니어링 (Autonomous SWE Agent)**
+   - **GPT-6**과 **Claude 5.1**은 GitHub 이슈나 기획 문서 하나만으로 저장소 전체 구조를 분석하고, 멀티파일 코드를 생성하며, 테스트와 배포까지 전 과정을 인간의 개입 없이 자율 완결합니다.
 
-4. **[Claude 5 Sonnet (Anthropic)](/docs/llm/claude-5-sonnet.md)**
-   * **특징:** 개발자들 사이에서 '최고의 코딩 파트너'로 불리는 Claude의 최신 미들급 모델입니다.
+2. **초대용량 컨텍스트 윈도우 & 실시간 옴니 멀티모달**
+   - **GPT-6**(1,000만 토큰)과 **Gemini 3.1 Pro**(400만 토큰), **Gemini 3.8 Flash**(초저지연 100만 토큰)는 수년 치의 사내 레거시 코드와 로그 데이터를 단 한 번의 요청에 담아 분석할 수 있는 대용량 컨텍스트를 지원합니다.
+   - 50~100ms 미만의 초저지연으로 음성, 4K 비디오, 화면 조작을 실시간 양방향 스트리밍으로 수행합니다.
 
-5. **[Claude 4.8 Opus (Anthropic)](/docs/llm/claude-4-8-opus.md)**
-   * **특징:** 복잡한 학술, 법률, 의료 논문 분석에 특화된 Anthropic의 최고 지능 모델입니다.
-
-6. **[Grok 4.5 (xAI)](/docs/llm/grok-4-5.md)**
-   * **특징:** xAI의 최신 모델로, 전 세계의 최신 이슈를 가장 빠르게 반영하며 고도의 코딩 능력을 탑재했습니다.
-
-### 🔓 오픈소스 및 개방형 파운데이션 모델
-7. **[Llama 5 (Meta)](/docs/llm/llama-5.md)**
-   * **특징:** 오픈소스 생태계를 이끄는 Meta의 5세대 모델. 유료 모델들을 위협하는 강력한 오픈소스입니다.
-
-8. **[Llama 3.3 70B (Meta)](/docs/llm/llama-3-3-70b.md)**
-   * **특징:** 405B급 플래그십 성능을 70B 크기로 압축하여 자체 호스팅(On-Premise)의 글로벌 표준이 된 Meta의 완성형 모델입니다.
-
-9. **[Mistral 4 Large (Mistral AI)](/docs/llm/mistral-4-large.md)**
-   * **특징:** 유럽 최고의 AI 기업인 Mistral의 4세대 대형 모델로 뛰어난 연산 효율을 보여줍니다.
-
-10. **[Mixtral v3 (Mistral AI)](/docs/llm/mixtral-v3.md)**
-    * **특징:** 오픈소스 혁신을 이끈 MoE(전문가 혼합) 아키텍처의 3세대 버전입니다.
-
-11. **[Command R 2 (Cohere)](/docs/llm/command-r-2.md)**
-    * **특징:** 기업용 문서 검색(RAG)과 복잡한 에이전트 워크플로우 자동화에 가장 특화된 B2B 전용 모델입니다.
-
-12. **[Phi-5 (Microsoft)](/docs/llm/phi-5.md)**
-    * **특징:** 마이크로소프트의 초소형 언어 모델(sLM) 끝판왕으로, 스마트폰 내장 AI 시대를 완성한 모델입니다.
-
-13. **[Gemma 3 (Google)](/docs/llm/gemma-3.md)**
-    * **특징:** 구글의 개방형 모델. Gemini 3 시리즈의 기술력을 그대로 물려받은 오픈소스 강자입니다.
-
-14. **[Qwen 3 (Alibaba)](/docs/llm/qwen-3.md)**
-    * **특징:** 아시아 및 다국어 지원에 가장 압도적인 성능을 뽐내는 알리바바의 최신 오픈소스 모델입니다.
-
-15. **[DBRX 2 (Databricks)](/docs/llm/dbrx-2.md)**
-    * **특징:** 데이터 분석가와 엔지니어를 위해 태어난 최강의 SQL 및 코딩 특화 오픈소스 모델입니다.
-
-### 🇰🇷 대한민국 대표 파운데이션 모델
-16. **[HyperCLOVA X 2 (Naver)](/docs/llm/hyperclova-x-2.md)**
-    * **특징:** 한국인보다 한국어를 더 잘 이해하는, 국내 시장 압도적 1위의 네이버 최신 모델입니다.
-
-17. **[Solar 2 (Upstage)](/docs/llm/solar-2.md)**
-    * **특징:** 독보적인 '깊이 확장(DUS)' 기술로 체급의 한계를 부수고 글로벌 1위를 다투는 국내 스타트업의 자랑입니다.
-
-18. **[EXAONE 3.5 (LG AI연구원)](/docs/llm/exaone-3-5.md)**
-    * **특징:** 한국어 MT-Bench 국내 1위 및 전문 산업(특허, 바이오, 화학) 도메인에 특화된 LG의 대표 오픈 파운데이션 모델입니다.
-
-### ⚡ 심층 추론 및 도메인 특화 모델 (Reasoning, 코딩, 멀티모달, 음성)
-19. **[DeepSeek-R1 (DeepSeek)](/docs/llm/deepseek-r1.md)**
-    * **특징:** 순수 강화학습 기반으로 스스로 생각하고 반성하는 오픈소스 심층 추론(Reasoning)의 대명사 모델입니다.
-
-20. **[o3-mini (OpenAI)](/docs/llm/o3-mini.md)**
-    * **특징:** STEM·수학·알고리즘 코딩에 특화되어 개발자가 추론 노력 수준(Reasoning Effort)을 제어할 수 있는 OpenAI의 고속 추론 모델입니다.
-
-21. **[Qwen 2.5-Coder (Alibaba)](/docs/llm/qwen-2-5-coder.md)**
-    * **특징:** 5.5조 코드 토큰으로 학습되어 글로벌 오픈소스 코딩 벤치마크 1위를 석권한 실무 코딩 전용 모델입니다.
-
-22. **[Kimi k1.5 (Moonshot AI)](/docs/llm/kimi-k1-5.md)**
-    * **특징:** 200만 토큰 무손실 롱 컨텍스트와 멀티모달 시각 추론, 자율 웹 리서치 에이전트 기능을 통합한 모델입니다.
-
-23. **[MiniMax-Text-01 (MiniMax)](/docs/llm/minimax-text-01.md)**
-    * **특징:** Lightning Attention(선형 어텐션) 기반으로 400만 토큰의 초대용량 텍스트를 초고속·저비용으로 처리하는 차세대 MoE 모델입니다.
-
-24. **[GLM-4-Voice (Zhipu AI)](/docs/llm/glm-4-voice.md)**
-    * **특징:** 텍스트 변환 딜레이 없는 엔드투엔드 실시간 음성 대화 및 감정 톤 조절을 지원하는 오픈소스 음성 모델입니다.
-
-25. **[StarCoder 2 (BigCode / Hugging Face)](/docs/llm/starcoder-2.md)**
-    * **특징:** 600개 이상 프로그래밍 언어를 지원하며 투명한 라이선스 검증을 거친 허깅페이스의 개방형 코딩 모델입니다.
-
-26. **[Yi-Lightning (01.AI)](/docs/llm/yi-lightning.md)**
-    * **특징:** 초당 수백 토큰의 압도적 생성 속도와 LMSYS 챗봇 아레나 글로벌 최상위권 랭킹을 달성한 가성비 MoE 모델입니다.
-
-27. **[GPT-5 Turbo (OpenAI)](/docs/llm/gpt-5-turbo.md)**
-    * **특징:** GPT-5 시리즈 중 속도와 가성비, 그리고 대용량 컨텍스트 처리에 집중한 최적화 모델입니다.
-
-28. **[Claude 4.5 Haiku (Anthropic)](/docs/llm/claude-4-5-haiku.md)**
-    * **특징:** 지구상에서 가장 빠르고 저렴하면서도 준수한 추론 능력을 갖춘 Anthropic의 초경량 모델입니다.
-
-29. **[DeepSeek Coder v3 (DeepSeek)](/docs/llm/deepseek-coder-v3.md)**
-    * **특징:** 전 세계 코딩 벤치마크를 휩쓸며 개발자 커뮤니티의 뜨거운 감자로 떠오른 코딩 전용 오픈소스 모델입니다.
-
-30. **[Llama 3D (Meta)](/docs/llm/meta-sora-3d.md)**
-    * **특징:** 단순한 텍스트를 넘어 3D 모델과 공간 지능(Spatial Intelligence)을 이해하는 차세대 모델입니다.
+3. **1조 파라미터(1T) 오픈소스 MoE의 대중화**
+   - **DeepSeek-V4**와 **Llama 5.1**을 통해 상용 최고급 성능을 사내 온프레미스(On-Premise) 환경에서 초저비용으로 프라이빗하게 호스팅할 수 있습니다.
 
 ---
 
-### 💡 초보 개발자를 위한 꿀팁
-* **어떤 모델로 시작해야 할까?** 
-  가장 대중적이고 압도적인 성능을 자랑하는 **OpenAI의 API (GPT-5.6 / o3-mini)** 로 먼저 연습해 보거나, 속도가 매우 빠르고 하이브리드 사고(Thinking) 기능 및 무료 플랜이 넉넉한 **Gemini 3.7 Flash**를 사용하는 것을 추천합니다. 이후 클라우드 비용을 줄이거나 사내 온프레미스 작동이 필요하다면 **DeepSeek-R1**, **Llama 3.3 70B**, **Qwen 2.5-Coder** 같은 고성능 오픈소스 모델을 로컬에 띄워보는 방향으로 학습해 보세요.
-* 코딩 질문 및 에이전트 구축 시에는 현재 **GPT-5.6**, **Gemini 3.7 Flash**, **Claude 5 Sonnet**, **DeepSeek-R1 / Coder**, **Qwen 2.5-Coder**가 가장 뛰어난 피드백을 주는 것으로 개발자들 사이에서 평가받고 있습니다.
+## 2. 전 세계를 선도하는 최신 세대 LLM 총람 🚀
+
+### 👑 1. 글로벌 최상위 플래그십 모델 (Global Flagship Tier)
+
+| 모델명 (Model) | 개발사 | 컨텍스트 | 주요 특징 및 핵심 혁신 |
+| :--- | :--- | :--- | :--- |
+| **[GPT-6](/docs/llm/gpt-6.md) 🚀** | OpenAI | **1,000만 토큰 (10M)** | **OpenAI 최신 플래그십**. 프로젝트 전 과정 자율 소프트웨어 엔지니어링, Zero-Loss 뉴럴 메모리, <50ms 실시간 옴니 멀티모달 |
+| **[Claude 5.1](/docs/llm/claude-5-1.md) 🏆** | Anthropic | **100만 토큰 (1M)** | **Anthropic 최신 플래그십**. SWE-bench Verified 88.5% 압도적 1위, Extended Thinking 4.0, OS/IDE 완전 제어 Computer Use 3.0 |
+| **[Gemini 3.1 Pro](/docs/llm/gemini-3-1-pro.md) ⚡** | Google | **400만 토큰 (4M)** | **Google 최신 플래그십**. 4M 컨텍스트 100% 무손실 검색, Google Search 실시간 웹 그라운딩 & 자체 검증, TPU v6 최적화 |
+| **[Gemini 3.8 Flash](/docs/llm/gemini-3-8-flash.md) ⚡** | Google | **100만 토큰 (1M)** | **Google 최신 실시간 초고속**. Sub-100ms 초저지연 양방향 옴니 멀티모달, 에이전트 루프 및 대량 배치 가성비 극대화 |
+| **[Grok 4.6](/docs/llm/grok-4-6.md) ✨** | xAI | **50만 토큰 (500K)** | **xAI 최신 플래그십**. 20만 H100/H200 Colossus 슈퍼컴퓨터 훈련, Big Brain Think 심층 추론, DeepSearch 2.0 실시간 X 결합 |
+| **[DeepSeek-V4](/docs/llm/deepseek-v4.md) 🌟** | DeepSeek | **100만 토큰** | **오픈소스 최신 플래그십**. 1조(1T) 파라미터 MoE (토큰당 48B 활성화), MLA 2.0으로 메모리 95% 절감, MIT 라이선스 |
+| **[Llama 5.1](/docs/llm/llama-5-1.md) 🔓** | Meta | **200만 토큰** | **Meta 최신 플래그십**. 8B 온디바이스부터 1T 데이터센터용까지, 프라이빗 엔터프라이즈 사내 구축 글로벌 표준 |
+
+---
+
+### 🇨🇳 2. 중국 대표 최신 세대 LLM 진영 (China Leading AI Models)
+현재 전 세계 AI 업계와 오픈소스 생태계에서 가장 폭발적인 인기를 끌며 실무 개발자들에게 가장 많이 쓰이는 중국의 핵심 파운데이션 및 특화 모델 라인업입니다.
+
+| 모델명 (Model) | 개발사 / 연구진 | 컨텍스트 | 오픈소스 여부 | 핵심 강점 및 실무 활용도 |
+| :--- | :--- | :--- | :--- | :--- |
+| **[DeepSeek-V3](/docs/llm/deepseek-v3.md) 🌟** | 딥시크 (DeepSeek) | **128K** | **완전 오픈 가중치** | 671B MoE(토큰당 37B 활성화), Multi-head Latent Attention(MLA)으로 KV 캐시 메모리 90% 절감, FP8 초저비용 훈련 혁신 |
+| **[DeepSeek-R1](/docs/llm/deepseek-r1.md) 🧠** | 딥시크 (DeepSeek) | **128K** | **완전 오픈 가중치** | 순수 대규모 강화학습(RL) 기반 사고 과정(CoT) 공개 추론 모델, o1급 수학·코딩 추론력을 오픈소스로 실현 |
+| **[Qwen 2.5-Max](/docs/llm/qwen-2-5-max.md) 👑** | 알리바바 (Alibaba) | **128K** | 상용 클라우드 API | 알리바바의 최상위 플래그십. 18조 토큰 학습, MMLU 89.7%, 고난도 비즈니스 추론 및 29개 다국어 지원 |
+| **[Qwen 2.5-Coder](/docs/llm/qwen-2-5-coder.md) 💻** | 알리바바 (Alibaba) | **128K** | **오픈 가중치 (32B/7B)** | 전 세계 오픈소스 코딩 모델 1위(EvalPlus/HumanEval 92.7%), VS Code·Cursor·Ollama 로컬 코딩 필수 표준 |
+| **[Kimi k1.5](/docs/llm/kimi-k1-5.md) 🌕** | 문샷 AI (Moonshot) | **200만 토큰 (2M)** | 상용 서비스 & API | 200만 토큰 무손실 롱 컨텍스트, 멀티모달 강화학습 기반 심층 추론, 중국 내 최고 인기 리서치 AI |
+| **[GLM-4-Plus](/docs/llm/glm-4-plus.md) 🎓** | 즈푸 AI (Zhipu / 칭화대) | **128K** | 상용 API & 일부 오픈 | 칭화대 연구진 설립, GLM 양방향 하이브리드 아키텍처, 실시간 음성(GLM-4-Voice) 및 All-Tools 에이전트 |
+| **[MiniMax-Text-01](/docs/llm/minimax-text-01.md) ⚡** | 미니맥스 (MiniMax) | **400만 토큰 (4M)** | 상용 API | **400만 토큰 초고속 컨텍스트**, Linear Attention 기반으로 책 1,000만 단어와 코드 수만 줄을 1초에 분석 |
+| **[Yi-Lightning](/docs/llm/yi-lightning.md) ⚡** | 01.AI (리카이푸) | **128K** | 상용 API & 오픈 | LMSYS 챗봇 아레나 글로벌 최상위권 달성, 초당 수백 토큰의 압도적인 생성 속도와 파격적인 가성비 |
+| **[Baichuan 4](/docs/llm/baichuan-4.md) 🏥** | 백천지능 (Baichuan) | **128K** | 상용 API | 소고우 창업자 왕샤오촨 설립, 실시간 검색 증강(RAG) 및 국가 의사시험 수석급 의료·금융 전문 버티컬 특화 |
+| **[Step-2](/docs/llm/step-2.md) 🪐** | 지웨스단 (StepFun) | **128K** | 상용 API | 전 MS 부사장 장창 설립, 1조(1T) 파라미터 MoE 기반 언어/초고해상도 시각(Step-1V) 멀티모달 |
+| **[Hunyuan-Large](/docs/llm/hunyuan-large.md) 🐧** | 텐센트 (Tencent) | **256K** | **오픈 가중치 (389B)** | 텐센트 389B 대규모 MoE(토큰당 52B 활성화), 256K 컨텍스트, 위챗·게임 엔터테인먼트 생태계 검증 |
+
+---
+
+### 🇰🇷 3. 대한민국 대표 최신 세대 파운데이션 모델 (Domestic Leaders)
+
+| 모델명 (Model) | 개발사 | 컨텍스트 | 주요 특징 및 핵심 혁신 |
+| :--- | :--- | :--- | :--- |
+| **[HyperCLOVA X 3](/docs/llm/hyperclova-x-3.md) 🇰🇷** | 네이버 | **20만 토큰** | **네이버 최신 3세대 플래그십**. 한국어 문화·사법·행정·금융 규제 이해 국내 1위, 초고속 한국어 토크나이저 3.0 탑재 |
+| **[Solar 3](/docs/llm/solar-3.md) 🇰🇷** | 업스테이지 | **128K** | **업스테이지 최신 플래그십**. DUS 3.0 기반으로 단일 GPU에서도 빅테크급 성능 구현, 고정밀 Document AI & OCR 특화 |
+| **[EXAONE 3.5](/docs/llm/exaone-3-5.md)** | LG AI연구원 | **32K** | 한국어 벤치마크 최상위 및 전문 산업(특허, 바이오, 화학) 도메인 특화 오픈 파운데이션 모델 |
+
+---
+
+### ⚡ 3. 고속 추론 및 검증된 실무 명작 모델 (Established High-Performers)
+
+| 모델명 (Model) | 개발사 | 컨텍스트 | 주요 특징 |
+| :--- | :--- | :--- | :--- |
+| **[Claude 3.7 Sonnet](/docs/llm/claude-3-7-sonnet.md)** | Anthropic | 200K | 하이브리드 추론의 문을 연 명작 모델. Thinking Budget 조절 및 터미널 Claude Code 지원 |
+| **[o3-mini](/docs/llm/o3-mini.md)** | OpenAI | 200K | STEM·수학·알고리즘 고속 추론 및 Reasoning Effort(Low/Med/High) 제어 모델 |
+| **[DeepSeek-R1](/docs/llm/deepseek-r1.md)** | DeepSeek | 128K | 순수 강화학습(RL) 기반으로 스스로 사고하는 오픈소스 심층 추론 모델 |
+| **[Qwen 2.5-Coder](/docs/llm/qwen-2-5-coder.md)** | Alibaba | 128K | 5.5조 개 코드 토큰으로 학습된 실무 코딩 전용 오픈 가중치 모델 |
+| **[GPT-4.5](/docs/llm/gpt-4-5.md)** | OpenAI | 128K | 초대형 파운데이션 지식과 감성 지능(EQ), 최저 환각률을 자랑하는 지식 모델 |
+| **[Gemini 2.0 Flash](/docs/llm/gemini-2-0-flash.md)** | Google | 1M | 정식 GA 초저지연 실시간 오디오/비디오 스트리밍 모델 |
+| **[Llama 3.3 70B](/docs/llm/llama-3-3-70b.md)** | Meta | 128K | 405B급 성능을 70B로 압축한 엔터프라이즈 사내 구축 완성형 모델 |
+
+---
+
+## 3. 최신 공인 벤치마크 총괄 비교 (최신 세대 기준) 📊
+
+| 모델명 | SWE-bench Verified (실무 코딩) | AIME (고난도 수학) | GPQA Diamond (박사급 과학) | 컨텍스트 윈도우 |
+| :--- | :--- | :--- | :--- | :--- |
+| **Claude 5.1 🏆** | **88.5% (1위 🏆)** | **92.0%** | **82.5%** | **1,000,000 토큰** |
+| **GPT-6 🚀** | **86.4%** | **94.8%** | **84.2%** | **10,000,000 토큰 (10M)** |
+| **Grok 4.6 ✨** | **76.8%** | **92.6%** | **82.4%** | **500,000 토큰 (500K)** |
+| **Gemini 3.1 Pro ⚡** | **78.4%** | **89.2%** | **81.0%** | **4,000,000 토큰 (4M)** |
+| **Gemini 3.8 Flash ⚡** | **74.0%** | **84.5%** | **76.8%** | **1,000,000 토큰 (초저지연 <100ms)** |
+| **DeepSeek-V4 (오픈소스)** | **74.5%** | **88.0%** | **78.5%** | **1,000,000 토큰** |
+| **Qwen 2.5-Coder-32B 💻** | **73.5% (HumanEval 92.7%)**| **79.8%** | **68.5%** | **128,000 토큰 (로컬 최강)** |
+| **Llama 5.1 (오픈소스)** | **72.0%** | **85.0%** | **76.0%** | **2,000,000 토큰** |
+| **Claude 3.7 Sonnet** | 70.3% | 84.5% | 65.0% | 200,000 토큰 |
+| **o3-mini** | 67.2% | 87.3% | 79.7% | 200,000 토큰 |
+
+---
+
+## 4. 실전 개발자를 위한 최신 API 호출 코드 💻
+
+### 1) OpenAI GPT-6 (Autonomous Agentic Mode)
+```typescript
+import OpenAI from 'openai';
+
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+const response = await openai.chat.completions.create({
+  model: 'gpt-6',
+  // ⚡ GPT-6 자율 소프트웨어 엔지니어링 에이전트 활성화
+  agent_mode: 'full_autonomous',
+  context_optimization: 'zero_loss',
+  messages: [
+    {
+      role: 'user',
+      content: '기존 Express 백엔드를 Nest.js 마이크로서비스로 전면 리팩토링하고, 단위/통합 테스트와 Dockerfile까지 완벽히 생성해 줘.'
+    }
+  ]
+});
+
+console.log(response.choices[0].message.content);
+```
+
+### 2) Anthropic Claude 5.1 (Extended Thinking 4.0)
+```typescript
+import Anthropic from '@anthropic-ai/sdk';
+
+const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+const response = await anthropic.messages.create({
+  model: 'claude-5-1-sonnet',
+  max_tokens: 32000,
+  // ⚡ Claude 5.1 다중 경로 자가 교정 추론 예산
+  thinking: {
+    type: 'enabled',
+    budget_tokens: 8192
+  },
+  messages: [
+    {
+      role: 'user',
+      content: '대규모 분산 카프카 클러스터 환경에서 메시지 유실 없는 정확히 한 번(Exactly-once) 처리 파이프라인 코드를 작성해 줘.'
+    }
+  ]
+});
+
+console.log(response.content);
+```
+
+---
+
+## 5. 최신 세대 모델 선택 가이드 (Quick Matrix)
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 🎯 어떤 작업을 수행하시나요?                                │
+├─────────────────────────────────────────────────────────────┤
+│ 1. 최고의 자율 코딩 & 아키텍처 재설계 👉 Claude 5.1 / GPT-6  │
+│ 2. 로컬 무료 오픈소스 최강 코딩      👉 Qwen 2.5-Coder / DeepSeek-V3│
+│ 3. 초대용량 레포지토리 & 무손실 분석  👉 GPT-6 / Gemini 3.1 Pro│
+│ 4. 400만 토큰 초고속 문서 1초 분석   👉 MiniMax-Text-01      │
+│ 5. 실시간 음성/영상 옴니 스트리밍      👉 Gemini 3.8 Flash / GLM-4-Voice│
+│ 6. 실시간 X 리서치 & 팩트 과학 추론  👉 Grok 4.6              │
+│ 7. 사내 온프레미스 최강 오픈소스 MoE   👉 DeepSeek-V4 / Llama 5.1│
+│ 8. 중국어 리서치 & 200만 롱컨텍스트  👉 Kimi k1.5            │
+│ 9. 국내 공공/금융 규제 및 한국어 최적화👉 HyperCLOVA X 3 / Solar 3│
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+[🔙 홈 화면으로 돌아가기](/)

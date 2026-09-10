@@ -7,14 +7,18 @@
 
 ---
 
-## 🤖 AI 코딩 어시스턴트
+## 🤖 AI 코딩 어시스턴트 & 자율 에이전트
 
 | 이름 (Name) | 링크 (URL) | 추천 이유 |
 | :--- | :--- | :--- |
-| [GitHub Copilot](https://github.com/features/copilot) | https://github.com/features/copilot | IDE에서 AI가 코드를 실시간으로 자동 완성. 개발 속도를 획기적으로 향상 |
-| [Cursor](https://www.cursor.com) | https://www.cursor.com | AI 기반 코드 에디터. 자연어로 코드 작성, 리팩토링, 버그 수정 가능 |
-| [Codeium](https://codeium.com) | https://codeium.com | GitHub Copilot의 무료 대안. 다양한 IDE 플러그인 지원 |
-| [Tabnine](https://www.tabnine.com) | https://www.tabnine.com | 프라이버시를 중요시하는 팀에 적합한 로컬 AI 코드 자동완성 도구 |
+| [Claude Code](https://docs.anthropic.com/en/docs/agents-and-tools/claude-code/overview) | https://docs.anthropic.com | Anthropic의 공식 CLI 터미널 에이전트. 프로젝트 전체 분석, 코드 수정, 테스트, Git 커밋까지 자율 수행 |
+| [Cursor](https://www.cursor.com) | https://www.cursor.com | 개발자 표준 AI 네이티브 IDE. Composer와 Agent 모드로 대규모 멀티파일 동시 리팩토링 지원 |
+| [Windsurf](https://codeium.com/windsurf) | https://codeium.com/windsurf | Codeium의 차세대 AI IDE. 혁신적인 Flows & Cascade 엔진으로 실시간 협업 페어 프로그래밍 |
+| [GitHub Copilot](https://github.com/features/copilot) | https://github.com/features/copilot | IDE 실시간 자동완성 및 Copilot Edits, Workspace를 통한 통합 개발 워크플로우 지원 |
+| [Aider](https://aider.chat) | https://aider.chat | 터미널 기반의 오픈소스 AI 페어 프로그래밍 CLI. Git 히스토리와 연동되어 자동 커밋 및 변경 추적 |
+| [Cline](https://github.com/cline/cline) | https://github.com/cline/cline | VS Code 내장형 자율 코딩 에이전트. CLI 명령 실행, 브라우저 테스트, MCP 도구 연동 완벽 지원 |
+| [v0.dev](https://v0.dev) | https://v0.dev | Vercel의 프롬프트 기반 UI/UX 및 풀스택 Next.js 코드 생성 도구. 디자인 시안을 바로 동작하는 코드로 변환 |
+| [Bolt.new](https://bolt.new) | https://bolt.new | 브라우저 내 WebContainer 기반으로 풀스택 웹 애플리케이션을 즉시 생성, 실행, 원클릭 배포 |
 
 ---
 

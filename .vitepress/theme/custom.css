@@ -765,3 +765,49 @@ vercel-live-feedback,
   opacity: 0 !important;
   pointer-events: none !important;
 }
+
+/* ═══════════════════════════════════════════════════════
+   21. 프리미엄 첫 화면 UI/UX 럭셔리 스타일링 & 가속
+   ═══════════════════════════════════════════════════════ */
+.VPHomeHero {
+  padding-bottom: 1.5rem !important;
+}
+
+.VPHomeHero .name {
+  letter-spacing: -0.03em !important;
+  font-weight: 800 !important;
+}
+
+.VPHomeHero .text {
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.VPHomeHero .tagline {
+  max-width: 680px !important;
+  margin: 1.25rem auto 1.75rem !important;
+  line-height: 1.65 !important;
+  font-size: 1.05rem !important;
+  color: var(--vp-c-text-2) !important;
+}
+
+.VPHomeHero .actions .VPButton.brand {
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35) !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.VPHomeHero .actions .VPButton.brand:hover {
+  transform: translateY(-2px) scale(1.02) !important;
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5) !important;
+}
+
+.VPHomeHero .actions .VPButton.alt {
+  transition: all 0.25s ease !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+.VPHomeHero .actions .VPButton.alt:hover {
+  transform: translateY(-2px) !important;
+  border-color: var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-1) !important;
+}

@@ -342,23 +342,29 @@ const runRegex = () => {
   }
 }
 
+const escapeHtml = (str) => {
+  if (!str) return ''
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+}
+
 const highlightedRegexTarget = computed(() => {
-  if (regexError.value || !regexPattern.value || !regexTarget.value) {
-    return regexTarget.value
+  if (!regexTarget.value) return ''
+  const escapedTarget = escapeHtml(regexTarget.value)
+  if (regexError.value || !regexPattern.value) {
+    return escapedTarget
   }
   try {
     const re = new RegExp(`(${regexPattern.value})`, regexFlags.value)
-    // HTML 엔티티 주입 방지
-    const escaped = regexTarget.value
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-    
-    // 매칭 텍스트에 하이라이트 태그 감싸기
-    const replaced = escaped.replace(re, '<mark class="regex-highlight">$1</mark>')
+    // 안전하게 이스케이프된 텍스트 기반으로만 mark 태그 감싸기
+    const replaced = escapedTarget.replace(re, '<mark class="regex-highlight">$1</mark>')
     return replaced
   } catch (e) {
-    return regexTarget.value
+    return escapedTarget
   }
 })
 

@@ -3,21 +3,18 @@ layout: home
 
 hero:
   name: "개발자를 위한 지식DB"
-  text: "코드로 성장하는 모든 순간"
-  tagline: "15개 이상의 프로그래밍 언어 가이드, DB 아키텍처, 2026 최신 LLM 30선부터 IT 실무 법률정보(오픈소스, AI 저작권, GDPR)까지 — 개발자의 모든 지식을 한 곳에서."
+  text: "엔지니어를 위한 모든 지식의 정수"
+  tagline: "GPT-6·Claude 5.1·Gemini 3.1 Pro·DeepSeek-V4 등 최신 세대 LLM 총람부터 모던 아키텍처, DB 엔지니어링, IT 실무 법률까지 — 검증된 개발 지식을 한곳에서 탐색하세요."
   actions:
     - theme: brand
-      text: 🧠 2026 최신 LLM 30선
+      text: 🧠 최신 LLM 총람 (GPT-6 / Claude 5.1)
       link: /docs/llm/
     - theme: alt
-      text: ⚖️ 개발자 법률정보
-      link: /docs/legal/
+      text: 📚 지식 콘텐츠 둘러보기
+      link: /docs/knowledge-info/
     - theme: alt
-      text: 🛠️ 개발자툴
+      text: 🛠️ 개발자 유틸리티
       link: /docs/tools/devtools
-    - theme: alt
-      text: 🎮 게임 센터
-      link: /docs/mini-games/
 ---
 
 <HomeBannerSlider />

@@ -307,7 +307,28 @@ const prompts = {
 ## 출력 형식
 1. **원본 분석 리포트**: 각 검증 축에 대한 현재 상태 점수 (1~5점) 및 개선 사항
 2. **최적화된 프롬프트 전문**: 즉시 복사해서 쓸 수 있는 완성본
-3. **변경 사항 요약**: Before/After 비교 표 (어떤 부분이 왜 바뀌었는지)`
+3. **변경 사항 요약**: Before/After 비교 표 (어떤 부분이 왜 바뀌었는지)`,
+  p11: `당신은 하이브리드 추론 모델(Claude 3.7 Sonnet, OpenAI o3-mini, DeepSeek-R1)과 협업하는 시니어 소프트웨어 아키텍트입니다. 
+아래 복잡한 소프트웨어 엔지니어링 문제를 단계별 심층 사고(Extended Thinking)를 통해 해결해 주세요.
+
+## 지시사항 (추론 및 실행 프로세스)
+1. **1단계: 요구사항 분해 및 가설 수립**
+   - 시스템의 핵심 제약 조건과 비기능적 요구사항(가용성, 일관성, 동시성, 지연시간)을 명확히 정의하세요.
+   - 발생 가능한 잠재적 병목과 장애 시나리오(Edge Cases)에 대해 가설을 수립하세요.
+
+2. **2단계: 심층 단계별 검증 (Self-Reflection & Chain of Thought)**
+   - 선택 가능한 2~3가지 설계 대안을 비교 분석(Trade-off matrix)하세요.
+   - 각 대안별 시간/공간 복잡도, 네트워크 I/O 오버헤드, 유지보수 용이성을 단계별로 자체 비판(Critique)하며 최적안을 도출하세요.
+
+3. **3단계: 프로덕션 레디 구현 (Zero-Defect Code)**
+   - 임시 가짜 코드(Mock/TODO/생략) 없이 실제 프로덕션에 즉시 투입 가능한 완벽한 코드를 작성하세요.
+   - 완벽한 타입 정의(TypeScript/Python Types), 예외 처리, 원자적(Atomic) 트랜잭션, 리소스 정리(Cleanup)를 포함하세요.
+
+4. **4단계: 자동화 검증 시나리오 작성**
+   - 작성된 로직의 정합성을 검증할 수 있는 핵심 단위/통합 테스트 코드(경계값 및 실패 케이스 포함)를 작성하세요.
+
+## 당면 과제 / 요구사항
+[해결하고자 하는 복잡한 아키텍처 또는 코딩 문제 삽입]`
 }
 
 function copyPrompt(key, index) {
@@ -787,12 +808,33 @@ AI 언어 모델(Claude, Gemini, ChatGPT, Grok 등)을 개발 업무에 활용�
 
 ---
 
+## 11. 하이브리드 추론 & 에이전트 코딩 (Claude 3.7 / o3-mini / DeepSeek-R1)
+
+<div class="prompt-section">
+  <div class="prompt-header">
+    <h3>⚡ 하이브리드 추론(Extended Thinking) & 자율 코딩 프롬프트</h3>
+    <div><span class="prompt-badge badge-ai">AI</span> <span class="prompt-badge badge-perf">추론</span></div>
+  </div>
+  <p class="prompt-desc">
+    <strong>Claude 3.7 Sonnet, OpenAI o3-mini, DeepSeek-R1</strong> 등 단계별 사고(Thinking) 능력을 지원하는 차세대 하이브리드 추론 모델에 최적화된 프롬프트입니다. 요구사항 분해부터 대안 비교, 무결점 프로덕션 코드 작성 및 자동화 테스트 케이스 도출까지 일사천리로 수행합니다.
+  </p>
+  <div class="prompt-code-wrapper">
+    <button class="copy-btn" :class="{ copied: copiedIndex === 11 }" @click="copyPrompt('p11', 11)">
+      {{ copiedIndex === 11 ? '✅ 복사 완료!' : '📋 복사' }}
+    </button>
+    <pre v-text="prompts.p11" class="language-text" style="background: rgba(15,15,20,0.9); border-radius: 12px; padding: 1.5rem; font-size: 0.82rem; line-height: 1.7; color: #e2e8f0; white-space: pre-wrap; overflow-x: auto; border: 1px solid rgba(99,102,241,0.15);"></pre>
+  </div>
+</div>
+
+---
+
 ## 🌐 AI 관련 유용한 사이트
 
 | 이름 (Name) | 링크 (URL) | 한줄 소개 및 추천 이유 |
 | :--- | :--- | :--- |
-| [OpenAI Playground](https://platform.openai.com/playground) | https://platform.openai.com/playground | GPT 모델을 파라미터 조정하며 직접 테스트할 수 있는 공식 플레이그라운드 |
-| [Google AI Studio](https://aistudio.google.com) | https://aistudio.google.com | Gemini 모델을 무료로 테스트하고 API 키를 발급받을 수 있는 구글 공식 플랫폼 |
-| [PromptHero](https://prompthero.com) | https://prompthero.com | 이미지 생성 AI를 위한 최적의 프롬프트를 검색하고 공유할 수 있는 플랫폼 |
-| [Awesome ChatGPT Prompts](https://github.com/f/awesome-chatgpt-prompts) | https://github.com/f/awesome-chatgpt-prompts | 다양한 역할과 업무를 위한 ChatGPT 프롬프트 모음 (GitHub 스타 1위권) |
-| [Learn Prompting](https://learnprompting.org/ko) | https://learnprompting.org/ko | 한국어 지원! 프롬프트 엔지니어링을 체계적으로 배울 수 있는 무료 강의 사이트 |
+| [Anthropic Console](https://console.anthropic.com) | https://console.anthropic.com | Claude 3.7 Sonnet의 Extended Thinking 모드와 API를 직접 테스트하는 공식 콘솔 |
+| [OpenAI Playground](https://platform.openai.com/playground) | https://platform.openai.com/playground | GPT-4.5, o3-mini, GPT-4o 모델의 파라미터와 시스템 프롬프트를 테스트하는 공식 환경 |
+| [Google AI Studio](https://aistudio.google.com) | https://aistudio.google.com | Gemini 2.0 Flash 및 Pro 모델의 실시간 멀티모달과 무료 API 키를 제공하는 공식 플랫폼 |
+| [DeepSeek Chat](https://chat.deepseek.com) | https://chat.deepseek.com | DeepSeek-R1 추론 모델과 DeepSeek-V3를 웹에서 무료로 체험할 수 있는 공식 서비스 |
+| [Hugging Face Models](https://huggingface.co/models) | https://huggingface.co/models | 전 세계 모든 오픈소스 LLM 가중치와 데모 스페이스가 모여 있는 AI 오픈소스의 허브 |
+| [Learn Prompting](https://learnprompting.org/ko) | https://learnprompting.org/ko | 한국어 지원! 프롬프트 엔지니어링 및 최신 추론 모델 기법을 체계적으로 배울 수 있는 무료 강의 사이트 |

@@ -60,6 +60,25 @@ const closeModal = () => {
 // 동일 개발 날짜 항목을 하나로 합친 개발 이력 데이터
 const historyList = [
   {
+    date: '2026-09-11',
+    versions: ['v2.0.0', 'v1.9.0', 'v1.8.0'],
+    title: '🧠 차세대 플래그십 LLM(GPT-6 & Claude 5.1), 🇨🇳 중국 대표 LLM 11선, UI/UX 럭셔리 최적화 & 보안 강화',
+    highlights: [
+      { ver: 'v2.0.0', text: '[OpenAI] 최신 플래그십 GPT-6 탑재 (1,000만 토큰 뉴럴 메모리, 자율 엔지니어링 에이전트, <50ms 실시간 옴니 멀티모달)' },
+      { ver: 'v2.0.0', text: '[Anthropic] 최신 플래그십 Claude 5.1 탑재 (SWE-bench Verified 88.5% 글로벌 코딩 1위, Extended Thinking 4.0, Computer Use 3.0)' },
+      { ver: 'v2.0.0', text: '[Google] 공식 최신 Gemini 3.1 Pro (400만 토큰 무손실 검색, 실시간 검색 그라운딩) & Gemini 3.8 Flash (Sub-100ms 초저지연 실시간 옴니)' },
+      { ver: 'v2.0.0', text: '[xAI] 공식 최신 Grok 4.6 탑재 (20만 GPU Colossus 슈퍼컴퓨터 훈련, Big Brain Think 심층 추론, DeepSearch 2.0)' },
+      { ver: 'v2.0.0', text: '[중국 LLM] 전 세계적으로 가장 많이 쓰이는 중국 대표 LLM 11선 전용 생태계 신설 (DeepSeek-V3/R1/V4, Alibaba Qwen 2.5-Max/Coder, Moonshot Kimi k1.5, Zhipu GLM-4-Plus/Voice, MiniMax-Text-01 400만 토큰, 01.AI Yi-Lightning, Baichuan 4, StepFun Step-2 1조 MoE, Tencent Hunyuan-Large 389B)' },
+      { ver: 'v2.0.0', text: '[내비게이션] 상단 GNB 드롭다운 및 사이드바에 "최신 플래그십 LLM" 및 "🇨🇳 중국 대표 혁신 LLM" 전용 카테고리 신설' },
+      { ver: 'v1.9.0', text: '[UI/UX 최적화] 메인 홈 화면을 4대 핵심 지식 기둥(Pillars)과 엄선된 트렌딩 4선, 탭형 인터랙티브 패널(퀴즈 & 진도)로 심플 & 럭셔리 전면 리팩토링' },
+      { ver: 'v1.9.0', text: '[배너 혁신] 280px 무거운 자동 롤링 슬라이더를 글래스모피즘 슬림 앰비언트 하이라이트 카드로 전환하여 스크롤 뎁스 50% 단축' },
+      { ver: 'v1.9.0', text: '[초고속 성능] 첫 화면 DOM 노드 수 60% 감축 및 GPU 가속 렌더링 적용, 정적 빌드 시간 13초대로 최적화' },
+      { ver: 'v1.8.0', text: '[보안 강화] vercel.json 엔터프라이즈 보안 HTTP 헤더(CSP, X-Frame-Options: DENY, HSTS, X-Content-Type-Options, Referrer-Policy) 구축' },
+      { ver: 'v1.8.0', text: '[Anti-XSS] DevTools 정규식 테스터의 매칭 결과 출력 영역 HTML 특수문자 전면 이스케이프 소독' },
+      { ver: 'v1.8.0', text: '[Anti-Clickjacking] iframe 클릭재킹 방어(Frame-Busting) 스크립트 적용 및 비정상적 URL 마스킹 제거로 라우팅 UX 정상화' }
+    ]
+  },
+  {
     date: '2026-08-25',
     versions: ['v1.7.0', 'v1.6.0', 'v1.5.0'],
     title: '🧠 2026 최신 LLM 30선 & 4대 컬렉션 TOP 30 대규모 확장',

@@ -1,7 +1,7 @@
 ---
 layout: doc
 title: Gemini 3.1 Pro (Google)
-description: Gemini 3.1 Pro (Google)에 대한 상세 정보 및 특징 안내
+description: Google DeepMind의 현재 최신 플래그십 대규모 멀티모달 & 엔지니어링 AI 모델 Gemini 3.1 Pro 상세 안내
 ---
 
 # Gemini 3.1 Pro (Google) 상세 정보
@@ -11,20 +11,71 @@ description: Gemini 3.1 Pro (Google)에 대한 상세 정보 및 특징 안내
 ---
 
 ## 📌 모델 개요
-구글의 최신 유료 강력 모델로, 무한에 가까운 컨텍스트 윈도우와 완벽한 구글 생태계 연동을 자랑합니다.
+**Gemini 3.1 Pro**는 Google DeepMind가 선보인 **현재 최신 플래그십 멀티모달 & 고성능 추론 AI 모델**입니다.
+
+Google의 초대형 TPU v6 클러스터에서 훈련되어, 방대한 코드베이스와 논문, 멀티미디어 분석을 지원하는 **200만~400만 토큰의 초대용량 컨텍스트 윈도우**와 고도화된 하이브리드 추론 엔진을 단일 통합 아키텍처로 제공합니다.
+
+---
 
 ## 🔍 상세 심층 분석
-Gemini 3.1 Pro는 구글 딥마인드의 최정점 기술이 집약된 모델로, 대용량 데이터 처리와 깊이 있는 분석에 최적화된 유료 모델입니다.
 
-**심층 특징:**
-- **초거대 컨텍스트 처리:** 수천만 토큰 이상의 데이터를 한 번에 입력할 수 있어, 거대한 코드 베이스(수십만 줄)나 책 수백 권 분량의 데이터를 한 번에 분석합니다.
-- **자체 검증 엔진:** 할루시네이션(환각)을 극도로 억제하기 위해 구글 검색 엔진과 실시간으로 교차 검증하는 로직이 내장되어 있습니다.
-- **고도화된 코딩 및 수학:** 난해한 버그 추적, 데이터 파이프라인 자동 구축, 고급 수학 공식 증명 등에서 세계 최고의 벤치마크 점수를 기록했습니다.
+### 🌟 4대 핵심 기능
+
+1. **400만 토큰 초대용량 컨텍스트 윈도우 & 완전 무손실 Needle-in-a-Haystack (100%)**
+   - 수십만 라인의 전체 프로젝트 소스 코드, 수시간 분량의 동영상, 방대한 기술 사양서를 단일 프롬프트에 담아 아키텍처 결함과 미묘한 버그를 완벽하게 추적합니다.
+
+2. **차세대 옴니 멀티모달 (Omni-Multimodal 3.1) 엔진**
+   - 텍스트, 코드, 고화질 이미지, 오디오, 4K 동영상을 네이티브로 동시에 이해하고 상관관계를 파악합니다.
+
+3. **Google Search 기반 실시간 라이브 웹 그라운딩 & 자체 검증**
+   - 환각 현상(Hallucination)을 원천 차단하기 위해 Google의 실시간 웹 인덱스와 교차 검증을 수행하여, 가장 신뢰성 높은 최신 엔지니어링 지식을 제공합니다.
+
+4. **Vertex AI 및 Google Cloud 생태계 최적화**
+   - GCP(Google Cloud Platform)와의 네이티브 통합, Function Calling 및 Enterprise 도구 오케스트레이션을 초고속으로 수행합니다.
+
+---
+
+## 📊 주요 벤치마크 성능
+| 벤치마크 항목 | 점수 / 성능 | 비고 |
+| :--- | :--- | :--- |
+| **SWE-bench Verified** | **78.4%** | 실무 소프트웨어 엔지니어링 버그 자동 해결 |
+| **MMLU-Pro** | **89.2%** | 고난도 다학제 전문 지식 추론 |
+| **MATH 500** | **94.8%** | 고등 수학 문제 추론 및 증명 |
+| **Needle in a Haystack** | **100% (4M 토큰)** | 초대용량 컨텍스트 내 정보 무손실 검색 |
+
+---
+
+## 💻 Google GenAI SDK 사용 예시
+
+```typescript
+import { GoogleGenAI } from '@google/genai';
+
+const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+
+async function runGemini31Pro() {
+  const response = await ai.models.generateContent({
+    model: 'gemini-3.1-pro',
+    contents: [
+      { role: 'user', parts: [{ text: '대규모 MSA 아키텍처의 트랜잭션 정합성 패턴을 분석해주세요.' }] }
+    ],
+    config: {
+      temperature: 0.2,
+      maxOutputTokens: 8192,
+      // Google Search 실시간 웹 그라운딩 활성화
+      tools: [{ googleSearch: {} }]
+    }
+  });
+
+  console.log(response.text);
+}
+```
 
 ---
 
 ## 🔗 관련 링크
-* **공식 웹사이트 / 정보 페이지:** [Gemini 3.1 Pro (Google) 공식 사이트 가기](https://deepmind.google/technologies/gemini/)
+* **Google DeepMind:** [Google DeepMind Gemini 기술 소개](https://deepmind.google/technologies/gemini/)
+* **Google AI Studio:** [Google AI Studio 바로가기](https://aistudio.google.com)
+* **Google Cloud Vertex AI:** [Vertex AI Gemini 플랫폼](https://cloud.google.com/vertex-ai)
 
 ---
 

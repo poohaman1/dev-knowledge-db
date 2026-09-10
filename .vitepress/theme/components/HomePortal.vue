@@ -1,58 +1,55 @@
 <template>
-  <div class="home-portal-wrapper">
+  <div class="home-portal-container">
     <!-- ═══════════════════════════════════════════════════════
-         1. 퀵 액세스 허브 (20개 항목 / 2줄)
+         1. 4대 핵심 지식 카테고리 (4 Core Knowledge Pillars)
          ═══════════════════════════════════════════════════════ -->
-    <section class="portal-section hub-section">
-      <div class="section-head">
-        <div class="badge-row">
-          <span class="portal-badge primary">⚡ QUICK ACCESS</span>
-        </div>
-        <h2 class="section-heading">퀵 액세스 허브</h2>
-        <p class="section-desc">자주 찾는 20대 핵심 지식 콘텐츠를 한 번의 클릭으로 빠르게 탐색하세요</p>
+    <section class="portal-section">
+      <div class="section-header">
+        <span class="section-badge">CORE KNOWLEDGE</span>
+        <h2 class="section-title">핵심 지식 영역 둘러보기</h2>
+        <p class="section-subtitle">개발 실무에 즉시 활용할 수 있는 핵심 지식을 4대 분야로 체계화했습니다.</p>
       </div>
 
-      <div class="quick-grid">
-        <a 
-          v-for="(item, idx) in quickItems" 
-          :key="idx" 
-          :href="item.link" 
-          class="quick-card"
-          :class="'theme-' + item.theme"
-        >
-          <span class="quick-icon">{{ item.icon }}</span>
-          <span class="quick-label">{{ item.name }}</span>
-        </a>
+      <div class="pillars-grid">
+        <div v-for="pillar in pillars" :key="pillar.id" class="pillar-card" :class="pillar.theme">
+          <div class="pillar-icon-box">
+            <span class="pillar-icon">{{ pillar.icon }}</span>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">{{ pillar.title }}</h3>
+            <p class="pillar-desc">{{ pillar.desc }}</p>
+            <div class="pillar-links">
+              <a v-for="link in pillar.links" :key="link.url" :href="link.url" class="pillar-link-item">
+                <span class="link-dot"></span>
+                <span class="link-text">{{ link.label }}</span>
+                <span class="link-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         2. 지금 주목해야 할 기술 트렌드 (8개 항목 / 2줄)
+         2. 엄선된 최신 트렌드 하이라이트 (Curated Trending 4)
          ═══════════════════════════════════════════════════════ -->
-    <section class="portal-section trend-section">
-      <div class="section-head">
-        <div class="badge-row">
-          <span class="portal-badge hot">🔥 TRENDING 2026</span>
-        </div>
-        <h2 class="section-heading">지금 주목해야 할 기술 트렌드</h2>
-        <p class="section-desc">빠르게 변화하는 개발 생태계에서 놓치지 말아야 할 8대 핵심 기술 키워드</p>
+    <section class="portal-section">
+      <div class="section-header">
+        <span class="section-badge accent">TRENDING SPOTLIGHT</span>
+        <h2 class="section-title">지금 가장 주목받는 기술 트렌드</h2>
+        <p class="section-subtitle">2025~2026년 개발 생태계를 이끄는 핵심 아키텍처와 AI 기술입니다.</p>
       </div>
 
-      <div class="trend-grid">
-        <a 
-          v-for="(trend, idx) in trendItems" 
-          :key="idx" 
-          :href="trend.link" 
-          class="trend-card"
-        >
-          <div class="trend-top">
-            <span class="trend-tag" :class="trend.tagClass">{{ trend.tag }}</span>
-            <span class="trend-icon">{{ trend.icon }}</span>
+      <div class="trending-grid">
+        <a v-for="item in trendingItems" :key="item.title" :href="item.link" class="trend-card">
+          <div class="trend-card-top">
+            <span class="trend-tag" :class="item.tagClass">{{ item.tag }}</span>
+            <span class="trend-icon">{{ item.icon }}</span>
           </div>
-          <h3 class="trend-title">{{ trend.title }}</h3>
-          <p class="trend-desc">{{ trend.desc }}</p>
-          <div class="trend-link-text">
-            <span>자세히 보기</span>
+          <h3 class="trend-card-title">{{ item.title }}</h3>
+          <p class="trend-card-desc">{{ item.desc }}</p>
+          <div class="trend-card-action">
+            <span>문서 바로가기</span>
             <span class="arrow">→</span>
           </div>
         </a>
@@ -60,90 +57,51 @@
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         3. 2026 특집 하이라이트 배너
+         3. 탭형 인터랙티브 위젯 (오늘의 퀴즈 & 나의 학습 진도)
          ═══════════════════════════════════════════════════════ -->
-    <section class="portal-section feature-spotlight">
-      <div class="spotlight-card">
-        <div class="spotlight-content">
-          <span class="spotlight-badge">🚀 2026 SPECIAL REPORT</span>
-          <h3 class="spotlight-title">최신 글로벌·국내 LLM 30선 & Agentic OS 집중 분석</h3>
-          <p class="spotlight-desc">
-            OpenAI GPT-5.6, Google Gemini 3.7 Flash, DeepSeek-R1, o3-mini부터 LG EXAONE 3.5 및 다중 에이전트 오케스트레이션 Agentic OS까지 실무 개발자를 위한 최신 AI 패러다임을 한눈에 파악하세요.
-          </p>
-          <div class="spotlight-actions">
-            <a href="/docs/llm/" class="btn-primary">🧠 LLM 30선 탐색하기 →</a>
-            <a href="/docs/knowledge-info/agentic-os" class="btn-secondary">🤖 Agentic OS 가이드</a>
+    <section class="portal-section">
+      <div class="interactive-panel">
+        <div class="panel-header">
+          <div class="panel-tabs">
+            <button 
+              class="panel-tab-btn" 
+              :class="{ active: activeTab === 'quiz' }"
+              @click="activeTab = 'quiz'"
+            >
+              🎯 오늘의 개발 상식 퀴즈
+            </button>
+            <button 
+              class="panel-tab-btn" 
+              :class="{ active: activeTab === 'progress' }"
+              @click="activeTab = 'progress'"
+            >
+              📈 나의 지식 학습 진도
+            </button>
           </div>
+          <span class="panel-hint">※ 모든 데이터는 브라우저 로컬 스토리지에 안전하게 저장됩니다.</span>
+        </div>
+
+        <div class="panel-body">
+          <transition name="fade" mode="out-in">
+            <div v-if="activeTab === 'quiz'" key="quiz" class="tab-content">
+              <TodayDevQuiz />
+            </div>
+            <div v-else key="progress" class="tab-content">
+              <LearningProgress />
+            </div>
+          </transition>
         </div>
       </div>
     </section>
 
     <!-- ═══════════════════════════════════════════════════════
-         4. 인터랙티브 대시보드 (오늘의 퀴즈 & 나의 학습 진도)
+         4. 미니멀 플랫폼 통계 바 (Minimal Stats Bar)
          ═══════════════════════════════════════════════════════ -->
-    <section class="portal-section interactive-section">
-      <div class="interactive-grid">
-        <div class="interactive-col">
-          <TodayDevQuiz />
-        </div>
-        <div class="interactive-col">
-          <LearningProgress />
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════
-         5. 플랫폼 현황 & 지식 아키텍처 요약
-         ═══════════════════════════════════════════════════════ -->
-    <section class="portal-section summary-section">
-      <div class="section-head">
-        <div class="badge-row">
-          <span class="portal-badge">💡 KNOWLEDGE BASE STATS</span>
-        </div>
-        <h2 class="section-heading">개발자를 위한 통합 지식 플랫폼</h2>
-        <p class="section-desc">
-          실무에서 마주치는 파편화된 기술 자료, 최신 법률 규제 및 아키텍처 트렌드를 체계적으로 수집·관리합니다.
-        </p>
-      </div>
-
-      <!-- 핵심 통계 8종 -->
-      <div class="stats-grid">
-        <div class="stat-box" v-for="(stat, idx) in stats" :key="idx">
+    <section class="portal-section stats-section">
+      <div class="stats-bar">
+        <div v-for="stat in quickStats" :key="stat.label" class="stat-item">
           <div class="stat-num">{{ stat.num }}</div>
-          <div class="stat-title">{{ stat.label }}</div>
-        </div>
-      </div>
-
-      <!-- 콘텐츠 및 기술 스택 개요 -->
-      <div class="overview-grid">
-        <div class="overview-card">
-          <div class="overview-header">
-            <span class="overview-icon">📚</span>
-            <h3>주요 지식 콘텐츠</h3>
-          </div>
-          <ul class="overview-list">
-            <li><b>15종+ 프로그래밍 언어</b> — Python, JS, TypeScript, Rust, Go, Swift 등 심층 가이드</li>
-            <li><b>7대 IT 법률 가이드</b> — 오픈소스 라이선스, AI 저작권, 개인정보보호법, SI 도급계약</li>
-            <li><b>DB 아키텍처 비교</b> — RDBMS, NoSQL, NewSQL, Vector DB 선택 가이드</li>
-            <li><b>기업별 기술스택</b> — 네이버·카카오 등 13개 국내 대표 IT 기업 실무 스택 분석</li>
-            <li><b>오픈소스 80선</b> — 해외 20선, 국내 20선, SourceForge, Awesome 오픈소스 분석</li>
-            <li><b>개발자 유틸리티</b> — JSON 포맷터, Base64/URL 변환, 정규식, JWT 디코더 (100% 로컬)</li>
-          </ul>
-        </div>
-
-        <div class="overview-card">
-          <div class="overview-header">
-            <span class="overview-icon">⚡</span>
-            <h3>기술 스택 & 아키텍처</h3>
-          </div>
-          <ul class="overview-list">
-            <li><b>프레임워크</b> — VitePress 1.6 + Vue 3 Composition API 기반 정적 사이트</li>
-            <li><b>디자인 시스템</b> — 인디고-바이올렛 모던 테마, 반응형 2줄 그리드 레이아웃</li>
-            <li><b>초고속 로컬 검색</b> — 전체 기술 문서 및 키워드 실시간 오프라인 인덱싱</li>
-            <li><b>데이터 영속성</b> — 브라우저 localStorage 기반 안전한 무로그인 진도 보관</li>
-            <li><b>보안성</b> — 제로 트러스트 기반 로컬 유틸리티 및 클라이언트 사이드 실행</li>
-            <li><b>글로벌 배포</b> — Vercel Edge Network 최적화 및 지속적 통합(CI/CD)</li>
-          </ul>
+          <div class="stat-label">{{ stat.label }}</div>
         </div>
       </div>
     </section>
@@ -151,169 +109,150 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import TodayDevQuiz from './TodayDevQuiz.vue'
 import LearningProgress from './LearningProgress.vue'
 
-// 1. 퀵 액세스 허브 20개 항목 (10개씩 2줄)
-const quickItems = [
-  // 1행 (10개)
-  { name: '법률정보', icon: '⚖️', link: '/docs/legal/', theme: 'indigo' },
-  { name: 'LLM 20선', icon: '🧠', link: '/docs/llm/', theme: 'purple' },
-  { name: 'Agentic OS', icon: '🤖', link: '/docs/knowledge-info/agentic-os', theme: 'blue' },
-  { name: '언어가이드', icon: '💻', link: '/docs/programming-languages/', theme: 'emerald' },
-  { name: '프론트엔드', icon: '🎨', link: '/docs/knowledge-info/frontend-roadmap', theme: 'cyan' },
-  { name: '백엔드로드맵', icon: '🗺️', link: '/docs/knowledge-info/backend-roadmap', theme: 'orange' },
-  { name: '데이터베이스', icon: '🗄️', link: '/docs/knowledge-info/database', theme: 'indigo' },
-  { name: '기업기술스택', icon: '🏢', link: '/docs/company-tech-stack', theme: 'slate' },
-  { name: '아키텍처', icon: '🏛️', link: '/docs/architecture/', theme: 'violet' },
-  { name: '모범사례', icon: '💡', link: '/docs/best-practices/', theme: 'amber' },
+const activeTab = ref('quiz')
 
-  // 2행 (10개)
-  { name: '깃허브스타', icon: '⭐', link: '/docs/collections/github-stars-global', theme: 'amber' },
-  { name: '국내오픈소스', icon: '🇰🇷', link: '/docs/collections/github-stars-korea', theme: 'blue' },
-  { name: 'SourceForge', icon: '🔥', link: '/docs/collections/sourceforge', theme: 'orange' },
-  { name: 'Awesome OSS', icon: '😎', link: '/docs/collections/awesome-open-source', theme: 'purple' },
-  { name: '개발자 툴', icon: '🛠️', link: '/docs/tools/devtools', theme: 'emerald' },
-  { name: '프롬프트', icon: '💬', link: '/docs/prompts/', theme: 'cyan' },
-  { name: '국내 사이트', icon: '🌐', link: '/docs/domestic/', theme: 'indigo' },
-  { name: '해외 사이트', icon: '🌍', link: '/docs/international/', theme: 'teal' },
-  { name: '미니게임', icon: '🎮', link: '/docs/mini-games/', theme: 'rose' },
-  { name: 'AI 지침서', icon: '⚙️', link: '/guidelines/Agent', theme: 'slate' }
-]
-
-// 2. 지금 주목해야 할 기술 트렌드 8개 항목 (4개씩 2줄)
-const trendItems = [
+// 1. 4대 핵심 지식 카테고리
+const pillars = [
   {
-    tag: 'LEGAL & COMPLIANCE',
-    tagClass: 'tag-legal',
-    icon: '⚖️',
-    title: '개발자를 위한 IT 법률정보',
-    desc: '오픈소스 라이선스 고지 의무, AI 학습 데이터 저작권, GDPR, SI 도급계약 및 노무 분쟁까지 7대 법률 가이드',
-    link: '/docs/legal/'
-  },
-  {
-    tag: 'AI / LLM',
-    tagClass: 'tag-ai',
+    id: 'ai-llm',
+    title: 'AI & 최신 세대 LLM 총람',
+    desc: 'GPT-6, Claude 5.1, Gemini 3.1 Pro, DeepSeek-V4 등 완전 자율 에이전트와 차세대 MoE 플래그십 분석',
     icon: '🧠',
-    title: '2026 최신 LLM 30선',
-    desc: 'GPT-5.6, Gemini 3.7 Flash, DeepSeek-R1, o3-mini부터 Llama 3.3까지 차세대 AI 파운데이션 모델 심층 분석',
-    link: '/docs/llm/'
+    theme: 'theme-purple',
+    links: [
+      { label: '최신 LLM 총람 (GPT-6 / Claude 5.1)', url: '/docs/llm/' },
+      { label: 'OpenAI GPT-6 (자율 엔지니어링)', url: '/docs/llm/gpt-6' },
+      { label: 'Claude 5.1 (SWE-bench 88.5% 1위)', url: '/docs/llm/claude-5-1' },
+      { label: 'Google Gemini 3.1 Pro & 3.8 Flash', url: '/docs/llm/gemini-3-1-pro' },
+      { label: 'xAI Grok 4.6 (Colossus 슈퍼컴)', url: '/docs/llm/grok-4-6' },
+      { label: '🇨🇳 중국 대표 LLM 11선 (DeepSeek/Qwen)', url: '/docs/llm/#_2-중국-대표-최신-세대-llm-진영-china-leading-ai-models' }
+    ]
   },
   {
-    tag: 'AI / OS',
-    tagClass: 'tag-os',
-    icon: '🤖',
-    title: 'Agentic OS & AI 에이전트',
-    desc: 'LLM을 두뇌로 다중 AI 에이전트를 자율 조율하는 차세대 지능형 운영체제 및 오케스트레이션 패러다임',
-    link: '/docs/knowledge-info/agentic-os'
+    id: 'prog-arch',
+    title: '언어 & 시스템 아키텍처',
+    desc: '모던 프로그래밍 언어 15종 가이드와 대규모 분산 아키텍처, 국내 빅테크 실무 기술 스택',
+    icon: '💻',
+    theme: 'theme-blue',
+    links: [
+      { label: '15+ 프로그래밍 언어 가이드', url: '/docs/programming-languages/' },
+      { label: '네이버·카카오 등 기업 기술스택', url: '/docs/company-tech-stack' },
+      { label: '대규모 분산 시스템 아키텍처', url: '/docs/architecture/' },
+      { label: '실무 베스트 프랙티스', url: '/docs/best-practices/' }
+    ]
   },
   {
-    tag: 'WEB & FRONTEND',
-    tagClass: 'tag-web',
-    icon: '⚛️',
-    title: 'React 19 & Next.js 15',
-    desc: '서버 컴포넌트(RSC), 스트리밍 SSR, Core Web Vitals 최적화 및 최신 프론트엔드 엔지니어링',
-    link: '/docs/knowledge-info/frontend-roadmap'
-  },
-  {
-    tag: 'INFRA & CLOUD',
-    tagClass: 'tag-infra',
-    icon: '⚡',
-    title: '클라우드 인프라 & 엣지',
-    desc: 'Cloud Native, Serverless, Edge 컴퓨팅 및 분산 시스템 확장성을 고려한 백엔드 아키텍처 전략',
-    link: '/docs/knowledge-info/backend-roadmap'
-  },
-  {
-    tag: 'OPEN SOURCE',
-    tagClass: 'tag-oss',
-    icon: '⭐',
-    title: '오픈소스 & 깃허브 스타',
-    desc: '국내외 깃허브 스타 최상위 및 추천 오픈소스 120선(4대 컬렉션 각 30선) 심층 분석 및 실무 활용 팁',
-    link: '/docs/collections/github-stars-global'
-  },
-  {
-    tag: 'DATABASE',
-    tagClass: 'tag-db',
+    id: 'backend-db',
+    title: '백엔드 & 데이터베이스',
+    desc: 'RDBMS부터 Vector DB, NewSQL까지 최신 DB 아키텍처와 엔터프라이즈 백엔드 로드맵',
     icon: '🗄️',
-    title: 'Vector DB & 시맨틱 검색',
-    desc: 'RDBMS부터 생성형 AI 필수 요소인 벡터 임베딩, 시맨틱 검색 DB 및 분산 데이터 아키텍처',
-    link: '/docs/knowledge-info/database'
+    theme: 'theme-emerald',
+    links: [
+      { label: '데이터베이스 아키텍처 가이드', url: '/docs/knowledge-info/database' },
+      { label: '백엔드 엔지니어링 로드맵', url: '/docs/knowledge-info/backend-roadmap' },
+      { label: '프론트엔드 모던 로드맵', url: '/docs/knowledge-info/frontend-roadmap' },
+      { label: 'Agentic OS 오케스트레이션', url: '/docs/knowledge-info/agentic-os' }
+    ]
   },
   {
-    tag: 'ARCHITECTURE',
-    tagClass: 'tag-arch',
-    icon: '🏢',
-    title: '기업별 기술스택 & EDA',
-    desc: '네이버·카카오 등 빅테크 실무 기술 스택과 이벤트 기반 마이크로서비스(EDA) 모범 사례',
-    link: '/docs/company-tech-stack'
+    id: 'legal-tools',
+    title: 'IT 법률 & 개발자 도구',
+    desc: '오픈소스 라이선스, AI 저작권, GDPR 등 필수 법률 정보와 브라우저 내장 클라이언트 DevTools',
+    icon: '⚖️',
+    theme: 'theme-amber',
+    links: [
+      { label: '개발자 IT 법률정보 7대 가이드', url: '/docs/legal/' },
+      { label: '클라이언트 전용 DevTools', url: '/docs/tools/devtools' },
+      { label: 'AI 코딩 도구 & 유용한 도구', url: '/docs/tools/' },
+      { label: 'GitHub Stars 글로벌 TOP 30', url: '/docs/collections/github-stars-global' }
+    ]
   }
 ]
 
-// 3. 통계 데이터
-const stats = [
-  { num: '15+', label: '프로그래밍 언어' },
-  { num: '7종', label: 'IT 개발자 법률정보' },
-  { num: '6+', label: 'DB 아키텍처 분석' },
-  { num: '13+', label: '국내 기업 기술스택' },
-  { num: '80선', label: '추천 오픈소스' },
-  { num: '5종', label: '두뇌회복 미니게임' },
-  { num: '20종', label: '2026 최신 LLM 분석' },
-  { num: '100%', label: '로컬 데이터 보안' }
+// 2. 엄선된 트렌딩 토픽 4선
+const trendingItems = [
+  {
+    tag: 'GLOBAL NO.1 CODING',
+    tagClass: 'tag-purple',
+    icon: '🏆',
+    title: 'Claude 5.1 & Extended Thinking 4.0',
+    desc: 'SWE-bench 88.5% 달성, OS 및 IDE 완전 제어와 다중 경로 자가 교정 엔진 탑재',
+    link: '/docs/llm/claude-5-1'
+  },
+  {
+    tag: 'AUTONOMOUS AGI',
+    tagClass: 'tag-blue',
+    icon: '🚀',
+    title: 'OpenAI GPT-6 & 자율 에이전트 OS',
+    desc: '기획부터 빌드·테스트·배포까지 전 과정을 인간 개입 없이 완결하는 1,000만 토큰 플래그십',
+    link: '/docs/llm/gpt-6'
+  },
+  {
+    tag: '1T OPEN SOURCE',
+    tagClass: 'tag-emerald',
+    icon: '🌟',
+    title: 'DeepSeek-V4 & MLA 2.0 아키텍처',
+    desc: '1조 파라미터 MoE의 초저비용 구동, KV 캐시 메모리 95% 압축과 완전한 MIT 오픈 가중치',
+    link: '/docs/llm/deepseek-v4'
+  },
+  {
+    tag: 'LEGAL & SECURITY',
+    tagClass: 'tag-indigo',
+    icon: '⚖️',
+    title: '오픈소스 라이선스 & AI 저작권',
+    desc: 'GPL/MIT 라이선스 의무 고지, 생성형 AI 학습 데이터 저작권 분쟁, 해외 서비스 GDPR 규제 대응',
+    link: '/docs/legal/'
+  }
+]
+
+// 3. 미니멀 통계 지표
+const quickStats = [
+  { num: '34종', label: '최신 LLM 모델 정밀 분석' },
+  { num: '15+', label: '프로그래밍 언어 가이드' },
+  { num: '120선', label: '엄선된 오픈소스 컬렉션' },
+  { num: '100%', label: '클라이언트 로컬 보안 준수' }
 ]
 </script>
 
 <style scoped>
-.home-portal-wrapper {
+.home-portal-container {
   max-width: 1152px;
   margin: 0 auto;
-  padding: 1.5rem 1.5rem 4rem;
+  padding: 1rem 1.5rem 4rem;
   display: flex;
   flex-direction: column;
   gap: 3.5rem;
 }
 
-/* ════ 공통 섹션 헤더 ════ */
-.portal-section {
-  display: flex;
-  flex-direction: column;
+/* ═══════════════════════════════════════════════════════
+   공통 섹션 헤더
+   ═══════════════════════════════════════════════════════ */
+.section-header {
+  margin-bottom: 1.75rem;
 }
 
-.section-head {
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.badge-row {
-  display: flex;
-  justify-content: center;
+.section-badge {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-brand-soft);
   margin-bottom: 0.5rem;
 }
 
-.portal-badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  border-radius: 9999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  background: var(--vp-c-bg-soft);
-  color: var(--vp-c-text-2);
-  border: 1px solid var(--vp-c-divider);
+.section-badge.accent {
+  color: #8b5cf6;
+  background: rgba(139, 92, 246, 0.12);
 }
 
-.portal-badge.primary {
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
-  border-color: rgba(99, 102, 241, 0.25);
-}
-
-.portal-badge.hot {
-  background: rgba(245, 158, 11, 0.1);
-  color: #d97706;
-  border-color: rgba(245, 158, 11, 0.25);
-}
-
-.section-heading {
+.section-title {
   font-size: 1.6rem;
   font-weight: 800;
   color: var(--vp-c-text-1);
@@ -321,399 +260,333 @@ const stats = [
   letter-spacing: -0.02em;
 }
 
-.section-desc {
-  font-size: 0.92rem;
+.section-subtitle {
+  font-size: 0.95rem;
   color: var(--vp-c-text-2);
   margin: 0;
 }
 
-/* ════ 1. 퀵 액세스 허브 (10열 x 2행) ════ */
-.hub-section {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 16px;
-  padding: 2rem 1.5rem;
-}
-
-.quick-grid {
+/* ═══════════════════════════════════════════════════════
+   1. 4대 핵심 지식 기둥 (Pillars Grid)
+   ═══════════════════════════════════════════════════════ */
+.pillars-grid {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 0.65rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.25rem;
 }
 
-.quick-card {
+@media (min-width: 640px) {
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pillar-card {
+  position: relative;
+  border-radius: 16px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  padding: 1.75rem;
   display: flex;
-  flex-direction: column;
+  gap: 1.25rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.pillar-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark .pillar-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+.pillar-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  padding: 0.9rem 0.25rem;
-  background: var(--vp-c-bg);
+  font-size: 1.6rem;
+  flex-shrink: 0;
+  background: var(--vp-c-bg-mute);
   border: 1px solid var(--vp-c-divider);
-  border-radius: 10px;
-  text-decoration: none !important;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
-  text-align: center;
 }
 
-.quick-card:hover {
-  transform: translateY(-3px);
-  border-color: #6366f1;
-  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.12);
-  background: var(--vp-c-bg-alt);
+.theme-purple:hover { border-color: rgba(139, 92, 246, 0.4); }
+.theme-blue:hover { border-color: rgba(59, 130, 246, 0.4); }
+.theme-emerald:hover { border-color: rgba(16, 185, 129, 0.4); }
+.theme-amber:hover { border-color: rgba(245, 158, 11, 0.4); }
+
+.pillar-content {
+  flex: 1;
+  min-width: 0;
 }
 
-.quick-icon {
-  font-size: 1.45rem;
-  line-height: 1;
-  transition: transform 0.2s ease;
-}
-
-.quick-card:hover .quick-icon {
-  transform: scale(1.15);
-}
-
-.quick-label {
-  font-size: 0.72rem;
+.pillar-title {
+  margin: 0 0 0.35rem 0;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 100%;
 }
 
-.quick-card:hover .quick-label {
-  color: #6366f1;
+.pillar-desc {
+  margin: 0 0 1rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
 }
 
-@media (max-width: 1080px) {
-  .quick-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
+.pillar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
-@media (max-width: 600px) {
-  .quick-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.5rem;
-  }
-  .quick-card {
-    padding: 0.75rem 0.2rem;
-  }
-  .quick-icon {
-    font-size: 1.25rem;
-  }
-  .quick-label {
-    font-size: 0.68rem;
-  }
+.pillar-link-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+  padding: 0.2rem 0;
 }
 
-/* ════ 2. 지금 주목해야 할 기술 트렌드 (4열 x 2행) ════ */
-.trend-grid {
+.pillar-link-item:hover {
+  color: var(--vp-c-brand-2);
+  transform: translateX(3px);
+}
+
+.link-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--vp-c-brand-1);
+  opacity: 0.6;
+}
+
+.link-arrow {
+  margin-left: auto;
+  font-size: 0.8rem;
+  opacity: 0.4;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.pillar-link-item:hover .link-arrow {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* ═══════════════════════════════════════════════════════
+   2. 트렌딩 스포트라이트 (Trending Grid)
+   ═══════════════════════════════════════════════════════ */
+.trending-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .trending-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .trending-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
 .trend-card {
   display: flex;
   flex-direction: column;
-  padding: 1.35rem 1.25rem;
-  background: var(--vp-c-bg-soft);
+  border-radius: 14px;
   border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
+  background: var(--vp-c-bg-soft);
+  padding: 1.5rem;
   text-decoration: none !important;
   transition: all 0.25s ease;
-  cursor: pointer;
 }
 
 .trend-card:hover {
   transform: translateY(-4px);
-  border-color: #6366f1;
-  box-shadow: 0 10px 24px rgba(99, 102, 241, 0.08);
-  background: var(--vp-c-bg);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.trend-top {
+.dark .trend-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.trend-card-top {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.85rem;
 }
 
 .trend-tag {
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 800;
-  padding: 0.2rem 0.55rem;
-  border-radius: 4px;
+  padding: 0.15rem 0.55rem;
+  border-radius: 6px;
   letter-spacing: 0.05em;
-  background: rgba(99, 102, 241, 0.1);
-  color: #6366f1;
 }
+
+.tag-purple { color: #8b5cf6; background: rgba(139, 92, 246, 0.1); }
+.tag-blue { color: #3b82f6; background: rgba(59, 130, 246, 0.1); }
+.tag-indigo { color: #6366f1; background: rgba(99, 102, 241, 0.1); }
+.tag-emerald { color: #10b981; background: rgba(16, 185, 129, 0.1); }
 
 .trend-icon {
   font-size: 1.25rem;
 }
 
-.trend-title {
+.trend-card-title {
+  margin: 0 0 0.5rem 0;
   font-size: 1.05rem;
   font-weight: 700;
   color: var(--vp-c-text-1);
-  margin: 0 0 0.4rem 0;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
-.trend-desc {
+.trend-card-desc {
+  margin: 0 0 1.25rem 0;
   font-size: 0.82rem;
+  line-height: 1.55;
   color: var(--vp-c-text-2);
-  line-height: 1.5;
-  margin: 0;
-  flex-grow: 1;
+  flex: 1;
 }
 
-.trend-link-text {
+.trend-card-action {
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  margin-top: 1rem;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   font-weight: 700;
-  color: #6366f1;
-  transition: gap 0.2s ease;
+  color: var(--vp-c-brand-1);
 }
 
-.trend-card:hover .trend-link-text .arrow {
-  transform: translateX(4px);
+.trend-card:hover .trend-card-action .arrow {
+  transform: translateX(3px);
 }
 
 .arrow {
-  transition: transform 0.2s ease;
+  transition: transform 0.15s ease;
 }
 
-@media (max-width: 960px) {
-  .trend-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 540px) {
-  .trend-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ════ 3. 스포트라이트 배너 ════ */
-.spotlight-card {
-  background: linear-gradient(135deg, #4338ca 0%, #6366f1 50%, #8b5cf6 100%);
+/* ═══════════════════════════════════════════════════════
+   3. 탭형 인터랙티브 패널 (Interactive Panel)
+   ═══════════════════════════════════════════════════════ */
+.interactive-panel {
   border-radius: 16px;
-  padding: 2.2rem 2rem;
-  color: #ffffff;
-  box-shadow: 0 12px 28px rgba(79, 70, 229, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
-.spotlight-badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(8px);
-  border-radius: 9999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.75rem;
-}
-
-.spotlight-title {
-  font-size: 1.55rem;
-  font-weight: 800;
-  margin: 0 0 0.6rem 0;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-}
-
-.spotlight-desc {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.92);
-  line-height: 1.6;
-  margin: 0 0 1.5rem 0;
-  max-width: 850px;
-}
-
-.spotlight-actions {
+.panel-header {
   display: flex;
-  gap: 0.75rem;
   flex-wrap: wrap;
-}
-
-.btn-primary {
-  display: inline-block;
-  padding: 0.65rem 1.4rem;
-  background: #ffffff;
-  color: #4f46e5 !important;
-  font-weight: 800;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  text-decoration: none !important;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.btn-secondary {
-  display: inline-block;
-  padding: 0.65rem 1.4rem;
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff !important;
-  font-weight: 700;
-  font-size: 0.9rem;
-  border-radius: 8px;
-  text-decoration: none !important;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  transition: background 0.2s ease;
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-/* ════ 4. 인터랙티브 대시보드 (퀴즈 & 진도율 2열 배치) ════ */
-.interactive-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  align-items: stretch;
-}
-
-.interactive-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.interactive-col :deep(.quiz-card-container),
-.interactive-col :deep(.learning-progress-card) {
-  margin: 0 !important;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-@media (max-width: 900px) {
-  .interactive-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ════ 5. 통계 & 플랫폼 개요 ════ */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-mute);
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
 }
 
-.stat-box {
+.panel-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.panel-tab-btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--vp-c-text-2);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.panel-tab-btn:hover {
+  color: var(--vp-c-text-1);
+  background: var(--vp-c-bg-soft);
+}
+
+.panel-tab-btn.active {
+  color: var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  border-color: var(--vp-c-divider);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.panel-hint {
+  font-size: 0.75rem;
+  color: var(--vp-c-text-3);
+}
+
+.panel-body {
+  padding: 1.5rem;
+}
+
+.tab-content {
+  width: 100%;
+}
+
+/* 트랜지션 애니메이션 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   4. 미니멀 플랫폼 통계 바 (Stats Bar)
+   ═══════════════════════════════════════════════════════ */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  border-radius: 14px;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
-  border-radius: 10px;
-  padding: 1rem 0.5rem;
   text-align: center;
 }
 
-.stat-num {
-  font-size: 1.35rem;
-  font-weight: 800;
-  color: #6366f1;
-  margin-bottom: 0.2rem;
-}
-
-.stat-title {
-  font-size: 0.7rem;
-  color: var(--vp-c-text-2);
-  font-weight: 600;
-}
-
-@media (max-width: 960px) {
-  .stats-grid {
+@media (min-width: 768px) {
+  .stats-bar {
     grid-template-columns: repeat(4, 1fr);
   }
 }
 
-@media (max-width: 520px) {
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.stat-num {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--vp-c-brand-1);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
 }
 
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-}
-
-.overview-card {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 1.5rem;
-}
-
-.overview-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-.overview-icon {
-  font-size: 1.3rem;
-}
-
-.overview-header h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0;
-  color: var(--vp-c-text-1);
-}
-
-.overview-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
-}
-
-.overview-list li {
-  font-size: 0.85rem;
+.stat-label {
+  font-size: 0.8rem;
+  font-weight: 600;
   color: var(--vp-c-text-2);
-  line-height: 1.5;
-  padding-left: 1rem;
-  position: relative;
-}
-
-.overview-list li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: #6366f1;
-  font-weight: bold;
-}
-
-.overview-list li b {
-  color: var(--vp-c-text-1);
-}
-
-@media (max-width: 768px) {
-  .overview-grid {
-    grid-template-columns: 1fr;
-  }
 }
 </style>
