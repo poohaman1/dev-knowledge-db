@@ -6,6 +6,10 @@ description: 알리바바 클라우드의 최상위 플래그십 LLM Qwen 2.5-Ma
 
 # Qwen 2.5-Max / Qwen 2.5 (Alibaba) 상세 정보
 
+> [!TIP]
+> **🚀 최신 버전 출시 안내: 2.4조 파라미터 Qwen 3.8 공개**  
+> 알리바바 Qwen의 차세대 초대형 플래그십 모델 **[Qwen 3.8 (2.4조 파라미터)](/docs/llm/qwen-3-8)** 문서가 새롭게 신설되었습니다. Qwen3.8-Max-Preview 및 Token Plan 상세 정보를 확인하세요.
+
 [🔙 이전 화면으로 돌아가기](/docs/llm/)
 
 ---

@@ -1,17 +1,22 @@
 ---
 layout: doc
 title: Claude 5.1 (Anthropic)
-description: Anthropic의 차세대 최상위 플래그십 AI 모델 Claude 5.1에 대한 상세 정보 및 핵심 특징 안내
+description: Anthropic의 2026년 10월 16일 현재 최상위 플래그십 AI 모델 Claude 5.1 상세 정보 및 핵심 특징 안내
 ---
 
 # Claude 5.1 (Anthropic) 상세 정보
 
+> [!NOTE]
+> **🚀 최신 버전 안내**: Anthropic의 최신 공식 릴리즈는 **[Claude Opus 5.5](/docs/llm/claude-opus-5-5)** 및 **[Claude Sonnet 5.5](/docs/llm/claude-sonnet-5-5)**입니다. ([공식 릴리스 노트](https://platform.claude.com/docs/ko/release-notes/overview) 참조)
+
 [🔙 이전 화면으로 돌아가기](/docs/llm/)
+
 
 ---
 
 ## 📌 모델 개요
-**Claude 5.1**은 Anthropic이 발표한 **차세대 최상위 플래그십 인공지능 모델**입니다.
+**Claude 5.1**은 Anthropic이 발표한 **2026년 10월 16일 현재 공식 최상위 플래그십 인공지능 모델**입니다.
+
 
 개발자들 사이에서 "궁극의 지능형 페어 프로그래머"로 불리는 Claude 시리즈의 완성형 버전으로, 고도화된 **Extended Thinking 4.0(심층 단계별 사고 엔진)**과 **컴퓨터 완전 제어(Computer Use 3.0)**, 그리고 자율 코딩 에이전트 도구인 **Claude Code**의 차세대 엔진으로 완벽하게 통합되었습니다.
 

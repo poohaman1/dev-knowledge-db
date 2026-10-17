@@ -1,17 +1,22 @@
 ---
 layout: doc
 title: Gemini 3.8 Flash (Google)
-description: Google DeepMind의 현재 최신 초저지연 실시간 멀티모달 & 고속 추론 AI 모델 Gemini 3.8 Flash 상세 안내
+description: Google DeepMind의 2026년 10월 16일 현재 최신 초저지연 실시간 멀티모달 & 고속 추론 AI 모델 Gemini 3.8 Flash 상세 안내
 ---
 
 # Gemini 3.8 Flash (Google) 상세 정보
+
+> [!IMPORTANT]
+> **📅 최신 공식 릴리즈: 2026년 10월 16일 기준 최신 실시간 초고속 모델 (GA)**  
+> Sub-100ms 초저지연 양방향 옴니 멀티모달 및 대용량 100만 토큰을 지원하는 Google의 최신 실시간 모델입니다.
 
 [🔙 이전 화면으로 돌아가기](/docs/llm/)
 
 ---
 
 ## 📌 모델 개요
-**Gemini 3.8 Flash**는 Google DeepMind가 개발한 **현재 최신 초저지연 실시간 멀티모달 & 경량 고성능 AI 모델**입니다.
+**Gemini 3.8 Flash**는 Google DeepMind가 개발한 **2026년 10월 16일 현재 공식 최신 초저지연 실시간 멀티모달 & 경량 고성능 AI 모델**입니다.
+
 
 실시간 음성 대화, 실시간 카메라 비디오 스트리밍, 대량의 데이터 배치 분석, 고속 에이전트 루프 처리에 특화되어 있으며, 100만 토큰(1M) 컨텍스트 윈도우와 전례 없는 응답 속도를 극도로 경제적인 비용으로 제공합니다.
 

@@ -1,17 +1,22 @@
 ---
 layout: doc
 title: Gemini 3.1 Pro (Google)
-description: Google DeepMind의 현재 최신 플래그십 대규모 멀티모달 & 엔지니어링 AI 모델 Gemini 3.1 Pro 상세 안내
+description: Google DeepMind의 2026년 10월 16일 현재 최신 플래그십 대규모 멀티모달 & 엔지니어링 AI 모델 Gemini 3.1 Pro 상세 안내
 ---
 
 # Gemini 3.1 Pro (Google) 상세 정보
 
+> [!NOTE]
+> **🚀 최신 버전 안내**: Google DeepMind의 최신 플래그십은 **[Gemini 4.0](/docs/llm/gemini-4-0)**입니다. 본 문서는 3.1 세대 플래그십에 대한 아카이브 및 가이드입니다.
+
 [🔙 이전 화면으로 돌아가기](/docs/llm/)
+
 
 ---
 
 ## 📌 모델 개요
-**Gemini 3.1 Pro**는 Google DeepMind가 선보인 **현재 최신 플래그십 멀티모달 & 고성능 추론 AI 모델**입니다.
+**Gemini 3.1 Pro**는 Google DeepMind가 선보인 **2026년 10월 16일 현재 공식 최신 플래그십 멀티모달 & 고성능 추론 AI 모델**입니다.
+
 
 Google의 초대형 TPU v6 클러스터에서 훈련되어, 방대한 코드베이스와 논문, 멀티미디어 분석을 지원하는 **200만~400만 토큰의 초대용량 컨텍스트 윈도우**와 고도화된 하이브리드 추론 엔진을 단일 통합 아키텍처로 제공합니다.
 

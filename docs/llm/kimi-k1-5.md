@@ -6,6 +6,10 @@ description: 200만 토큰 멀티모달 롱 컨텍스트 및 복합 멀티 에�
 
 # Kimi k1.5 (Moonshot AI) 상세 정보
 
+> [!TIP]
+> **🚀 최신 버전 출시 안내: 차세대 플래그십 Kimi K3 및 Kimi Work 3.2.17 공개**  
+> 문샷 AI의 공식 최신 플래그십 모델 **[Kimi K3 & Kimi Work](/docs/llm/kimi-k3)** 문서가 신설되었습니다. Agent Swarm 군집 추론과 실시간 공동 작성 역량을 확인하세요.
+
 [🔙 이전 화면으로 돌아가기](/docs/llm/)
 
 ---

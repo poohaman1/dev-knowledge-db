@@ -56,11 +56,46 @@
 
 ---
 
-### 5. 블라인드 (Blind)
+### 5. 토스 (비바리퍼블리카 / Viva Republica)
+*   **프론트엔드 / 웹:**
+    *   **핵심 스택:** React, Next.js, TypeScript, 모노레포(Turborepo / Yarn Berry PnP)
+    *   **특징:** Server-Driven UI (SDUI)를 적극 활용하여 앱 배포 없이 실시간 화면 변경, 자체 오픈소스 디자인 시스템(TDS) 구축
+*   **백엔드 / 분산 시스템:**
+    *   **핵심 스택:** Kotlin, Spring Boot, WebFlux, Java, MSA, Kafka, MySQL, Redis, Kubernetes
+    *   **특징:** 대규모 금융 트랜잭션의 엄격한 무손실 보장(Saga 패턴, 분산 락), 초저지연 비동기 이벤트 기반 아키텍처
+*   **데이터 & AI:**
+    *   Spark, Trino, Airflow 기반 데이터 파이프라인 및 사내 자체 LLM 어시스턴트/에이전트 인프라 도입
+
+---
+
+### 6. 쿠팡 (Coupang)
+*   **백엔드 / 대규모 분산 아키텍처:**
+    *   **핵심 스택:** Java, Spring Boot, Go, Python, gRPC, Kafka, AWS (EKS, DynamoDB, RDS, S3)
+    *   **특징:** 글로벌 수억 건의 주문/물류 트래픽을 처리하는 마이크로서비스 아키텍처(MSA), 카오스 엔지니어링 및 99.99% 가용성 지향
+*   **프론트엔드 & 모바일:**
+    *   TypeScript, React, 모바일 Swift / Kotlin 네이티브 + Flutter 하이브리드 모듈
+*   **검색 & 머신러닝:**
+    *   Elasticsearch, PyTorch, Ray, 대규모 실시간 랭킹 및 추천 엔진, 물류 풀필먼트 자동화 AI
+
+---
+
+### 7. 우아한형제들 (배달의민족)
+*   **백엔드 / 플랫폼:**
+    *   **핵심 스택:** Java 17/21, Kotlin, Spring Boot, JPA/QueryDSL, MySQL, Redis, AWS, Kubernetes
+    *   **특징:** 대규모 이벤트 기반 아키텍처 (Kafka, AWS SQS), 도메인 주도 설계(DDD), 빌링/정산/주문 시스템의 엄격한 트랜잭션 분리
+*   **프론트엔드:**
+    *   TypeScript, React, Next.js, GraphQL, 자체 배민 웹 프레임워크 및 컴포넌트 라이브러리
+*   **개발 문화:**
+    *   지속적인 테스트 자동화(JUnit 5, Mockito), 정기적인 테크 세미나 및 사내 개발자 성장 프로그램 운영
+
+---
+
+### 8. 블라인드 (Blind)
 *   **주요 기술 스택**
     *   **핵심 스택:** Swift, UIKit 기반 UI 구현, RxSwift 반응형 프로그래밍
     *   **자격요건:** Apple Human Interface Guidelines(HIG) 표준 준수 설계 역량, 코드 리뷰를 통한 고품질 프로덕트 완성.
 *   **개발 환경:** 글로벌 리모트(재택근무) 기반의 코드 통합 및 비동기 협업에 특화되어 있습니다.
+
 
 ---
 

@@ -6,6 +6,10 @@ description: 업스테이지의 독보적 DUS 3.0 기술로 완성된 차세대 
 
 # Solar 3 (Upstage) 상세 정보
 
+> [!TIP]
+> **🚀 최신 버전 출시 안내: 실무 에이전트 모델 Solar Pro 4 공개**  
+> 업스테이지의 공식 최신 플래그십 에이전트 모델 **[Solar Pro 4](/docs/llm/solar-pro-4)** 문서가 신설되었습니다. 512K 롱컨텍스트와 OfficeVerse 실무 완주 역량을 확인하세요.
+
 [🔙 이전 화면으로 돌아가기](/docs/llm/)
 
 ---
